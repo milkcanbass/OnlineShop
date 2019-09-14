@@ -1,0 +1,14 @@
+@import '../../App';
+.headerWrapper {
+  width: 100vw;
+  height: 70px;
+  background-color: $primary-color;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brandName {
+  font-family: $titleFont;
+}

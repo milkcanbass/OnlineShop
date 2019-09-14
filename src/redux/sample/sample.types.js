@@ -1,0 +1,2 @@
+export const SAMPLE_SUCCESS = 'SAMPLE_SUCCESS';
+export const SAMPLE_FAIL = 'SAMPLE_FAIL';
