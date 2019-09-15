@@ -16,13 +16,17 @@ firebase.initializeApp(config);
 
 // Auth function with Email and Password;
 export const addNewUserWithEmailAndPassword = () => {
-  console.log('addNew fired');
-
   firebase
     .auth()
     .createUserWithEmailAndPassword('b@gmail.com', '123456')
     .catch(err => {
+      // send err message to client
       console.log(err.code);
       console.log(err.message);
     });
+};
+
+export const downloadPictureFromDb = () => {
+  // dl item pictures
+  console.log('dlPictrure');
 };

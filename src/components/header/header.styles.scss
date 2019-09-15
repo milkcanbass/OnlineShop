@@ -10,21 +10,18 @@
   font-family: $titleFont;
 
   .titleContainer {
-    padding-top: 5px;
-    padding-left: 20px;
+    padding: 5px 20px 0 20px;
   }
 
   .optionContainer {
+    width: 400px;
+    height: 60px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-around;
 
     .option {
-      padding: 0 50px;
-    }
-    .cart {
-      width: 30px;
-      height: auto;
+      padding-right: 20px;
     }
   }
 }
