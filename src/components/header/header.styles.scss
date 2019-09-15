@@ -1,14 +1,30 @@
 @import '../../App';
-.headerWrapper {
+.header {
   width: 100vw;
-  height: 70px;
+  height: 60px;
   background-color: $primary-color;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.brandName {
   font-family: $titleFont;
+
+  .titleContainer {
+    padding-top: 5px;
+    padding-left: 20px;
+  }
+
+  .optionContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .option {
+      padding: 0 50px;
+    }
+    .cart {
+      width: 30px;
+      height: auto;
+    }
+  }
 }

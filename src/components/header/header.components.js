@@ -1,21 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import {ReactComponent as Logo} from 'SVG'
+import Logo from '../../assets/shopping-bag.svg';
 import './header.styles.scss';
 
 const Header = () => {
   return (
-    <div className="headerWrapper">
-      <h1 className="brandName">Jiafeimao & Handagou</h1>
-      <div className="headerItems">
-        <Link to="/contact" className="contact">
+    <div className="header">
+      <div className="titleContainer">
+        <h1 className="brandName">Jiafeimao&Handagou</h1>
+      </div>
+      <div className="optionContainer">
+        <Link to="/contact" className="option">
           CONTACT
         </Link>
-        <Link to="/laginAndSignin" className="loginAndSignin">
+        <Link to="/laginAndSignin" className="option">
           LOGIN&SIGNIN
         </Link>
-        <Link to="/cart" className="cart">
-          CART
+        <Link to="/cart" className="option">
+          <Logo className="cart" />
         </Link>
       </div>
     </div>
