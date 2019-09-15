@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/shopping-bag.svg';
 import './header.styles.scss';
+import CartIcon from '../cart-icon/cart-icon.component';
+import { addNewUserWithEmailAndPassword } from '../../firebase/firebase.utils';
 
 const Header = () => {
   return (
@@ -10,15 +11,14 @@ const Header = () => {
         <h1 className="brandName">Jiafeimao&Handagou</h1>
       </div>
       <div className="optionContainer">
+        <button onClick={e => addNewUserWithEmailAndPassword(e)}>hi</button>
         <Link to="/contact" className="option">
           CONTACT
         </Link>
         <Link to="/laginAndSignin" className="option">
           LOGIN&SIGNIN
         </Link>
-        <Link to="/cart" className="option">
-          <Logo className="cart" />
-        </Link>
+        <CartIcon />
       </div>
     </div>
   );
