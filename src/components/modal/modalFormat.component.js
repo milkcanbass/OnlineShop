@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import './modalFormat.styles.scss';
 import PropTypes from 'prop-types';
@@ -23,18 +23,22 @@ class ModalFormat extends Component {
     modalRoot.removeChild(this.el);
   }
 
+  onCloseModalByClicingOutside = e => {
+    const { modalToggleWindow } = this.props;
+    if (e.target.className === 'modalBackground') {
+      modalToggleWindow();
+    }
+  };
+
   render() {
     const { children, modalOpen, modalToggleWindow } = this.props;
 
     const modalUI = (
-      <div className="modalBackground">
-        <div className="modal">
-          {children}
-          <div className="footer">
-            <button onClick={e => modalToggleWindow(e)}> close</button>
-          </div>
+      <>
+        <div className="modalBackground" onClick={e => this.onCloseModalByClicingOutside(e)}>
+          <div className="modal">{children}</div>
         </div>
-      </div>
+      </>
     );
     if (!modalOpen) {
       return null;

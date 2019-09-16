@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SignInAndSignUp from '../signInAndSignUp/signInAndSignUp.component';
+import SignInAndSignUp from '../../pages/signInAndSignUp/signInAndSignUp.component';
 import ModalFormat from './modalFormat.component';
-import Contact from '../contact/contact.component';
+import Contact from '../../pages/contact/contact.component';
 
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 
