@@ -4,6 +4,8 @@ import { sampleAction } from '../../redux/sample/sample.action';
 
 import './landing.styles.scss';
 
+import Top from '../../components/top/top.component';
+
 const LandingPage = props => {
   // destructing state and function from redux
   const { sampleAction, sampleState } = props;
@@ -23,6 +25,7 @@ const LandingPage = props => {
 
   return (
     <div>
+      <Top />
       <h1 className="title">Submitted text: {sampleState}</h1>
       <form onSubmit={e => handleSubmit(e)}>
         <input type="text" className="Input" name="Input" onChange={e => handleChange(e)} />
