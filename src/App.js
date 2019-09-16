@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 // Components
 import LandingPage from './pages/landing/landing.component';
 import Header from './components/header/header.components';
-import ModalContentSelecter from './components/modal/modal.component';
+import Modal from './components/modal/modal.component';
 import './_App.scss';
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <ModalContentSelecter />
+        <Modal />
         <Switch>
           <Route path="/" component={LandingPage} />
         </Switch>

@@ -7,31 +7,24 @@ import Contact from '../contact/contact.component';
 
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 
-const ModalContentSelecter = props => {
+const Modal = props => {
   const { modalType } = props;
+
+  // modalType comes from e.target.id.
+  const modalContent = {
+    contact: <Contact />,
+    signInAndSignUp: <SignInAndSignUp />,
+    error: 'error',
+  };
 
   return (
     <div>
-      <ModalFormat>
-        {/* //modalType comes from e.target.id. usign self invoking function(js) */}
-        {(() => {
-          switch (modalType) {
-            case 'contact':
-              return <Contact />;
-            case 'signInAndSignUp':
-              return <SignInAndSignUp />;
-            case 'error':
-              return <Error />;
-            default:
-              return null;
-          }
-        })()}
-      </ModalFormat>
+      <ModalFormat>{modalContent[modalType]}</ModalFormat>
     </div>
   );
 };
 
-ModalContentSelecter.propTypes = {
+Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   modalOpen: PropTypes.bool.isRequired,
   modalType: PropTypes.string.isRequired,
@@ -49,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ModalContentSelecter);
+)(Modal);
