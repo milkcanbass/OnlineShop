@@ -2,6 +2,7 @@ import { MODAL_TOGGLE_WINDOW } from './modal.types';
 
 const INITIAL_STATE = {
   modalOpen: false,
+  modalType: '',
 };
 
 const modalReducer = (state = INITIAL_STATE, action) => {
@@ -11,6 +12,7 @@ const modalReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         modalOpen: !state.modalOpen,
+        modalType: payload,
       };
     default:
       return state;

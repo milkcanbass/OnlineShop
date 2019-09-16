@@ -11,21 +11,22 @@ import { modalToggleWindow } from '../../redux/modal/modal.action';
 const Header = props => {
   const { modalToggleWindow } = props;
 
+  const modalHandler = e => {
+    modalToggleWindow(e.target.id);
+  };
+
   return (
     <div className="header">
       <div className="titleContainer">
         <h1 className="brandName">Jiafeimao&Handagou</h1>
       </div>
       <div className="optionContainer">
-        <button type="button" onClick={() => modalToggleWindow()}>
-          propsme
-        </button>
-        <Link to="/contact" className="option">
+        <p id="contact" onClick={e => modalHandler(e)} className="option">
           CONTACT
-        </Link>
-        <Link to="/laginAndSignin" className="option">
+        </p>
+        <p id="signInAndSignUp" onClick={e => modalHandler(e)} className="option">
           LOGIN&SIGNIN
-        </Link>
+        </p>
         <CartIcon className="option" />
       </div>
     </div>
@@ -42,7 +43,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  modalToggleWindow: () => dispatch(modalToggleWindow()),
+  modalToggleWindow: payload => dispatch(modalToggleWindow(payload)),
 });
 
 export default connect(
