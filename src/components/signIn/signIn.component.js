@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './signIn.styles.scss';
 import InputForm from '../inputForm/inputForm.component';
+import MyButton from '../myButton/myButton.component';
+import { signInWithGoogleAccount } from '../../firebase/firebase.utils';
 
 const SignIn = () => {
   const [signInState, setiSgnInState] = useState({
@@ -23,7 +25,8 @@ const SignIn = () => {
 
   return (
     <div className="signInContainer">
-      <h2>I have an account</h2>
+      <h2 className="signInTitle">SIGN IN</h2>
+      <span className="signInSubTitle">I have an account</span>
       <form className="inputForms" onSubmit={e => onSubmitHandler(e)}>
         <InputForm
           type="email"
@@ -41,7 +44,10 @@ const SignIn = () => {
           handleChange={onChangeHadler}
           required
         />
-        <button type="submit">submit</button>
+        <div className="signInButtons">
+          <MyButton type="submit">Sign in</MyButton>
+          <MyButton onClick={signInWithGoogleAccount}>use Google Account</MyButton>
+        </div>
       </form>
     </div>
   );

@@ -1,9 +1,15 @@
 .signInContainer {
   display: flex;
   flex-direction: column;
-}
-
-.inputForms {
-  display: flex;
-  flex-direction: column;
+  .signInSubTitle {
+    color: gray;
+  }
+  .inputForms {
+    display: flex;
+    flex-direction: column;
+  }
+  .signInButtons {
+    display: flex;
+    justify-content: space-around;
+  }
 }

@@ -23,7 +23,7 @@ class ModalFormat extends Component {
     modalRoot.removeChild(this.el);
   }
 
-  onCloseModalByClicingOutside = e => {
+  onCloseModalByClickingOutside = e => {
     const { modalToggleWindow } = this.props;
     if (e.target.className === 'modalBackground') {
       modalToggleWindow();
@@ -31,11 +31,11 @@ class ModalFormat extends Component {
   };
 
   render() {
-    const { children, modalOpen, modalToggleWindow } = this.props;
+    const { children, modalOpen } = this.props;
 
     const modalUI = (
       <>
-        <div className="modalBackground" onClick={e => this.onCloseModalByClicingOutside(e)}>
+        <div className="modalBackground" onClick={e => this.onCloseModalByClickingOutside(e)}>
           <div className="modal">{children}</div>
         </div>
       </>
