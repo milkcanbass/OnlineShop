@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 
 import CartIcon from '../cart-icon/cart-icon.component';
 
+import { auth } from '../../firebase/firebase.utils';
+
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 
 const Header = props => {
-  const { modalToggleWindow } = props;
+  const { modalToggleWindow, user } = props;
 
   const modalHandler = e => {
     modalToggleWindow(e.target.id);
@@ -23,9 +25,16 @@ const Header = props => {
         <p id="contact" onClick={e => modalHandler(e)} className="option">
           CONTACT
         </p>
-        <p id="signInAndSignUp" onClick={e => modalHandler(e)} className="option">
-          LOGIN&SIGNIN
-        </p>
+
+        {user ? (
+          <p className="option" onClick={() => auth.signOut()}>
+            SIGN OUT
+          </p>
+        ) : (
+          <p id="signInAndSignUp" onClick={e => modalHandler(e)} className="option">
+            SIGN IN
+          </p>
+        )}
         <CartIcon className="option" />
       </div>
     </div>
