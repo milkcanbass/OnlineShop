@@ -1,8 +1,8 @@
 import React from 'react';
 import './myButton.styles.scss';
 
-const MyButton = ({ children, ...otherProps }) => (
-  <button className="myButton" {...otherProps}>
+const MyButton = ({ children, googleButton, ...otherProps }) => (
+  <button className={`${googleButton ? 'googleButton' : ''} myButton`} {...otherProps}>
     {children}
   </button>
 );

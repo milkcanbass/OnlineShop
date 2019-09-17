@@ -5,7 +5,7 @@ import MyButton from '../myButton/myButton.component';
 import { signInWithGoogleAccount } from '../../firebase/firebase.utils';
 
 const SignIn = () => {
-  const [signInState, setiSgnInState] = useState({
+  const [signInState, setSignInState] = useState({
     email: '',
     password: '',
   });
@@ -16,8 +16,8 @@ const SignIn = () => {
     console.log(e);
   };
 
-  const onChangeHadler = e => {
-    setiSgnInState({
+  const onChangeHandler = e => {
+    setSignInState({
       ...signInState,
       [e.target.name]: e.target.value,
     });
@@ -33,7 +33,7 @@ const SignIn = () => {
           name="email"
           label="Email"
           value={email}
-          handleChange={onChangeHadler}
+          handleChange={onChangeHandler}
           required
         />
         <InputForm
@@ -41,12 +41,14 @@ const SignIn = () => {
           name="password"
           label="Password"
           value={password}
-          handleChange={onChangeHadler}
+          handleChange={onChangeHandler}
           required
         />
         <div className="signInButtons">
           <MyButton type="submit">Sign in</MyButton>
-          <MyButton onClick={signInWithGoogleAccount}>use Google Account</MyButton>
+          <MyButton onClick={signInWithGoogleAccount} googleButton>
+            use Gmail Account
+          </MyButton>
         </div>
       </form>
     </div>

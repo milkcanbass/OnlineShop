@@ -1,6 +1,7 @@
 .signInContainer {
   display: flex;
   flex-direction: column;
+  min-width: 300px;
   .signInSubTitle {
     color: gray;
   }
@@ -10,6 +11,6 @@
   }
   .signInButtons {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 }

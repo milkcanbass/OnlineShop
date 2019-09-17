@@ -31,6 +31,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        {/* for changing header by auth */}
         <Header user={this.state.user} />
         <Modal />
         <Switch>

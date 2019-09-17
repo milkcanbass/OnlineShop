@@ -1,0 +1,16 @@
+.signUpContainer {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  .signUpSubTitle {
+    color: gray;
+  }
+  .inputForms {
+    display: flex;
+    flex-direction: column;
+  }
+  .signUpButtons {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
