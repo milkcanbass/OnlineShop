@@ -1,10 +1,26 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const Port = process.env.Port || 3000;
 
 module.exports = {
   devServer: {
+    contentBase: './dist',
     open: true,
-    port: 3000,
+    port: Port,
     compress: true,
+    proxy: [
+      {
+        context: ['/auth', '/api'],
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      },
+    ],
+    // headers: {
+    //   'Access-Control-Allow-Origin': '*',
+    //   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+    //   'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    // },
   },
   module: {
     rules: [

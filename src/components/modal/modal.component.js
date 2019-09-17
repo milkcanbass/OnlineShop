@@ -25,7 +25,6 @@ const Modal = props => {
 };
 
 Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
   modalOpen: PropTypes.bool.isRequired,
   modalType: PropTypes.string.isRequired,
 };

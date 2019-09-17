@@ -47,9 +47,7 @@ class ModalFormat extends Component {
   }
 }
 
-ModalFormat.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
+ModalFormat.propTypes = {};
 
 const mapDispatchToProps = dispatch => ({
   modalToggleWindow: () => dispatch(modalToggleWindow()),
