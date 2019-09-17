@@ -4,13 +4,13 @@ require('firebase/auth');
 require('firebase/firestore');
 
 const config = {
-  apiKey: 'AIzaSyBLkU2Be7DEZ-UqhoMeWcgNYrvQJxZB7dU',
-  authDomain: 'jiafeimaostore.firebaseapp.com',
-  databaseURL: 'https://jiafeimaostore.firebaseio.com',
-  projectId: 'jiafeimaostore',
-  storageBucket: '',
-  messagingSenderId: '81113062888',
-  appId: '1:81113062888:web:01e013645daed80055d85d',
+  apiKey: 'AIzaSyDI0irUHEtrSUmRX8e_1HyEMvl5kQtPbTo',
+  authDomain: 'jaifeimaohandagou.firebaseapp.com',
+  databaseURL: 'https://jaifeimaohandagou.firebaseio.com',
+  projectId: 'jaifeimaohandagou',
+  storageBucket: 'jaifeimaohandagou.appspot.com',
+  messagingSenderId: '324927088238',
+  appId: '1:324927088238:web:82f6486122a94532e8687f',
 };
 // Initialize Firebase
 firebase.initializeApp(config);
@@ -53,5 +53,20 @@ export const createUserProfDoc = async (userAuth, additionalData) => {
   }
   const userRef = firestore.collection('users').doc(userAuth.uid);
   const snapShot = await userRef.get();
-  console.log(snapShot);
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createAt,
+        ...additionalData,
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+  return userRef;
 };

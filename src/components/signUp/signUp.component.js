@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import './signUp.styles.scss';
 import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
-import { createUserProfDoc } from '../../firebase/firebase.utils';
+import { createUserProfDoc, auth } from '../../firebase/firebase.utils';
 
 const SignUp = () => {
   const [signUpState, setSignUpState] = useState({
+    nickName: '',
     email: '',
     password: '',
-    nickName: '',
-    cart: [],
+    confirmPassword: '',
   });
   const { email, password, nickName } = signUpState;
 
@@ -51,6 +51,14 @@ const SignUp = () => {
           name="password"
           label="Password"
           value={password}
+          handleChange={onChangeHandler}
+          required
+        />
+        <InputForm
+          type="password"
+          name="confirmPassword"
+          label="Confirm Password"
+          value={confirmPassword}
           handleChange={onChangeHandler}
           required
         />
