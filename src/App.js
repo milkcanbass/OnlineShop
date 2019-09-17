@@ -7,7 +7,7 @@ import Header from './components/header/header.components';
 import Modal from './components/modal/modal.component';
 import './_App.scss';
 
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfDoc } from './firebase/firebase.utils';
 
 class App extends Component {
   state = {
@@ -18,9 +18,9 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       this.setState({ user });
-      console.log(this.state.user);
+      await createUserProfDoc(user);
     });
   }
 

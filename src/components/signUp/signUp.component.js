@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './signUp.styles.scss';
 import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
-import { signInWithGoogleAccount } from '../../firebase/firebase.utils';
+import { createUserProfDoc } from '../../firebase/firebase.utils';
 
 const SignUp = () => {
   const [signUpState, setSignUpState] = useState({
@@ -55,7 +55,13 @@ const SignUp = () => {
           required
         />
         <div className="signUpButtons">
-          <MyButton type="submit">Register</MyButton>
+          <MyButton
+            onClick={() => {
+              createUserProfDoc;
+            }}
+          >
+            Register
+          </MyButton>
         </div>
       </form>
     </div>

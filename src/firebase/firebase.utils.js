@@ -46,9 +46,26 @@ export const signInWithGoogleAccount = () => {
     });
 };
 
-export const createUserProfDoc = async userAuth => {
+export const createUserProfDoc = async (userAuth, additionalData) => {
   if (!userAuth) {
     return;
   }
-  console.log(firestore.doc('users/123'));
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = await userRef.get();
+
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createAt,
+        ...additionalData,
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 };
