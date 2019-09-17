@@ -46,7 +46,9 @@ export const signInWithGoogleAccount = () => {
     });
 };
 
-export const downloadPictureFromDb = () => {
-  // dl item pictures
-  console.log('dlPictrure');
+export const createUserProfDoc = async userAuth => {
+  if (!userAuth) {
+    return;
+  }
+  console.log(firestore.doc('users/123'));
 };
