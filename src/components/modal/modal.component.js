@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import SignInAndSignUp from '../../pages/signInAndSignUp/signInAndSignUp.component';
 import ModalFormat from './modalFormat.component';
 import Contact from '../../pages/contact/contact.component';
+import Error from '../error/error.component';
 
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 
@@ -14,7 +15,7 @@ const Modal = props => {
   const modalContent = {
     contact: <Contact />,
     signInAndSignUp: <SignInAndSignUp />,
-    error: 'error',
+    error: <Error />,
   };
 
   return (

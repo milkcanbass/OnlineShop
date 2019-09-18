@@ -1,19 +1,33 @@
 import React, { useState } from 'react';
 import './signIn.styles.scss';
+import { connect } from 'react-redux';
+import { declareExportAllDeclaration } from '@babel/types';
 import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
-import { signInWithGoogleAccount } from '../../firebase/firebase.utils';
+import { signInWithGoogleAccount, auth } from '../../firebase/firebase.utils';
+import { modalToggleWindow, modalCloseWindow } from '../../redux/modal/modal.action';
 
-const SignIn = () => {
+const SignIn = props => {
+  const { modalCloseWindow, modalToggleWindow } = props;
+
   const [signInState, setSignInState] = useState({
     email: '',
     password: '',
   });
   const { email, password } = signInState;
 
-  const onSubmitHandler = e => {
+  const onSubmitHandler = async e => {
     e.preventDefault();
-    console.log(e);
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setSignInState({
+        email: '',
+        password: '',
+      });
+    } catch (err) {
+      modalCloseWindow();
+      modalToggleWindow('error', err.message);
+    }
   };
 
   const onChangeHandler = e => {
@@ -55,4 +69,12 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+  modalToggleWindow: (type, message) => dispatch(modalToggleWindow(type, message)),
+  modalCloseWindow: () => dispatch(modalCloseWindow()),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(SignIn);

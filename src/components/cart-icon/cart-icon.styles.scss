@@ -1,8 +1,10 @@
+@import '../../App';
 .cart-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+
+  @include cursorOn();
 
   .icon {
     width: 30px;

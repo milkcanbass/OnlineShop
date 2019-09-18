@@ -6,16 +6,31 @@ import { createUserProfDoc, auth } from '../../firebase/firebase.utils';
 
 const SignUp = () => {
   const [signUpState, setSignUpState] = useState({
-    nickName: '',
+    displayName: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-  const { email, password, nickName } = signUpState;
+  const { email, password, displayName, confirmPassword } = signUpState;
 
-  const onSubmitHandler = e => {
+  const onSubmitHandler = async e => {
     e.preventDefault();
-    console.log(e);
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(email, password);
+      createUserProfDoc(user, { displayName });
+      setSignUpState({
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onChangeHandler = e => {
@@ -32,9 +47,9 @@ const SignUp = () => {
       <form className="inputForms" onSubmit={e => onSubmitHandler(e)}>
         <InputForm
           type="text"
-          name="nickName"
-          label="NickName"
-          value={nickName}
+          name="displayName"
+          label="Display Name"
+          value={displayName}
           handleChange={onChangeHandler}
           required
         />
@@ -63,13 +78,7 @@ const SignUp = () => {
           required
         />
         <div className="signUpButtons">
-          <MyButton
-            onClick={() => {
-              createUserProfDoc;
-            }}
-          >
-            Register
-          </MyButton>
+          <MyButton type="submit">Register</MyButton>
         </div>
       </form>
     </div>

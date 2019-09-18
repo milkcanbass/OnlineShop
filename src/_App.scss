@@ -10,3 +10,10 @@ $titleFont: 'Fredoka One', cursive;
   box-sizing: border-box;
   font-family: 'Gayathri', sans-serif;
 }
+
+@mixin cursorOn {
+  &:hover {
+    cursor: default;
+    color: red;
+  }
+}

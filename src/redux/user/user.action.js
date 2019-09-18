@@ -1,9 +1,5 @@
-import { USER_LOGOUT, USER_LOGIN } from './sample.types';
+import { SET_USER_LOGIN } from './user.types';
 
-export const userLogin = () => dispatch => {
-  if (par.length > 0) {
-    dispatch({ type: USER_LOGIN });
-  } else {
-    dispatch({ type: USER_OUT });
-  }
+export const setUserLogin = payload => dispatch => {
+  dispatch({ type: SET_USER_LOGIN, payload });
 };

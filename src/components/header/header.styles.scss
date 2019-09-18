@@ -6,22 +6,21 @@
   color: white;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   font-family: $titleFont;
 
-  .titleContainer {
-    padding: 5px 20px 0 20px;
-  }
-
   .optionContainer {
-    width: 400px;
+    max-width: 400px;
+    min-width: 200px;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-around;
 
     .option {
-      padding-right: 20px;
+      margin-right: 10px;
+      color: white;
+      @include cursorOn();
     }
   }
 }

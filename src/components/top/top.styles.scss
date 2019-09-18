@@ -1,6 +1,17 @@
 .topImg {
   width: 100vw;
   height: 500px;
-  background-image: url('../../assets/test.png');
-  // background-color: black;
+  // background-image: url('../../assets/test.png');
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.topTitle {
+  position: absolute;
+  padding: 20px;
+  font-size: 2em;
+  background-color: white;
+  color: black;
+  mix-blend-mode: screen;
 }

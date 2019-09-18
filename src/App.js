@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // Components
 import LandingPage from './pages/landing/landing.component';
@@ -9,40 +10,40 @@ import './_App.scss';
 
 import { auth, createUserProfDoc } from './firebase/firebase.utils';
 
-class App extends Component {
-  state = {
-    user: null,
-  };
+import { setUserLogin } from './redux/user/user.action';
 
+class App extends Component {
   // for unsucscribe open subscriptin(google auth)
   unsubscribeFromAuth = null;
 
+  // To check if user login
   componentDidMount() {
+    const { setUserLogin, user } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
+
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            user: {
-              id: snapShot.id,
-              ...snapShot.data(),
-            },
-          });
+          setUserLogin({ id: snapShot.id, ...snapShot.data() });
         });
       } else {
+        setUserLogin(userAuth);
       }
     });
   }
 
+  // For logout
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
 
   render() {
+    const { user } = this.props;
+
     return (
       <div>
         {/* for changing header by auth */}
-        <Header user={this.state.user} />
+        <Header user={user} />
         <Modal />
         <Switch>
           <Route path="/" component={LandingPage} />
@@ -52,4 +53,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setUserLogin: payload => dispatch(setUserLogin(payload)),
+});
+
+const mapStateToProps = state => ({
+  user: state.user.user,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

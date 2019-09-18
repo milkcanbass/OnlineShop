@@ -1,21 +1,17 @@
-import { USER_LOGIN, USER_LOGOUT } from './user.types';
+import { SET_USER_LOGIN, SET_USER_LOGOUT } from './user.types';
 
 const INITIAL_STATE = {
-  login: false,
+  user: null,
+  cart: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case USER_LOGIN:
+    case SET_USER_LOGIN:
       return {
         ...state,
-        login: true,
-      };
-    case USER_LOGOUT:
-      return {
-        ...state,
-        login: false,
+        user: payload,
       };
     default:
       return state;

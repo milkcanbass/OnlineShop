@@ -18,23 +18,21 @@ const Header = props => {
 
   return (
     <div className="header">
-      <div className="titleContainer">
-        <h1 className="brandName">Jiafeimao&Handagou</h1>
-      </div>
       <div className="optionContainer">
-        <p id="contact" onClick={e => modalHandler(e)} className="option">
+        <a id="contact" onClick={e => modalHandler(e)} className="option">
           CONTACT
-        </p>
+        </a>
 
         {user ? (
-          <p className="option" onClick={() => auth.signOut()}>
+          <a className="option" onClick={() => auth.signOut()}>
             SIGN OUT
-          </p>
+          </a>
         ) : (
-          <p id="signInAndSignUp" onClick={e => modalHandler(e)} className="option">
+          <a id="signInAndSignUp" onClick={e => modalHandler(e)} className="option">
             SIGN IN
-          </p>
+          </a>
         )}
+
         <CartIcon className="option" />
       </div>
     </div>

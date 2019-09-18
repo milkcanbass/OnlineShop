@@ -3,7 +3,11 @@ import './top.styles.scss';
 
 const Top = () => (
   <div className="topContainer">
-    <div className="topImg"></div>
+    <div className="topImg">
+      <div className="topTitle">
+        <h1>Jiafeimao</h1> <h1>&</h1> <h1>Handagous</h1>
+      </div>
+    </div>
   </div>
 );
 
