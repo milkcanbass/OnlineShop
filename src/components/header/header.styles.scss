@@ -2,8 +2,8 @@
 .header {
   width: 100vw;
   height: 60px;
-  background-color: $primary-color;
-  color: white;
+  background-color: whitesmoke;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -19,7 +19,7 @@
 
     .option {
       margin-right: 10px;
-      color: white;
+      color: black;
       @include cursorOn();
     }
   }

@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../car-dropdown/cart-dropdown.component';
 
 import { auth } from '../../firebase/firebase.utils';
 
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 
 const Header = props => {
-  const { modalToggleWindow, user } = props;
+  const { modalToggleWindow, user, dropdownOpen } = props;
 
   const modalHandler = e => {
     modalToggleWindow(e.target.id);
@@ -35,6 +36,7 @@ const Header = props => {
 
         <CartIcon className="option" />
       </div>
+      {dropdownOpen ? <CartDropdown /> : null}
     </div>
   );
 };
@@ -46,6 +48,7 @@ Header.propTypes = {
 
 const mapStateToProps = state => ({
   modalOpen: state.modal.modalOpen,
+  dropdownOpen: state.cart.dropdownOpen,
 });
 
 const mapDispatchToProps = dispatch => ({

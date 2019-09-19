@@ -1,0 +1,21 @@
+.cartDropdownContainer {
+  position: absolute;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px grey;
+  background-color: white;
+  top: 70px;
+  right: 10px;
+  z-index: 5;
+  .cartItems {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .button {
+    margin-top: auto;
+  }
+}

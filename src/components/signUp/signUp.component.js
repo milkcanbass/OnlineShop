@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import './signUp.styles.scss';
+import { connect } from 'react-redux';
 import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
 import { createUserProfDoc, auth } from '../../firebase/firebase.utils';
+import { modalCloseWindow, modalToggleWindow } from '../../redux/modal/modal.action';
 
-const SignUp = () => {
+const SignUp = props => {
+  const { modalCloseWindow, modalToggleWindow } = props;
+
   const [signUpState, setSignUpState] = useState({
     displayName: '',
     email: '',
@@ -16,8 +20,8 @@ const SignUp = () => {
   const onSubmitHandler = async e => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Passwords don't match");
-      return;
+      modalCloseWindow();
+      modalToggleWindow('error', "Passwords don't match");
     }
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
@@ -29,7 +33,8 @@ const SignUp = () => {
         confirmPassword: '',
       });
     } catch (err) {
-      console.log(err);
+      modalCloseWindow();
+      modalToggleWindow('error', err.message);
     }
   };
 
@@ -85,4 +90,12 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+  modalToggleWindow: (type, message) => dispatch(modalToggleWindow(type, message)),
+  modalCloseWindow: () => dispatch(modalCloseWindow()),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(SignUp);

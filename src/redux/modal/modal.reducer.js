@@ -21,6 +21,7 @@ const modalReducer = (state = INITIAL_STATE, action) => {
         ...state,
         modalOpen: false,
         modalType: '',
+        message: '',
       };
     default:
       return state;

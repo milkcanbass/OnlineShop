@@ -2,7 +2,8 @@
   width: 100vw;
   height: 500px;
   // background-image: url('../../assets/test.png');
-  background-color: pink;
+  background-image: linear-gradient(to right, #eecda3, #ef629f);
+  mix-blend-mode: soft-light;
   display: flex;
   justify-content: center;
   align-items: center;

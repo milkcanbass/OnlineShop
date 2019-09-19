@@ -2,12 +2,13 @@ import React from 'react';
 import './error.styles.scss';
 import { connect } from 'react-redux';
 
+
 const Error = props => {
   const { message } = props;
 
   return (
     <div className="errorContainer">
-      <div className="errorTitle">Sorry...</div>
+      <h2 className="errorTitle">Sorry...</h2>
       <p>{message}</p>
     </div>
   );
