@@ -1,7 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-const Port = process.env.Port || 3000;
-
+const Port = process.env.Port || 3001;
 module.exports = {
   devServer: {
     contentBase: './dist',
@@ -21,44 +20,31 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
       },
       {
-        test: /\.html/,
-        use: {
-          loader: 'html-loader',
-        },
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.s[ac]ss/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'react-svg-loader',
-            options: {
-              jsx: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: {
-          loader: 'url-loader',
-        },
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
       },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    new HtmlWebPackPlugin({
       template: './index.html',
+      filename: './index.html',
     }),
   ],
 };
