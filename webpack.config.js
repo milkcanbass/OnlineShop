@@ -1,7 +1,14 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
-const Port = process.env.Port || 3001;
+const Port = process.env.Port || 3000;
+
 module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
   devServer: {
     contentBase: './dist',
     open: true,
@@ -43,8 +50,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './index.html',
-      filename: './index.html',
+      title: 'Jiafeimao&handagou',
+      template: path.join(__dirname, './index.html'),
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };

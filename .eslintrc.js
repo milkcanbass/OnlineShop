@@ -16,13 +16,6 @@ module.exports = {
       jsx: true,
     },
   },
-  // settings: {
-  // 	'import/resolver': {
-  // 		webpack: {
-  // 			config: path.join(__dirname, 'config', 'webpack.base.config.js'),
-  // 		},
-  // 	},
-  // },
   rules: {
     'linebreak-style': 'off', // Don't play nicely with Windows.
 
