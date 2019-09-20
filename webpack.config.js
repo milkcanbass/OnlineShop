@@ -1,7 +1,6 @@
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const Port = process.env.Port || 3001;
+const Port = process.env.Port || 3000;
 
 module.exports = {
   devServer: {
@@ -9,13 +8,8 @@ module.exports = {
     open: true,
     port: Port,
     compress: true,
-    proxy: [
-      {
-        context: ['/auth', '/api'],
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-      },
-    ],
+    publicPath: '/',
+    historyApiFallback: true,
     // headers: {
     //   'Access-Control-Allow-Origin': '*',
     //   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
