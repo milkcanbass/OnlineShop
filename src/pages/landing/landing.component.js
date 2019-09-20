@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { sampleAction } from '../../redux/sample/sample.action';
 
+import Directory from '../../components/directory/directory.components';
+
 import './landing.styles.scss';
 
 import Top from '../../components/top/top.component';
@@ -26,6 +28,7 @@ const LandingPage = props => {
   return (
     <div>
       <Top />
+      <Directory />
       <h1 className="title">Submitted text: {sampleState}</h1>
       <form onSubmit={e => handleSubmit(e)}>
         <input type="text" className="Input" name="Input" onChange={e => handleChange(e)} />
