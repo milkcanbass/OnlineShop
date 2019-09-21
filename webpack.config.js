@@ -53,7 +53,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      title: 'Jiafeimao&handagou',
       template: path.resolve(__dirname, './index.html'),
     }),
   ],
