@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -8,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   devServer: {
     contentBase: './dist',
@@ -16,6 +18,7 @@ module.exports = {
     compress: true,
     historyApiFallback: true,
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -53,7 +56,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, './index.html'),
+      template: path.resolve(__dirname, './public/index.html'),
+      favicon: 'public/favicon.ico',
     }),
   ],
 };

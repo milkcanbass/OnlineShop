@@ -7,7 +7,6 @@ import LandingPage from './pages/landing/landing.component';
 import Header from './components/header/header.components';
 import Modal from './components/modal/modal.component';
 import ShopPage from './pages/shop/shop.component';
-import Test from './pages/landing/test';
 
 import './_App.scss';
 
@@ -45,10 +44,8 @@ class App extends Component {
 
     return (
       <div>
-        {/* for changing header by auth */}
         <Header user={user} />
         <Modal />
-        {/* <Test /> */}
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/shop" component={ShopPage} />
