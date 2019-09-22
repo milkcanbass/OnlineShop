@@ -2,24 +2,18 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const Port = process.env.Port || 3000;
-
 module.exports = {
-  entry: { main: './src/index.js' },
+  mode: 'development',
+  target: 'web',
+  entry: {
+    main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/index.js'],
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
-  target: 'web',
-  devServer: {
-    contentBase: './dist',
-    open: true,
-    port: Port,
-    compress: true,
-    historyApiFallback: true,
-  },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -56,9 +50,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, './public/index.html'),
+      template: './public/index.html',
+      filename: './index.html',
       favicon: 'public/favicon.ico',
       excludeChunks: ['server'],
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };

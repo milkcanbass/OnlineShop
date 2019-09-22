@@ -18,7 +18,6 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 'off', // Don't play nicely with Windows.
-
     'arrow-parens': 'off', // Incompatible with prettier
     'object-curly-newline': 'off', // Incompatible with prettier
     'no-mixed-operators': 'off', // Incompatible with prettier
@@ -26,25 +25,19 @@ module.exports = {
     'function-paren-newline': 'off', // Incompatible with prettier
     'no-plusplus': 'off',
     'space-before-function-paren': 0, // Incompatible with prettier
-
     'max-len': ['error', 100, 2, { ignoreUrls: true }], // airbnb is allowing some edge cases
     'no-console': 'error', // airbnb is using warn
     'no-alert': 'error', // airbnb is using warn
-
     'no-param-reassign': 'off', // Not our taste?
     radix: 'off', // parseInt, parseFloat radix turned off. Not my taste.
-
     'react/require-default-props': 'off', // airbnb use error
     'react/forbid-prop-types': 'off', // airbnb use error
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
-
     'prefer-destructuring': 'off',
-
     'react/no-find-dom-node': 'off', // I don't know
     'react/no-did-mount-set-state': 'off',
     'react/no-unused-prop-types': 'off', // Is still buggy
     'react/jsx-one-expression-per-line': 'off',
-
     'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'], specialLink: ['to'] }],
     'jsx-a11y/label-has-for': [
       2,
