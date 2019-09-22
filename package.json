@@ -4,15 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage",
     "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
     "start": "node ./dist/server.js",
     "lint": "eslint --debug src/; exit 0",
     "lint:write": "eslint --debug src/ --fix; exit 0",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors",
     "prettier": "prettier --write src/**/*.js"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
   },
   "author": "",
   "license": "ISC",
