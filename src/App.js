@@ -3,10 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // Components
-import LandingPage from './pages/landing/landing.component';
+import LandingPage from './components/pages/landing/landing.component';
 import Header from './components/header/header.components';
 import Modal from './components/modal/modal.component';
-import ShopPage from './pages/shop/shop.component';
+import ShopPage from './components/pages/shop/shop.component';
 
 import './_App.scss';
 

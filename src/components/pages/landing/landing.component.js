@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { sampleAction } from '../../redux/sample/sample.action';
-
-import Directory from '../../components/directory/directory.components';
-
+import Directory from '../../directory/directory.components';
+import { sampleAction } from '../../../redux/sample/sample.action';
 import './landing.styles.scss';
-
-import Top from '../../components/top/top.component';
+import Top from '../../top/top.component';
 
 const LandingPage = props => {
   // destructing state and function from redux
