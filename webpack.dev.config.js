@@ -5,12 +5,13 @@ const path = require('path');
 const Port = process.env.Port || 3000;
 
 module.exports = {
-  entry: './src/index.js',
+  entry: { main: './src/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
+  target: 'web',
   devServer: {
     contentBase: './dist',
     open: true,
@@ -52,12 +53,12 @@ module.exports = {
   },
   resolve: {
     modules: ['src', 'node_modules'],
-    extensions: ['*', '.js', '.jsx', '.css', '.scss'],
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, './public/index.html'),
       favicon: 'public/favicon.ico',
+      excludeChunks: ['server'],
     }),
   ],
 };

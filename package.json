@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --hot --mode development",
-    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open --hot --mode development --config webpack.dev.config.js",
+    "build": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
+    "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
+    "serverStart": "node ./dist/server.js",
     "lint": "eslint --debug src/; exit 0",
     "lint:write": "eslint --debug src/ --fix; exit 0",
     "test": "jest",
@@ -17,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.6.0",
+    "express": "^4.17.1",
     "firebase": "^6.6.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
@@ -68,10 +71,12 @@
     "react-hot-loader": "^4.12.13",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
+    "terser-webpack-plugin": "^2.1.0",
     "url-loader": "^2.1.0",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8",
-    "webpack-dev-server": "^3.8.0"
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-node-externals": "^1.7.2"
   },
   "repository": {
     "type": "git",
