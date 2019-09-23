@@ -6,9 +6,9 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../../webpack.dev.config.js';
 
 const app = express();
-  const DIST_DIR = __dirname;
-  const HTML_FILE = path.join(DIST_DIR, 'index.html');
-  const compiler = webpack(config);
+const DIST_DIR = __dirname;
+const HTML_FILE = path.join(DIST_DIR, 'index.html');
+const compiler = webpack(config);
 app.use(
   webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,

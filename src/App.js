@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // Components
 import LandingPage from './components/pages/landing/landing.component';
@@ -11,7 +12,6 @@ import ShopPage from './components/pages/shop/shop.component';
 import './_App.scss';
 
 import { auth, createUserProfDoc } from './firebase/firebase.utils';
-
 import { setUserLogin } from './redux/user/user.action';
 
 class App extends Component {
@@ -62,6 +62,10 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   user: state.user.user,
 });
+
+App.propTypes = {
+  setUserLogin: PropTypes.func.isRequired,
+};
 
 export default connect(
   mapStateToProps,

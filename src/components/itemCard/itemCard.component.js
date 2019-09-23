@@ -3,7 +3,6 @@ import './itemCard.styles.scss';
 import { withRouter } from 'react-router-dom';
 
 const ItemCard = props => {
-  console.log(props);
   const { title, imageUrl, size, history, match } = props;
   return (
     <div className={`${size} itemCardWrapper`} onClick={() => history.push(`${match.url}${title}`)}>
