@@ -20,11 +20,11 @@ class App extends Component {
 
   // To check if user login
   componentDidMount() {
-    const { setUserLogin } = this.props;
+    console.log(this.props);
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
-
         userRef.onSnapshot(snapShot => {
           setUserLogin({ id: snapShot.id, ...snapShot.data() });
         });
