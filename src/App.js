@@ -20,11 +20,10 @@ class App extends Component {
 
   // To check if user login
   componentDidMount() {
-    console.log(this.props);
-
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
+
         userRef.onSnapshot(snapShot => {
           setUserLogin({ id: snapShot.id, ...snapShot.data() });
         });
@@ -64,7 +63,8 @@ const mapStateToProps = state => ({
 });
 
 App.propTypes = {
-  setUserLogin: PropTypes.func.isRequired,
+  setUserLogin: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default connect(
