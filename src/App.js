@@ -20,6 +20,7 @@ class App extends Component {
 
   // To check if user login
   componentDidMount() {
+    const { setUserLogin } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
@@ -47,7 +48,7 @@ class App extends Component {
         <Modal />
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/shop" component={ShopPage} />
         </Switch>
       </div>
     );

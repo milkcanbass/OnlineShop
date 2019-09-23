@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+
 module.exports = (env, argv) => {
   const SERVER_PATH =
     argv.mode === 'production' ? './src/server/server-prod.js' : './src/server/server-dev.js';
+
   return {
     entry: {
       server: SERVER_PATH,
@@ -13,6 +15,7 @@ module.exports = (env, argv) => {
       publicPath: '/',
       filename: '[name].js',
     },
+    mode: argv.mode,
     target: 'node',
     node: {
       // Need this when working with express, otherwise the build fails
