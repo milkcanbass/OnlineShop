@@ -4,10 +4,9 @@ $primary-color: #42f5d7;
 $font-color: white;
 $titleFont: 'Fredoka One', cursive;
 
-* {
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  padding: 0px;
   font-family: 'Gayathri', sans-serif;
 }
 
@@ -15,5 +14,9 @@ $titleFont: 'Fredoka One', cursive;
   &:hover {
     cursor: default;
     color: red;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 }

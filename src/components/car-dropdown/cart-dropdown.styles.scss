@@ -9,13 +9,12 @@
   top: 70px;
   right: 10px;
   z-index: 5;
+  align-items: center;
+
   .cartItems {
     height: 240px;
     display: flex;
     flex-direction: column;
     overflow: auto;
-  }
-  .button {
-    margin-top: auto;
   }
 }

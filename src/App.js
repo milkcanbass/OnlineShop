@@ -9,10 +9,9 @@ import Header from './components/header/header.components';
 import Modal from './components/modal/modal.component';
 import ShopPage from './components/pages/shop/shop.component';
 
-import './_App.scss';
-
 import { auth, createUserProfDoc } from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
+import './_App.scss';
 
 class App extends Component {
   // for unsucscribe open subscriptin(google auth)

@@ -1,12 +1,13 @@
 import React from 'react';
 import './myButton.styles.scss';
 import { PropTypes } from 'prop-types';
-import { putResolve } from '@redux-saga/core/effects';
 
-const MyButton = ({ children, googleButton, ...otherProps }) => {
-  console.log(children);
+const MyButton = ({ children, googleButton, inverted, ...otherProps }) => {
   return (
-    <button className={`${googleButton ? 'googleButton' : ''} myButton`} {...otherProps}>
+    <button
+      className={`${inverted ? 'inverted' : ''} ${googleButton ? 'googleButton' : ''} myButton`}
+      {...otherProps}
+    >
       {children}
     </button>
   );
