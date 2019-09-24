@@ -3,8 +3,9 @@
   width: 240px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  border: 1px grey;
+  padding: 10px 0 10px 10px;
+  border: solid grey;
+  border-width: 1px;
   background-color: white;
   top: 70px;
   right: 10px;
@@ -12,9 +13,14 @@
   align-items: center;
 
   .cartItems {
-    height: 240px;
+    min-height: 155px;
+    max-height: 255px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     overflow: auto;
+  }
+  .myButton {
+    margin-top: 10px;
   }
 }

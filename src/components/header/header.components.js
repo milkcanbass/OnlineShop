@@ -2,13 +2,15 @@ import React from 'react';
 import './header.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import CartIcon from '../cart-icon/cart-icon.component';
-import CartDropdown from '../car-dropdown/cart-dropdown.component';
-
+import { createStructureSelector } from 'reselect';
+import CartIcon from '../cartIcon/cartIcon.component';
+import CartDropdown from '../cartDropdown/cartDropdown.component';
 import { auth } from '../../firebase/firebase.utils';
-
 import { modalToggleWindow } from '../../redux/modal/modal.action';
+
+import { selectDropdownOpen } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectModalOpen } from '../../redux/modal/modal.selectors';
 
 const Header = props => {
   const { modalToggleWindow, user, dropdownOpen } = props;
@@ -47,8 +49,9 @@ Header.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  modalOpen: state.modal.modalOpen,
-  dropdownOpen: state.cart.dropdownOpen,
+  user: selectCurrentUser(state),
+  modalOpen: selectModalOpen(state),
+  dropdownOpen: selectDropdownOpen(state),
 });
 
 const mapDispatchToProps = dispatch => ({
