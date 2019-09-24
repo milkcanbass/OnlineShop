@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './modalFormat.styles.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectModalOpen } from '../../redux/modal/modal.selectors';
 
 import { modalCloseWindow } from '../../redux/modal/modal.action';
 
@@ -47,17 +49,20 @@ class ModalFormat extends Component {
   }
 }
 
-ModalFormat.propTypes = {};
+ModalFormat.propTypes = {
+  modalOpen: PropTypes.bool.isRequired,
+  modalCloseWindow: PropTypes.func.isRequired,
+};
+
+const ToProps = createStructuredSelector({
+  modalOpen: selectModalOpen,
+});
 
 const mapDispatchToProps = dispatch => ({
   modalCloseWindow: () => dispatch(modalCloseWindow()),
 });
 
-const mapStateToProps = state => ({
-  modalOpen: state.modal.modalOpen,
-});
-
 export default connect(
-  mapStateToProps,
+  ToProps,
   mapDispatchToProps,
 )(ModalFormat);

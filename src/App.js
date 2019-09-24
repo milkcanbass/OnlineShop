@@ -13,6 +13,9 @@ import { auth, createUserProfDoc } from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
 import './_App.scss';
 
+import { createStructuredSelector } from 'reselect';
+import { selectUser } from './redux/user/user.selectors';
+
 class App extends Component {
   // for unsucscribe open subscriptin(google auth)
   unsubscribeFromAuth = null;
@@ -58,8 +61,8 @@ const mapDispatchToProps = dispatch => ({
   setUserLogin: payload => dispatch(setUserLogin(payload)),
 });
 
-const mapStateToProps = state => ({
-  user: state.user.user,
+const mapStateToProps = createStructuredSelector({
+  user: selectUser,
 });
 
 App.propTypes = {

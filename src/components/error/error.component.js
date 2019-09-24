@@ -2,6 +2,8 @@ import React from 'react';
 import './error.styles.scss';
 import { connect } from 'react-redux';
 
+import { createStructuredSelector } from 'reselect';
+import { selectMessage } from '../../redux/modal/modal.selectors';
 
 const Error = props => {
   const { message } = props;
@@ -14,8 +16,8 @@ const Error = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  message: state.modal.message,
+const mapStateToProps = createStructuredSelector({
+  message: selectMessage,
 });
 
 export default connect(mapStateToProps)(Error);

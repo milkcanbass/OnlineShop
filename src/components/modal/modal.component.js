@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
 import SignInAndSignUp from '../pages/signInAndSignUp/signInAndSignUp.component';
 import ModalFormat from './modalFormat.component';
 import Contact from '../pages/contact/contact.component';
 import Error from '../error/error.component';
+
+import { selectModalOpen, selectModalType } from '../../redux/modal/modal.selectors';
 
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 
@@ -30,9 +33,9 @@ Modal.propTypes = {
   modalType: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
-  modalOpen: state.modal.modalOpen,
-  modalType: state.modal.modalType,
+const mapStateToProps = createStructuredSelector({
+  modalOpen: selectModalOpen,
+  modalType: selectModalType,
 });
 
 const mapDispatchToProps = dispatch => ({
