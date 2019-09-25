@@ -9,7 +9,7 @@ const LandingPage = props => {
     <div>
       <Top />
       <LandingMenu />
-      <Directory />
+      {/* <Directory /> */}
     </div>
   );
 };

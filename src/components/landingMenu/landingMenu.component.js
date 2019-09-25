@@ -4,15 +4,15 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectLandingData } from '../../redux/landing/landing.selector';
-import ItemCard from '../itemCard/itemCard.component';
+import LandingMenuItem from '../landingMenuItem/landingMenuItem.component';
 
 const LandingMenu = ({ landingData }) => {
   console.log(landingData);
 
   return (
-    <div className="landingItemsContainer">
+    <div className="landingMenuContainer">
       {landingData.map(item => (
-        <ItemCard key={item.id} item={item} />
+        <LandingMenuItem key={item.id} item={item} />
       ))}
     </div>
   );
