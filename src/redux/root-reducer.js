@@ -7,6 +7,7 @@ import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
 import directoryReducer from './directory/directory.reducer';
 import shopReducer from './shop/shop.reducer';
+import landingReducer from './landing/landing.reducer';
 
 const persistConfig = {
   key: 'root', // what point you need to enable to store the reducer(state) from
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   directory: directoryReducer,
   shop: shopReducer,
+  landing: landingReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
