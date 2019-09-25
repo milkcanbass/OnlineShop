@@ -37,7 +37,7 @@ class App extends Component {
     });
   }
 
-  // For logout
+  // For prevent memory leak by subscribing
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }

@@ -1,13 +1,25 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // store data to localStorage
 
-import sampleReducer from './sample/sample.reducer';
 import modalReducer from './modal/modal.reducer';
 import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
+import directoryReducer from './directory/directory.reducer';
+import shopReducer from './shop/shop.reducer';
 
-export default combineReducers({
-  sample: sampleReducer,
+const persistConfig = {
+  key: 'root', // what point you need to enable to store the reducer(state) from
+  storage,
+  whitelist: ['cart'], // what reducer you want to store
+};
+
+const rootReducer = combineReducers({
   modal: modalReducer,
   user: userReducer,
   cart: cartReducer,
+  directory: directoryReducer,
+  shop: shopReducer,
 });
+
+export default persistReducer(persistConfig, rootReducer);
