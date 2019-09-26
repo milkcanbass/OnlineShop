@@ -5,7 +5,9 @@ const Top = () => (
   <div className="topContainer">
     <div className="topImg">
       <div className="topTitle">
-        <h1>Jiafeimao</h1> <h1>&</h1> <h1>Handagous</h1>
+        <div className="text">SHINCAT</div>
+        <div className="text">&</div>
+        <div className="text">HANDOG</div>
       </div>
     </div>
   </div>
