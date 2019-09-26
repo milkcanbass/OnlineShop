@@ -8,7 +8,7 @@ const LandingMenuItem = ({ item }) => {
     <div className="landingMenuItemWrapper">
       <div className="backgroundImage" style={{ backgroundImage: `url(${imageUrl})` }} />
       <div className="contentWrapper">
-        <h1 className="title">{title}</h1>
+        <h1 className="title">{title.toUpperCase()}</h1>
       </div>
     </div>
   );
