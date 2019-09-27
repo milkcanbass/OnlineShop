@@ -11,6 +11,7 @@ import ShopPage from './components/pages/shop/shop.component';
 import ChekoutPage from './components/pages/checkout/checkout.component';
 import DonationPage from './components/pages/donation/donation.component';
 import MyShop from './components/pages/myShop/myShop.component';
+import MyShopRoot from './components/pages/myShopRoot/myShopRoot.component';
 
 import { auth, createUserProfDoc } from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
@@ -54,7 +55,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/myshop" component={MyShop} />
+          <Route path="/myshop" component={MyShopRoot} />
           <Route path="/donation" component={DonationPage} />
         </Switch>
       </div>

@@ -1,5 +1,13 @@
 .myShopOverviewContainer {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  margin: 0 50px;
+
+  .title {
+    font-weight: bold;
+    font-size: 30px;
+    margin: 20px 0 0 0;
+  }
 
   .myShopItems {
     display: flex;

@@ -6,7 +6,7 @@ const MyShopOverview = props => {
   console.log(props);
   return (
     <div className="myShopOverviewContainer">
-      <div>{props.title}</div>
+      <div className="title">{props.title}</div>
       <div className="myShopItems">
         {props.items.map(item => (
           <MyShopItem key={item.id} item={item} />
