@@ -2,15 +2,27 @@ import React from 'react';
 import './itemDetail.styles.scss';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectMyShopDataObj, selectMyShopData } from '../../../redux/myShop/myShop.selectors';
+import { selectMyShopData } from '../../../redux/myShop/myShop.selectors';
+import MyButton from '../../myButton/myButton.component';
 
 const ItemDetailPage = ({ match, myShopData }) => {
-  console.log(match.params);
-  console.log(match.params.title);
-  console.log(match.params.id);
-  console.log(myShopData[match.params.title].items[match.params.id]);
+  const title = match.params.title;
+  const id = match.params.id;
 
-  return <div>Item detail</div>;
+  const itemData = myShopData[title].items[id];
+  const { name, description, imageUrl, price } = itemData;
+
+  return (
+    <div className="itemDetailContainer">
+      <img className="img" src={imageUrl} />
+      <div className="textContainer">
+        <div className="name">{name}</div>
+        <div className="price">${price}</div>
+        <div className="description">{description}</div>
+        <MyButton>Add cart</MyButton>
+      </div>
+    </div>
+  );
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -5,7 +5,7 @@ const My_SHOP_DATA = {
     routeName: 'women',
     items: [
       {
-        id: 10,
+        id: 0,
         name: 'Skinny denim',
         price: 20,
         description:
@@ -14,7 +14,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fwemens%2Ffashionable-woman-in-toronto.jpg?alt=media&token=4b147f71-bab6-46fd-9bf0-0de25a865cd1',
       },
       {
-        id: 11,
+        id: 1,
         name: 'Blue shirt',
         price: 20,
         description:
@@ -23,7 +23,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fwemens%2Flong-blonde-hair-at-carnival.jpg?alt=media&token=bc6b4fb5-220f-4282-beca-07badb5d4d4c',
       },
       {
-        id: 12,
+        id: 2,
         name: 'Cowboy hat',
         price: 20,
         description:
@@ -32,7 +32,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fwemens%2Fstylish-woman-smiling.jpg?alt=media&token=187d5773-7219-4555-919a-fda04915e61f',
       },
       {
-        id: 13,
+        id: 3,
         name: 'Pink fur coat',
         price: 20,
         description:
@@ -41,7 +41,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fwemens%2Fpink-fur-fabulous-fashion.jpg?alt=media&token=549a8eda-4041-40f3-83d6-71c392bbb63c',
       },
       {
-        id: 14,
+        id: 4,
         name: 'Sunglasses',
         price: 20,
         description:
@@ -50,7 +50,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fwemens%2Fwoman-wearing-aviator-glasses.jpg?alt=media&token=a3db0388-df81-46ae-bd8c-bafa11d41d6f',
       },
       {
-        id: 15,
+        id: 5,
         name: 'Denim jacket',
         price: 20,
         description:
@@ -66,7 +66,7 @@ const My_SHOP_DATA = {
     routeName: 'men',
     items: [
       {
-        id: 20,
+        id: 0,
         name: "Men's shoose",
         price: 20,
         description:
@@ -75,7 +75,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fmens%2Fman-smiles-over-coffee-in-cafe.jpg?alt=media&token=962d72a9-977f-43bc-8b70-baaad008054c',
       },
       {
-        id: 21,
+        id: 1,
         name: 'Black Jacket',
         price: 20,
         description:
@@ -84,7 +84,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fmens%2Fman-in-shabby-chic-fashion.jpg?alt=media&token=016210f6-8c37-4b6a-8c18-68cc239de190',
       },
       {
-        id: 22,
+        id: 2,
         name: "Men's shoose",
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel dolor quis dui volutpat auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer commodo facilisis eros ac bibendum. Phasellus nec enim augue. Praesent eget nisi non elit faucibus maximus et a urna. Mauris at justo sed risus lacinia ullamcorper. In rhoncus magna vel sapien viverra, sed ultricies ex mattis. Aenean eros mi, facilisis vulputate mattis quis, dignissim vel neque. Vestibulum felis est, dictum eu placerat ac, imperdiet ut tortor.',
@@ -92,7 +92,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fmens%2Fmens-fashion-watch.jpg?alt=media&token=1f14317a-380c-4840-8b5e-66ecab257f55',
       },
       {
-        id: 23,
+        id: 3,
         name: "Men's shoose",
         price: 20,
         description:
@@ -101,7 +101,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fmens%2Fcasual-urban-menswear.jpg?alt=media&token=be358d0e-23ef-4374-8d0a-b372c6180885',
       },
       {
-        id: 24,
+        id: 4,
         name: "Men's shoose",
         price: 20,
         description:
@@ -110,7 +110,7 @@ const My_SHOP_DATA = {
           'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/shopItems%2Fmens%2Fpineapple-pin-hipster-backpack.jpg?alt=media&token=ad6fc1dd-b7b0-4819-acc3-36c878f29b96',
       },
       {
-        id: 25,
+        id: 5,
         name: "Men's shoose",
         price: 20,
         description:

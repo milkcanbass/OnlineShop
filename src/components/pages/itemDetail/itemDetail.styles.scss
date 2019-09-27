@@ -1,0 +1,33 @@
+.itemDetailContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 1% 3%;
+
+  .img {
+    position: relative;
+    width: 48%;
+  }
+
+  .textContainer {
+    position: relative;
+    width: 48%;
+
+    .name {
+      font-weight: bold;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .description {
+      margin-bottom: 20px;
+    }
+    .myButton {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
