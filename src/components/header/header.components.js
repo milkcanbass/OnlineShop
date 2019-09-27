@@ -3,6 +3,7 @@ import './header.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
+import { NavLink } from 'react-router-dom';
 import CartIcon from '../cartIcon/cartIcon.component';
 import CartDropdown from '../cartDropdown/cartDropdown.component';
 import { auth } from '../../firebase/firebase.utils';
@@ -28,6 +29,10 @@ const Header = props => {
 
   return (
     <div className="header">
+      <NavLink to="/" className="pageTitle">
+        SINCAT&HANDOG
+      </NavLink>
+
       <div className="optionContainer">
         <a
           id="contact"

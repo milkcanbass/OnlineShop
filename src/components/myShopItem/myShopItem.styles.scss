@@ -1,0 +1,44 @@
+.myShopItemContainer {
+  position: relative;
+  width: 22vw;
+  display: flex;
+  flex-direction: column;
+  justify-items: baseline;
+  align-items: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+  margin: 10px;
+  transition: all 0.4s;
+  .img {
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-position: center;
+    background-size: cover;
+  }
+  .details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 10px 0;
+    .texts {
+      color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0 10px;
+
+      .name {
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+    .myButton {
+      margin-right: 10px;
+    }
+  }
+}

@@ -18,8 +18,11 @@
   color: black;
   mix-blend-mode: screen;
   align-items: center;
+  justify-content: center;
 
   .text {
     font-size: 2em;
+    display: inline-block;
+    vertical-align: middle;
   }
 }

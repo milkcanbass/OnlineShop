@@ -1,11 +1,13 @@
 import React from 'react';
 import './landingMenuItem.styles.scss';
+import { withRouter } from 'react-router-dom';
 
-const LandingMenuItem = ({ item }) => {
-  console.log(item);
-  const { title, imageUrl, size } = item;
+const LandingMenuItem = ({ item, history }) => {
+  console.log(history);
+  const { title, imageUrl, linkUrl } = item;
+
   return (
-    <div className="landingMenuItemWrapper">
+    <div className="landingMenuItemWrapper" onClick={() => history.push(linkUrl)}>
       <div className="backgroundImage" style={{ backgroundImage: `url(${imageUrl})` }} />
       <div className="contentWrapper">
         <h1 className="title">{title.toUpperCase()}</h1>
@@ -14,4 +16,4 @@ const LandingMenuItem = ({ item }) => {
   );
 };
 
-export default LandingMenuItem;
+export default withRouter(LandingMenuItem);
