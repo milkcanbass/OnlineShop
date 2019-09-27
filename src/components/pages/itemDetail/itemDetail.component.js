@@ -1,8 +1,17 @@
 import React from 'react';
 import './itemDetail.styles.scss';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectMyShopDataObj } from '../../../redux/myShop/myShop.selectors';
 
-const ItemDetailPage = () => {
+const ItemDetailPage = ({ match, myShopData }) => {
+  console.log(match.params);
+
   return <div>Item detail</div>;
 };
 
-export default ItemDetailPage;
+const mapStateToProps = createStructuredSelector({
+  myShopData: selectMyShopDataObj,
+});
+
+export default connect(mapStateToProps)(ItemDetailPage);

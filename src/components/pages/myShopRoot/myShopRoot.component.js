@@ -7,7 +7,7 @@ const MyShopRoot = ({ match }) => {
   return (
     <div className="myShopRoot">
       <Route exact path={`${match.path}`} component={MyShopPage} />
-      <Route path={`${match.path}/:itemtest`} component={ItemDetailPage} />
+      <Route path={`${match.path}/:title/:id`} component={ItemDetailPage} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ const My_SHOP_DATA = {
     items: [
       {
         id: 10,
-        name: 'Skinny denime',
+        name: 'Skinny denim',
         price: 20,
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel dolor quis dui volutpat auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer commodo facilisis eros ac bibendum. Phasellus nec enim augue. Praesent eget nisi non elit faucibus maximus et a urna. Mauris at justo sed risus lacinia ullamcorper. In rhoncus magna vel sapien viverra, sed ultricies ex mattis. Aenean eros mi, facilisis vulputate mattis quis, dignissim vel neque. Vestibulum felis est, dictum eu placerat ac, imperdiet ut tortor.',

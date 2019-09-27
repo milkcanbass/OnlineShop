@@ -1,9 +1,11 @@
 import React from 'react';
 import './myShopItem.styles.scss';
+import { withRouter } from 'react-router-dom';
 import MyButton from '../myButton/myButton.component';
 
-const MyShopItem = ({ item }) => {
-  const { name, imageUrl, price } = item;
+const MyShopItem = ({ title, item, history, match }) => {
+  console.log(title);
+  const { name, imageUrl, price, id } = item;
 
   return (
     <div className="myShopItemContainer">
@@ -13,10 +15,10 @@ const MyShopItem = ({ item }) => {
           <div className="name">{name}</div>
           <div className="price">${price}</div>
         </div>
-        <MyButton>Detail</MyButton>
+        <MyButton onClick={() => history.push(`${match.path}/${title}/${id}`)}>Detail</MyButton>
       </div>
     </div>
   );
 };
 
-export default MyShopItem;
+export default withRouter(MyShopItem);
