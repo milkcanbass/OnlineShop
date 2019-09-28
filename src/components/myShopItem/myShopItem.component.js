@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './myShopItem.styles.scss';
 import { withRouter } from 'react-router-dom';
 import MyButton from '../myButton/myButton.component';
+import Spinner from '../spinner/spinner.component';
 
 const MyShopItem = ({ title, item, history, match }) => {
-  console.log(title);
   const { name, imageUrl, price, id } = item;
+  const [loading, setLoading] = useState({
+    loading: true,
+  });
 
   return (
     <div className="myShopItemContainer">
-      <img src={imageUrl} className="img" />
+      <div className="imgContainer">
+        <Spinner className={loading.loading ? 'lds-facebook' : 'noDisplay'} />
+        <img
+          src={imageUrl}
+          className="img"
+          onLoad={() => setLoading({ loading: false })}
+          alt="img"
+        />
+      </div>
       <div className="details">
         <div className="texts">
           <div className="name">{name}</div>

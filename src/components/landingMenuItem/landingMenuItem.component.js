@@ -3,7 +3,6 @@ import './landingMenuItem.styles.scss';
 import { withRouter } from 'react-router-dom';
 
 const LandingMenuItem = ({ item, history }) => {
-  console.log(history);
   const { title, imageUrl, linkUrl } = item;
 
   return (

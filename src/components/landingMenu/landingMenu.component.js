@@ -7,8 +7,6 @@ import { selectLandingData } from '../../redux/landing/landing.selector';
 import LandingMenuItem from '../landingMenuItem/landingMenuItem.component';
 
 const LandingMenu = ({ landingData }) => {
-  console.log(landingData);
-
   return (
     <div className="landingMenuContainer">
       {landingData.map(item => (
