@@ -4,6 +4,10 @@ $primary-color: #42f5d7;
 $font-color: white;
 $titleFont: 'Fredoka One', cursive;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0px;
@@ -15,8 +19,8 @@ body {
     cursor: default;
     color: red;
   }
+}
 
-  * {
-    box-sizing: border-box;
-  }
+@mixin noDisplay {
+  display: none;
 }

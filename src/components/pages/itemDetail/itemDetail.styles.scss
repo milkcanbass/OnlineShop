@@ -1,12 +1,26 @@
+@import '../../../App';
+
 .itemDetailContainer {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin: 1% 3%;
 
-  .img {
-    position: relative;
+  .imgContainer {
+    min-height: 30vh;
     width: 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .img {
+      position: relative;
+      width: 100%;
+    }
+    .noDisplay {
+      display: none;
+    }
+    .lds-facebook {
+    }
   }
 
   .textContainer {
