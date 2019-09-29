@@ -7,10 +7,8 @@ import PropTypes from 'prop-types';
 import LandingPage from './components/pages/landing/landing.component';
 import Header from './components/header/header.components';
 import Modal from './components/modal/modal.component';
-import ShopPage from './components/pages/shop/shop.component';
 import ChekoutPage from './components/pages/checkout/checkout.component';
 import DonationPage from './components/pages/donation/donation.component';
-import MyShop from './components/pages/myShop/myShop.component';
 import MyShopRoot from './components/pages/myShopRoot/myShopRoot.component';
 import Footer from './components/footer/footer.components';
 

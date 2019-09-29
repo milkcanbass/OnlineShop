@@ -33,6 +33,21 @@ export const addNewUserWithEmailAndPassword = () => {
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
+export const signInWithGoogleAccount = () => {
+  auth
+    .signInWithPopup(provider)
+    .then(result => {
+      const token = result.credential.accessToken;
+      const user = result.user;
+    })
+    .catch(err => {
+      const errorCode = err.code;
+      const errorMessage = err.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
+};
+
 export const createUserProfDoc = async (userAuth, additionalData) => {
   if (!userAuth) {
     return;
@@ -56,12 +71,3 @@ export const createUserProfDoc = async (userAuth, additionalData) => {
   }
   return userRef;
 };
-
-// FireStorage
-// service firebase.storage {
-//   match /b/{bucket}/o {
-//     match /{allPaths=**} {
-//       allow read, write: if request.auth != null;
-//     }
-//   }
-// }

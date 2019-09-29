@@ -5,8 +5,6 @@ import storage from 'redux-persist/lib/storage'; // store data to localStorage
 import modalReducer from './modal/modal.reducer';
 import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
-import directoryReducer from './directory/directory.reducer';
-import shopReducer from './shop/shop.reducer';
 import landingReducer from './landing/landing.reducer';
 import myShopReducer from './myShop/myShop.reducer';
 import donationReducer from './donation/donation.reducer';
@@ -21,8 +19,6 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   user: userReducer,
   cart: cartReducer,
-  directory: directoryReducer,
-  shop: shopReducer,
   landing: landingReducer,
   myShop: myShopReducer,
   donation: donationReducer,
