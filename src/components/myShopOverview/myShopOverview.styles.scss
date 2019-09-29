@@ -1,6 +1,8 @@
 .myShopOverviewContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0 50px;
 
   .title {
@@ -9,11 +11,16 @@
     margin: 20px 0 0 0;
   }
 
-  .myShopItems {
+  .myShopItemsContainer {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+
+    .myShopItems {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+    }
   }
 }

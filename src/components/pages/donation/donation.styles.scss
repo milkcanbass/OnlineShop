@@ -1,0 +1,65 @@
+.donationPageContainer {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  .img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+
+    .imageCover {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: black;
+      opacity: 0.5;
+    }
+  }
+
+  .contentContainer {
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    top: 25%;
+
+    .contentBackground {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: whitesmoke;
+      border-radius: 10px;
+      opacity: 0.85;
+    }
+    .textContainer {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      padding: 2%;
+      .title {
+        font-weight: bold;
+        font-size: 30px;
+      }
+      .text {
+        margin: 10px 0;
+        color: grey;
+      }
+    }
+    .donationButtons {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}

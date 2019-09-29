@@ -13,7 +13,7 @@ const MyButton = ({ children, googleButton, inverted, ...otherProps }) => {
   );
 };
 
-MyButton.protoTypes = {
+MyButton.propTypes = {
   children: PropTypes.string.isRequired,
   googleButton: PropTypes.bool.isRequired,
   otherProps: PropTypes.object,
