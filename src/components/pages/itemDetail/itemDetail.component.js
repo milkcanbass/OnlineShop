@@ -21,9 +21,9 @@ const ItemDetailPage = ({ match, myShopData, addItem }) => {
     <div>
       <div className="itemDetailContainer">
         <div className="imgContainer">
-          <Spinner className={loading.loading ? 'lds-facebook' : 'noDisplay'} />
+          {loading.loading ? <Spinner /> : null}
           <img
-            className={loading.loading ? 'noDisplay' : 'img'}
+            className="img"
             src={imageUrl}
             onLoad={() => setLoading({ loading: false })}
             alt="img"

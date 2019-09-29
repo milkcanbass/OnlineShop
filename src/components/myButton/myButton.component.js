@@ -2,10 +2,12 @@ import React from 'react';
 import './myButton.styles.scss';
 import { PropTypes } from 'prop-types';
 
-const MyButton = ({ children, googleButton, inverted, ...otherProps }) => {
+const MyButton = ({ children, googleButton, inverted, donation, ...otherProps }) => {
   return (
     <button
-      className={`${inverted ? 'inverted' : ''} ${googleButton ? 'googleButton' : ''} myButton`}
+      className={`${inverted ? 'inverted' : ''} ${googleButton ? 'googleButton' : ''} ${
+        donation ? 'donationButton' : ''
+      } myButton`}
       {...otherProps}
     >
       {children}

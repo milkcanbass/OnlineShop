@@ -10,10 +10,12 @@ const MyShopItem = ({ title, item, history, match }) => {
     loading: true,
   });
 
+  console.log(loading.loading);
+
   return (
     <div className="myShopItemContainer">
       <div className="imgContainer">
-        <Spinner className={loading.loading ? 'lds-facebook' : 'noDisplay'} />
+        {loading.loading ? <Spinner /> : null}
         <img
           src={imageUrl}
           className="img"

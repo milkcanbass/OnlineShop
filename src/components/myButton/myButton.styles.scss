@@ -1,6 +1,9 @@
+//Colours
+$donationPrimaryColor: #e74c3c;
+
 .myButton {
   width: 120px;
-  height: 30px;
+  height: 35px;
   letter-spacing: 0.5px;
   font-size: 15px;
   background-color: black;
@@ -36,6 +39,31 @@
       background-color: white;
       color: black;
       border: 1px solid black;
+    }
+  }
+
+  &.donationButton {
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid $donationPrimaryColor;
+    border-radius: 0.6em;
+    color: $donationPrimaryColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    margin: 20px;
+
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+      color: #fff;
+      box-shadow: 0 0 40px 40px $donationPrimaryColor inset;
+    }
+    &:focus {
+      outline: 0;
     }
   }
 }
