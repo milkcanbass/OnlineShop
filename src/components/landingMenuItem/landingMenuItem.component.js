@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './landingMenuItem.styles.scss';
 import { withRouter } from 'react-router-dom';
+import Spinner from '../spinner/spinner.component';
 
 const LandingMenuItem = ({ item, history }) => {
   const { title, imageUrl, linkUrl } = item;
+  const [loading, setLoading] = useState({
+    loading: true,
+  });
 
   return (
     <div className="landingMenuItemWrapper" onClick={() => history.push(linkUrl)}>
-      <div className="backgroundImage" style={{ backgroundImage: `url(${imageUrl})` }} />
-      <div className="contentWrapper">
-        <h1 className="title">{title.toUpperCase()}</h1>
-      </div>
+      {loading.loading ? <Spinner /> : null}
+      <img
+        className="backgroundImage"
+        src={imageUrl}
+        onLoad={() => setLoading({ loading: false })}
+      />
+      {loading.loading ? null : (
+        <div className="contentWrapper">
+          <h1 className="title">{title.toUpperCase()}</h1>
+        </div>
+      )}
     </div>
   );
 };

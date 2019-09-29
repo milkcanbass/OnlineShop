@@ -4,22 +4,26 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-  align-self: center;
-
+  align-items: center;
   .img {
     position: absolute;
     height: 100%;
     width: 100%;
     background-size: cover;
     background-position: center;
+  }
 
-    .imageCover {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      background-color: black;
-      opacity: 0.5;
-    }
+  .imageCover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+  }
+
+  .spinnerContainer {
+    position: absolute;
+    margin: auto;
   }
 
   .contentContainer {

@@ -3,7 +3,7 @@ const PAGE_ASSETS_DATA = [
     id: 0,
     title: 'Shop',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/webImages%2Fshopping01.jpg?alt=media&token=cf733d6f-4be2-4920-8c26-75f281aba7c3',
+      'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/webImages%2Fshopping02.jpg?alt=media&token=26bfed71-ecc6-4446-9909-5162128e590c',
     linkUrl: '/myshop',
   },
   {
