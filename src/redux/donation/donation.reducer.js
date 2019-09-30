@@ -1,12 +1,16 @@
-import DONATION_DATA from './donation.data';
+import { UPDATE_DONATION_DATA } from './donation.types';
 
 const INITIAL_STATE = {
-  data: DONATION_DATA,
+  data: {},
 };
-
 const donationReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
+    case UPDATE_DONATION_DATA:
+      return {
+        ...state,
+        data: payload,
+      };
     default:
       return state;
   }

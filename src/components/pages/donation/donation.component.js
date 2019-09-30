@@ -8,9 +8,8 @@ import { addItem } from '../../../redux/cart/cart.action';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
 
-const DonationPage = ({ match, donations, addItem }) => {
-  const imageUrl =
-    'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/webImages%2Ffruit-and-snack-baskets.jpg?alt=media&token=9bf724b5-76cc-42c7-98f9-38c8dd29509d';
+const DonationPage = ({ donations, addItem }) => {
+  const imageUrl =    'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/webImages%2Ffruit-and-snack-baskets.jpg?alt=media&token=9bf724b5-76cc-42c7-98f9-38c8dd29509d';
   const [loading, setLoading] = useState({
     loading: true,
   });

@@ -93,9 +93,22 @@ export const convertDataSnapshotToMap = data => {
       items,
     };
   });
-  console.log(transformedItems);
   return transformedItems.reduce((acc, item) => {
     acc[item.title.toLowerCase()] = item;
     return acc;
   }, {});
+};
+
+export const donationData = data => {
+  const transformData = data.docs.map(doc => {
+    const { imageUrl, name, price, id } = doc.data();
+    return {
+      id,
+      imageUrl,
+      name,
+      price,
+    };
+  });
+
+  return transformData;
 };
