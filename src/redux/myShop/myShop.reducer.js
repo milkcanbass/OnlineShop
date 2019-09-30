@@ -1,4 +1,3 @@
-import MY_SHOP_DATA from './myShopData';
 import { UPDATE_SHOP_DATA } from './myShop.types';
 
 const INITIAL_STATE = {
