@@ -72,10 +72,12 @@ export const createUserProfDoc = async (userAuth, additionalData) => {
   return userRef;
 };
 
+// function for upload local data to firebase
 export const addCollectionAndDocumentsToDatabase = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
   const batch = firestore.batch();
   objectsToAdd.forEach(obj => {
+    // by keep .doc() as blank firebase automatically add id
     const newDocRef = collectionRef.doc();
     batch.set(newDocRef, obj);
   });
@@ -86,12 +88,12 @@ export const convertDataSnapshotToMap = data => {
   const transformedItems = data.docs.map(doc => {
     const { title, items } = doc.data();
     return {
-      routeName: encodeURI(title.toLowerCase()),
       id: doc.id,
       title,
       items,
     };
   });
+  console.log(transformedItems);
   return transformedItems.reduce((acc, item) => {
     acc[item.title.toLowerCase()] = item;
     return acc;

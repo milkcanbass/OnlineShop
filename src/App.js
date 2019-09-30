@@ -22,7 +22,6 @@ import './_App.scss';
 
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from './redux/user/user.selectors';
-import { selectMyShopDataObj } from './redux/myShop/myShop.selectors';
 
 class App extends Component {
   // for unsucscribe open subscriptin(google auth)
@@ -32,7 +31,7 @@ class App extends Component {
   componentDidMount() {
     addCollectionAndDocumentsToDatabase;
 
-    const { setUserLogin, collections } = this.props;
+    const { setUserLogin } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
@@ -80,7 +79,6 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser,
-  collections: selectMyShopDataObj,
 });
 
 App.propTypes = {

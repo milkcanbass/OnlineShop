@@ -16,6 +16,7 @@ class MyShopRoot extends Component {
     const myShopDataRef = firestore.collection('myShopData');
     myShopDataRef.onSnapshot(async snapshot => {
       const dataMap = convertDataSnapshotToMap(snapshot);
+      console.log(dataMap);
       updateShopData(dataMap);
     });
   }
