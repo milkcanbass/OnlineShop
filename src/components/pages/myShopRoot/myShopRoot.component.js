@@ -21,15 +21,11 @@ class MyShopRoot extends Component {
   }
 
   render() {
-    const { match, myShopData } = this.props;
+    const { match } = this.props;
     return (
       <div className="myShopRoot">
-        <Route exact path={`${match.path}`} component={MyShopPage} myShopData={myShopData} />
-        <Route
-          path={`${match.path}/:title/:id`}
-          component={ItemDetailPage}
-          myShopData={myShopData}
-        />
+        <Route exact path={`${match.path}`} component={MyShopPage} />
+        <Route path={`${match.path}/:title/:id`} component={ItemDetailPage} />
       </div>
     );
   }
