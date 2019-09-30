@@ -10,8 +10,6 @@ const MyShopItem = ({ title, item, history, match }) => {
     loading: true,
   });
 
-  console.log(loading.loading);
-
   return (
     <div className="myShopItemContainer">
       <div className="imgContainer">
@@ -28,7 +26,9 @@ const MyShopItem = ({ title, item, history, match }) => {
           <div className="name">{name}</div>
           <div className="price">${price}</div>
         </div>
-        <MyButton onClick={() => history.push(`${match.path}/${title}/${id}`)}>Detail</MyButton>
+        <MyButton onClick={() => history.push(`${match.path}/${title.toLowerCase()}/${id}`)}>
+          Detail
+        </MyButton>
       </div>
     </div>
   );

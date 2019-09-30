@@ -12,12 +12,17 @@ import DonationPage from './components/pages/donation/donation.component';
 import MyShopRoot from './components/pages/myShopRoot/myShopRoot.component';
 import Footer from './components/footer/footer.components';
 
-import { auth, createUserProfDoc } from './firebase/firebase.utils';
+import {
+  auth,
+  createUserProfDoc,
+  addCollectionAndDocumentsToDatabase,
+} from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
 import './_App.scss';
 
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from './redux/user/user.selectors';
+import { selectMyShopDataObj } from './redux/myShop/myShop.selectors';
 
 class App extends Component {
   // for unsucscribe open subscriptin(google auth)
@@ -25,7 +30,9 @@ class App extends Component {
 
   // To check if user login
   componentDidMount() {
-    const { setUserLogin } = this.props;
+    addCollectionAndDocumentsToDatabase;
+
+    const { setUserLogin, collections } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
@@ -35,6 +42,10 @@ class App extends Component {
         });
       } else {
         setUserLogin(userAuth);
+        // addCollectionAndDocumentsToDatabase(
+        //   'myShopData',
+        //   collections.map(({ title, items }) => ({ title, items })),
+        // );
       }
     });
   }
@@ -69,6 +80,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser,
+  collections: selectMyShopDataObj,
 });
 
 App.propTypes = {

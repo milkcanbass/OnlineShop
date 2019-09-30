@@ -9,6 +9,7 @@ import Spinner from '../../spinner/spinner.component';
 import { addItem } from '../../../redux/cart/cart.action';
 
 const ItemDetailPage = ({ match, myShopData, addItem }) => {
+  console.log(myShopData);
   const title = match.params.title;
   const id = match.params.id;
   const itemData = myShopData[title].items[id];
