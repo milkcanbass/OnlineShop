@@ -6,15 +6,12 @@ module.exports = {
   entry: { main: './src/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].[chunkhash].bundle.js',
     publicPath: '/',
   },
   target: 'web',
   devtool: 'source-map',
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
-  },
   module: {
     rules: [
       {
@@ -57,4 +54,25 @@ module.exports = {
       excludeChunks: ['server'],
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
 };
