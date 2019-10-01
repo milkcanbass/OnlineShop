@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
@@ -49,6 +48,7 @@ module.exports = {
   },
   resolve: {
     modules: ['src', 'node_modules'],
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new HtmlWebPackPlugin({

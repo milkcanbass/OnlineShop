@@ -14,7 +14,7 @@ class MyShopRoot extends Component {
   componentDidMount() {
     const { updateShopData } = this.props;
     const myShopDataRef = firestore.collection('myShopData');
-    myShopDataRef.onSnapshot(async snapshot => {
+    myShopDataRef.onSnapshot(async (snapshot) => {
       const dataMap = convertDataSnapshotToMap(snapshot);
       updateShopData(dataMap);
     });
@@ -31,8 +31,8 @@ class MyShopRoot extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  updateShopData: dataMap => dispatch(updateShopData(dataMap)),
+const mapDispatchToProps = (dispatch) => ({
+  updateShopData: (dataMap) => dispatch(updateShopData(dataMap)),
 });
 
 const mapStateToProps = createStructuredSelector({
