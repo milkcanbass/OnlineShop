@@ -1,10 +1,13 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { Component, lazy } from 'react';
+
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
-import { auth, createUserProfDoc, firestore, donationData } from './firebase/firebase.utils';
+import {
+ auth, createUserProfDoc, firestore, donationData 
+} from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
 import { updateDonationData } from './redux/donation/donation.actions';
 import './_App.scss';
@@ -17,6 +20,11 @@ import LandingPage from './components/pages/landing/landing.component';
 import Header from './components/header/header.components';
 import Footer from './components/footer/footer.components';
 import Modal from './components/modal/modal.component';
+
+// import ChekoutPage from './components/pages/checkout/checkout.component';
+// import MyShopRoot from './components/pages/myShopRoot/myShopRoot.component';
+// import DonationPage from './components/pages/donation/donation.component';
+
 const ChekoutPage = lazy(() => import('./components/pages/checkout/checkout.component'));
 const MyShopRoot = lazy(() => import('./components/pages/myShopRoot/myShopRoot.component'));
 const DonationPage = lazy(() => import('./components/pages/donation/donation.component'));
@@ -63,9 +71,9 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/donation" component={lazyLoadingImport(DonationPage)} />
+          <Route exact path="/donation" component={lazyLoadingImport(DonationPage)} />
           <Route path="/myshop" component={lazyLoadingImport(MyShopRoot)} />
-          <Route path="/checkout" component={lazyLoadingImport(ChekoutPage)} />
+          <Route exact path="/checkout" component={lazyLoadingImport(ChekoutPage)} />
         </Switch>
         <Footer />
       </div>

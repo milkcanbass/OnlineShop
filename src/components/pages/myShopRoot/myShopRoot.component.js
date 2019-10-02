@@ -14,25 +14,32 @@ class MyShopRoot extends Component {
   componentDidMount() {
     const { updateShopData } = this.props;
     const myShopDataRef = firestore.collection('myShopData');
-    myShopDataRef.onSnapshot(async (snapshot) => {
+    myShopDataRef.onSnapshot(async snapshot => {
       const dataMap = convertDataSnapshotToMap(snapshot);
       updateShopData(dataMap);
     });
   }
 
   render() {
-    const { match } = this.props;
+    const { match, myShopData } = this.props;
     return (
       <div className="myShopRoot">
-        <Route exact path={`${match.path}`} component={MyShopPage} />
-        <Route path={`${match.path}/:title/:id`} component={ItemDetailPage} />
+        <Route
+          exact
+          path={`${match.path}`}
+          render={props => <MyShopPage {...props} myShopData={myShopData} />}
+        />
+        <Route
+          path={`${match.path}/:title/:id`}
+          render={props => <ItemDetailPage {...props} myShopData={myShopData} />}
+        />
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  updateShopData: (dataMap) => dispatch(updateShopData(dataMap)),
+const mapDispatchToProps = dispatch => ({
+  updateShopData: dataMap => dispatch(updateShopData(dataMap)),
 });
 
 const mapStateToProps = createStructuredSelector({

@@ -1,5 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -50,8 +52,30 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, './public/index.html'),
-      favicon: 'public/favicon.ico',
       excludeChunks: ['server'],
+    }),
+    new WebpackPwaManifest({
+      name: 'ShinCat and HanDog',
+      short_name: 'S and H',
+      description: 'ShinCat and HanDog web store',
+      background_color: '#ffffff',
+      crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
+      icons: [
+        {
+          src: path.resolve('public/favicon.ico'),
+          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+        },
+        {
+          src: path.resolve('public/favicon.ico'),
+          size: '1024x1024', // you can also use the specifications pattern
+        },
+      ],
+    }),
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true,
     }),
   ],
   optimization: {
