@@ -16,6 +16,7 @@ const LandingMenuItem = ({ item, history }) => {
         className="backgroundImage"
         src={imageUrl}
         onLoad={() => setLoading({ loading: false })}
+        alt="backgroundImage"
       />
       {loading.loading ? null : (
         <div className="contentWrapper">

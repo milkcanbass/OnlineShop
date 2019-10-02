@@ -9,15 +9,19 @@ import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
 
 const DonationPage = ({ donations, addItem }) => {
-  const imageUrl =
-    'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/webImages%2Ffruit-and-snack-baskets.jpg?alt=media&token=9bf724b5-76cc-42c7-98f9-38c8dd29509d';
+  const pageBackgroundImage =    'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/webImages%2Ffruit-and-snack-baskets.webp?alt=media&token=617eb1c5-c9ea-4ccb-8525-241f5b86de17';
   const [loading, setLoading] = useState({
     loading: true,
   });
 
   return (
     <div className="donationPageContainer">
-      <img src={imageUrl} className="img" onLoad={() => setLoading({ loading: false })} />
+      <img
+        src={pageBackgroundImage}
+        className="img"
+        onLoad={() => setLoading({ loading: false })}
+        alt="pageBackgroundImage"
+      />
 
       {loading.loading ? (
         <Spinner />
@@ -30,9 +34,10 @@ const DonationPage = ({ donations, addItem }) => {
               <div className="title">Thank you for your help!</div>
               <div className="text">We really appreciate your help.</div>
               <div className="donationButtons">
-                {donations.map(donation => (
+                {donations.map((donation) => (
                   <MyButton key={donation.id} onClick={() => addItem(donation)} donation>
-                    ${donation.price}
+                    $
+{donation.price}
                   </MyButton>
                 ))}
               </div>
@@ -45,8 +50,8 @@ const DonationPage = ({ donations, addItem }) => {
 };
 
 const mapStateToProps = createStructuredSelector({ donations: selectDonations });
-const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item)),
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
 });
 
 export default connect(

@@ -7,17 +7,17 @@ import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 import Icon from '../../assets/shopping-bag.svg';
 import './cartIcon.styles.scss';
 
-const CartIcon = props => {
+const CartIcon = (props) => {
   const { toggleDropdown, itemCount } = props;
   return (
     <div className="cartIcon" onClick={() => toggleDropdown()}>
-      <img src={Icon} className="icon" />
+      <img src={Icon} className="icon" alt="cartIcon" />
       <span className="item-count">{itemCount}</span>
     </div>
   );
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   toggleDropdown: () => dispatch(toggleDropdown()),
 });
 
