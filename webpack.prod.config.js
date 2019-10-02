@@ -2,7 +2,11 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
+
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: { main: './src/index.js' },
@@ -32,13 +36,20 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              reloadAll: true,
+            },
+          },
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
-      {
-        test: /\.s[ac]ss/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
+
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader'],
@@ -53,6 +64,13 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, './public/index.html'),
       excludeChunks: ['server'],
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: '[name].[chunkhash].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
     new WebpackPwaManifest({
       name: 'ShinCat and HanDog',
@@ -77,10 +95,18 @@ module.exports = {
       clientsClaim: true,
       skipWaiting: true,
     }),
+    // new BundleAnalyzerPlugin(),
   ],
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new TerserPlugin(),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
+        },
+      }),
+    ],
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
