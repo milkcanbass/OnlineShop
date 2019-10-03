@@ -4,6 +4,8 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import devConfig from '../../webpack.dev.config.js';
 
+const cacheControl = require('express-cache-controller');
+
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -15,6 +17,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  cacheControl({
+    maxAge: 31557600, // 1=1sec
+  }),
+);
 
 const HTML_FILE = path.join(__dirname, 'dist', 'index.html');
 const compiler = webpack(devConfig);
@@ -40,7 +47,7 @@ app.get('*', (req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, err => {
+app.listen(PORT, (err) => {
   if (err) throw err;
   console.log(`App listening to ${PORT}....`);
   console.log('Press Ctrl+C to quit.');

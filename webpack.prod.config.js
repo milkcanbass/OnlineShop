@@ -4,6 +4,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const path = require('path');
 
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -77,14 +78,15 @@ module.exports = {
       short_name: 'S and H',
       description: 'ShinCat and HanDog web store',
       background_color: '#ffffff',
+      inject: true,
       crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
       icons: [
         {
-          src: path.resolve('public/favicon.ico'),
+          src: path.resolve('public/pngicon.png'),
           sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
         },
         {
-          src: path.resolve('public/favicon.ico'),
+          src: path.resolve('public/pngicon.png'),
           size: '1024x1024', // you can also use the specifications pattern
         },
       ],
@@ -95,12 +97,25 @@ module.exports = {
       clientsClaim: true,
       skipWaiting: true,
     }),
+    new CompressionPlugin({
+      test: /\.(html|css|js|gif|svg|ico|woff|ttf|eot)$/,
+      exclude: /(node_modules)/,
+    }),
     // new BundleAnalyzerPlugin(),
   ],
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserPlugin(),
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true, // Must be set to true if using source-maps in production
+        terserOptions: {
+          ie8: true,
+          safari10: true,
+          sourceMap: true,
+        },
+      }),
       new OptimizeCSSAssetsPlugin({
         cssProcessorPluginOptions: {
           preset: ['default', { discardComments: { removeAll: true } }],
