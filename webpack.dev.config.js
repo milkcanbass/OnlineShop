@@ -4,7 +4,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 
 const path = require('path');
 
@@ -106,7 +105,6 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new RobotstxtPlugin(options),
     new BundleAnalyzerPlugin(),
   ],
   optimization: {

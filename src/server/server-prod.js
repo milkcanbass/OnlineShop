@@ -23,9 +23,7 @@ app.use(
 // Set robots.txt
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.send(
-    'UserAgent: Googlebot\nDisallow: /\nSitemap: https://jaifeimaohandagou.firebaseapp.com/sitemap.xml',
-  );
+  res.send('User-agent: *\nDisallow: /');
 });
 
 app.use(express.json());

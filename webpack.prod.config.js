@@ -76,16 +76,28 @@ module.exports = {
       short_name: 'S and H',
       description: 'ShinCat and HanDog web store',
       background_color: '#ffffff',
+      theme_color: '#2196F3',
       inject: true,
       crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
+      ios: true,
+      destination: path.join('/manifest'),
       icons: [
         {
           src: path.resolve('public/pngicon.png'),
-          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+          sizes: [120, 152, 167, 180, 1024],
+          destination: path.join('/manifest/icons/ios'),
+          ios: true,
         },
         {
           src: path.resolve('public/pngicon.png'),
-          size: '1024x1024', // you can also use the specifications pattern
+          size: 1024,
+          destination: path.join('/manifest/icons/ios'),
+          ios: 'startup',
+        },
+        {
+          src: path.resolve('public/pngicon.png'),
+          sizes: [36, 48, 72, 96, 144, 192, 512],
+          destination: path.join('/manifest/icons/android'),
         },
       ],
     }),
