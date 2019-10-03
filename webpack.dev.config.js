@@ -3,8 +3,9 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const RobotstxtPlugin = require('robotstxt-webpack-plugin');
+
 const path = require('path');
 
 module.exports = {
@@ -15,8 +16,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].[chunkhash].bundle.js',
+    filename: 'main.bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: '/',
   },
   devtool: 'inline-source-map',
@@ -39,21 +40,19 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              reloadAll: true,
-            },
-          },
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader'],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash].[ext]',
+              outputPath: 'imgs',
+            },
+          },
+        ],
       },
       {
         enforce: 'pre',
@@ -82,12 +81,6 @@ module.exports = {
       filename: './index.html',
       excludeChunks: ['server'],
     }),
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
     new WebpackPwaManifest({
       name: 'ShinCat and HanDog',
       short_name: 'S and H',
@@ -113,6 +106,7 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new RobotstxtPlugin(options),
     new BundleAnalyzerPlugin(),
   ],
   optimization: {

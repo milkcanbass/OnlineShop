@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cacheControl = require('express-cache-controller');
-const robots = require('express-robots-txt');
 require('dotenv').config();
 
 const app = express();
@@ -21,14 +20,13 @@ app.use(
   }),
 );
 
-// robots.txt
-app.use(
-  robots({
-    UserAgent: 'Googlebot',
-    Disallow: '/',
-    Sitemap: 'https://jaifeimaohandagou.firebaseapp.com/sitemap.xml',
-  }),
-);
+// Set robots.txt
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send(
+    'UserAgent: Googlebot\nDisallow: /\nSitemap: https://jaifeimaohandagou.firebaseapp.com/sitemap.xml',
+  );
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
