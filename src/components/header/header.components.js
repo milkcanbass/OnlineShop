@@ -11,13 +11,12 @@ import { modalToggleWindow } from '../../redux/modal/modal.action';
 
 import { selectDropdownOpen } from '../../redux/cart/cart.selectors';
 import { selectUser } from '../../redux/user/user.selectors';
-import { selectModalOpen } from '../../redux/modal/modal.selectors';
 import { toggleDropdown } from '../../redux/cart/cart.action';
 
-const Header = props => {
-  const { modalToggleWindow, user, dropdownOpen, toggleDropdown } = props;
-
-  const modalHandler = e => {
+const Header = ({
+ modalToggleWindow, user, dropdownOpen, toggleDropdown 
+}) => {
+  const modalHandler = (e) => {
     modalToggleWindow(e.target.id);
   };
 
@@ -35,8 +34,9 @@ const Header = props => {
 
       <div className="optionContainer">
         <a
+          role="button"
           id="contact"
-          onClick={e => {
+          onClick={(e) => {
             modalHandler(e);
             cartDropdownClose();
           }}
@@ -47,6 +47,7 @@ const Header = props => {
 
         {user ? (
           <a
+            role="button"
             className="option"
             onClick={() => {
               auth.signOut();
@@ -57,8 +58,9 @@ const Header = props => {
           </a>
         ) : (
           <a
+            role="button"
             id="signInAndSignUp"
-            onClick={e => {
+            onClick={(e) => {
               modalHandler(e);
               cartDropdownClose();
             }}
@@ -77,17 +79,18 @@ const Header = props => {
 
 Header.propTypes = {
   modalToggleWindow: PropTypes.func.isRequired,
-  modalOpen: PropTypes.bool.isRequired,
+  user: PropTypes.arrayOf(PropTypes.oneOfType(PropTypes.string, PropTypes.number)).isRequired,
+  dropdownOpen: PropTypes.bool.isRequired,
+  toggleDropdown: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser,
-  modalOpen: selectModalOpen,
   dropdownOpen: selectDropdownOpen,
 });
 
-const mapDispatchToProps = dispatch => ({
-  modalToggleWindow: payload => dispatch(modalToggleWindow(payload)),
+const mapDispatchToProps = (dispatch) => ({
+  modalToggleWindow: (payload) => dispatch(modalToggleWindow(payload)),
   toggleDropdown: () => dispatch(toggleDropdown()),
 });
 

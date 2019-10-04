@@ -1,7 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -101,7 +101,7 @@ module.exports = {
         },
       ],
     }),
-    new WorkboxPlugin.GenerateSW({
+    new GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
@@ -139,7 +139,7 @@ module.exports = {
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      name: true, // false cause issue on firebase server
+      name: true, // false causes issue on firebase server
       cacheGroups: {
         default: {
           minChunks: 2,

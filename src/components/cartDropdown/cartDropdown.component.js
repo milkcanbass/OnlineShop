@@ -15,7 +15,7 @@ const CartDropdown = ({ cartItems, history, toggleDropdown }) => (
   <div className="cartDropdownContainer">
     <div className="cartItems">
       {cartItems.length ? (
-        cartItems.map(cartItem => <CartItem key={cartItem.id} item={cartItem} />)
+        cartItems.map((cartItem) => <CartItem key={cartItem.id} item={cartItem} />)
       ) : (
         <span className="emptyMessage">No items</span>
       )}
@@ -26,21 +26,25 @@ const CartDropdown = ({ cartItems, history, toggleDropdown }) => (
         toggleDropdown();
       }}
     >
-      CHECKOUT
+      CHECk OUT
     </MyButton>
   </div>
 );
 
 CartDropdown.propTypes = {
-  cartItems: PropTypes.array.isRequired,
+  cartItems: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+    .isRequired,
   toggleDropdown: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
+  ).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   toggleDropdown: () => dispatch(toggleDropdown()),
 });
 

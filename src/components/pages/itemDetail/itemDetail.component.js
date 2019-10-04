@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './itemDetail.styles.scss';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
 
 import { addItem } from '../../../redux/cart/cart.action';
 
 const ItemDetailPage = ({ match, myShopData, addItem }) => {
-  const { title } = match.params;
-  const { id } = match.params;
+  const { title, id } = match.params;
   const itemData = myShopData[title].items[id];
   const {
  name, description, imageUrl, price 
@@ -41,6 +41,15 @@ $
       </div>
     </div>
   );
+};
+
+ItemDetailPage.propTypes = {
+  match: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
+  ).isRequired,
+  myShopData: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+    .isRequired,
+  addItem: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -49,6 +49,11 @@ const DonationPage = ({ donations, addItem }) => {
   );
 };
 
+DonationPage.propTypes = {
+  donations: PropTypes.shape({}).isRequired,
+  addItem: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = createStructuredSelector({ donations: selectDonations });
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
