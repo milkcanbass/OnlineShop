@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cacheControl = require('express-cache-controller');
+const compression = require('compression');
 require('dotenv').config();
 
 const app = express();
@@ -10,6 +11,8 @@ const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 app.use(cors());
 
+// for gzip
+app.use(compression());
 // function of body-parser
 app.use(express.static(DIST_DIR));
 

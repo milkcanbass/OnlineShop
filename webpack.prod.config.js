@@ -139,13 +139,17 @@ module.exports = {
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
+      name: true, // false cause issue on firebase server
       cacheGroups: {
         default: {
           minChunks: 2,
           priority: -20,
           reuseExistingChunk: true,
+          filename: '[name].bundle.js',
+        },
+        firebase: {
+          test: /[\\/]node_modules[\\/]((@firebase).*)[\\/]/,
+          name: 'firebase',
         },
       },
     },

@@ -3,7 +3,6 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const path = require('path');
 
@@ -85,15 +84,28 @@ module.exports = {
       short_name: 'S and H',
       description: 'ShinCat and HanDog web store',
       background_color: '#ffffff',
+      theme_color: '#2196F3',
+      inject: true,
       crossorigin: 'use-credentials', // can be null, use-credentials or anonymous
+      ios: true,
+      destination: path.join('/manifest'),
       icons: [
         {
-          src: path.resolve('public/favicon.ico'),
-          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+          src: path.resolve('public/pngicon.png'),
+          sizes: [120, 152, 167, 180, 1024],
+          destination: path.join('/manifest/icons/ios'),
+          ios: true,
         },
         {
-          src: path.resolve('public/favicon.ico'),
-          size: '1024x1024', // you can also use the specifications pattern
+          src: path.resolve('public/pngicon.png'),
+          size: 1024,
+          destination: path.join('/manifest/icons/ios'),
+          ios: 'startup',
+        },
+        {
+          src: path.resolve('public/pngicon.png'),
+          sizes: [36, 48, 72, 96, 144, 192, 512],
+          destination: path.join('/manifest/icons/android'),
         },
       ],
     }),
@@ -107,30 +119,4 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new BundleAnalyzerPlugin(),
   ],
-  optimization: {
-    minimizer: [
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-      }),
-    ],
-    splitChunks: {
-      chunks: 'all',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
-      cacheGroups: {
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
-    },
-  },
 };
