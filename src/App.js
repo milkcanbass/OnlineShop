@@ -3,7 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { auth, createUserProfDoc, firestore, donationData } from './firebase/firebase.utils';
+import {
+  auth, createUserProfDoc, firestore, donationData,
+} from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
 import { updateDonationData } from './redux/donation/donation.actions';
 import './_App.scss';
@@ -28,11 +30,11 @@ class App extends Component {
   // To check if user login
   componentDidMount() {
     const { setUserLogin, updateDonationData } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
 
-        userRef.onSnapshot(snapShot => {
+        userRef.onSnapshot((snapShot) => {
           setUserLogin({ id: snapShot.id, ...snapShot.data() });
         });
       } else {
@@ -43,7 +45,7 @@ class App extends Component {
 
     // Fetch donation data to pass it to donation page
     const donationDataRef = firestore.collection('donationData');
-    donationDataRef.onSnapshot(async snapShot => {
+    donationDataRef.onSnapshot(async (snapShot) => {
       const finalData = donationData(snapShot);
       updateDonationData(finalData);
     });
@@ -83,9 +85,9 @@ App.defaultProps = {
   user: null,
 };
 
-const mapDispatchToProps = dispatch => ({
-  setUserLogin: payload => dispatch(setUserLogin(payload)),
-  updateDonationData: payload => dispatch(updateDonationData(payload)),
+const mapDispatchToProps = (dispatch) => ({
+  setUserLogin: (payload) => dispatch(setUserLogin(payload)),
+  updateDonationData: (payload) => dispatch(updateDonationData(payload)),
 });
 
 const mapStateToProps = createStructuredSelector({

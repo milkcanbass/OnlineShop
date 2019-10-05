@@ -11,8 +11,8 @@ const ItemDetailPage = ({ match, myShopData, addItem }) => {
   const { title, id } = match.params;
   const itemData = myShopData[title].items[id];
   const {
- name, description, imageUrl, price 
-} = itemData;
+    name, description, imageUrl, price,
+  } = itemData;
   const [loading, setLoading] = useState({
     loading: true,
   });
@@ -33,8 +33,8 @@ const ItemDetailPage = ({ match, myShopData, addItem }) => {
           <div className="name">{name}</div>
           <div className="price">
 $
-{price}
-</div>
+            {price}
+          </div>
           <div className="description">{description}</div>
           <MyButton onClick={() => addItem(itemData)}>Add cart</MyButton>
         </div>

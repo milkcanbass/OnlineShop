@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
 
-const selectMyShop = state => state.myShop;
+const selectMyShop = (state) => state.myShop;
 
 export const selectMyShopData = createSelector(
   [selectMyShop],
-  myShop => myShop.myShopData,
+  (myShop) => myShop.myShopData,
 );
 
 export const selectMyShopDataObj = createSelector(
   [selectMyShopData],
-  myShopData => Object.keys(myShopData).map(key => myShopData[key]),
+  (myShopData) => Object.keys(myShopData).map((key) => myShopData[key]),
 );

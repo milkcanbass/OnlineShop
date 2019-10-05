@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.action';
 
 const CheckoutItem = ({
-  cartItem: { name, imageUrl, price, quantity },
+  cartItem: {
+    name, imageUrl, price, quantity,
+  },
   clearItemFromCart,
   addItem,
   removeItem,
@@ -32,16 +34,16 @@ const CheckoutItem = ({
 );
 
 CheckoutItem.protoTypes = {
-  cartItem: PropTypes.oneOfType(PropTypes.oneOfType(PropTypes.string, PropTypes.number)).isRequired,
+  cartItem: PropTypes.oneOfType(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
   clearItemFromCart: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  clearItemFromCart: item => dispatch(clearItemFromCart(item)),
-  addItem: item => dispatch(addItem(item)),
-  removeItem: item => dispatch(removeItem(item)),
+const mapDispatchToProps = (dispatch) => ({
+  clearItemFromCart: (item) => dispatch(clearItemFromCart(item)),
+  addItem: (item) => dispatch(addItem(item)),
+  removeItem: (item) => dispatch(removeItem(item)),
 });
 
 export default connect(

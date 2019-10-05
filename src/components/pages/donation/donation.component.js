@@ -9,7 +9,7 @@ import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
 
 const DonationPage = ({ donations, addItem }) => {
-  const pageBackgroundImage =    'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/webImages%2Ffruit-and-snack-baskets.webp?alt=media&token=617eb1c5-c9ea-4ccb-8525-241f5b86de17';
+  const pageBackgroundImage = 'https://firebasestorage.googleapis.com/v0/b/jaifeimaohandagou.appspot.com/o/webImages%2Ffruit-and-snack-baskets.webp?alt=media&token=617eb1c5-c9ea-4ccb-8525-241f5b86de17';
   const [loading, setLoading] = useState({
     loading: true,
   });
@@ -37,7 +37,7 @@ const DonationPage = ({ donations, addItem }) => {
                 {donations.map((donation) => (
                   <MyButton key={donation.id} onClick={() => addItem(donation)} donation>
                     $
-{donation.price}
+                    {donation.price}
                   </MyButton>
                 ))}
               </div>

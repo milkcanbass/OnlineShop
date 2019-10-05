@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './signUp.styles.scss';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
 import { createUserProfDoc, auth } from '../../firebase/firebase.utils';
 import { modalCloseWindow, modalToggleWindow } from '../../redux/modal/modal.action';
-import PropTypes from 'prop-types'
 
 const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
   const [signUpState, setSignUpState] = useState({
@@ -14,9 +14,11 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
     password: '',
     confirmPassword: '',
   });
-  const { email, password, displayName, confirmPassword } = signUpState;
+  const {
+    email, password, displayName, confirmPassword,
+  } = signUpState;
 
-  const onSubmitHandler = async e => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       modalCloseWindow();
@@ -37,7 +39,7 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
     }
   };
 
-  const onChangeHandler = e => {
+  const onChangeHandler = (e) => {
     setSignUpState({
       ...signUpState,
       [e.target.name]: e.target.value,
@@ -48,7 +50,7 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
     <div className="signUpContainer">
       <h2 className="signUpTitle">SIGN UP</h2>
       <span className="signUpSubTitle">Creat an account</span>
-      <form className="inputForms" onSubmit={e => onSubmitHandler(e)}>
+      <form className="inputForms" onSubmit={(e) => onSubmitHandler(e)}>
         <InputForm
           type="text"
           name="displayName"
@@ -89,12 +91,12 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
   );
 };
 
-SignUp.propTypes={
-    modalToggleWindow: PropTypes.func.isRequired,
+SignUp.propTypes = {
+  modalToggleWindow: PropTypes.func.isRequired,
   modalCloseWindow: PropTypes.func.isRequired,
-}
+};
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   modalToggleWindow: (type, message) => dispatch(modalToggleWindow(type, message)),
   modalCloseWindow: () => dispatch(modalCloseWindow()),
 });

@@ -14,7 +14,7 @@ import { selectUser } from '../../redux/user/user.selectors';
 import { toggleDropdown } from '../../redux/cart/cart.action';
 
 const Header = ({
- modalToggleWindow, user, dropdownOpen, toggleDropdown 
+  modalToggleWindow, user, dropdownOpen, toggleDropdown,
 }) => {
   const modalHandler = (e) => {
     modalToggleWindow(e.target.id);
@@ -77,9 +77,13 @@ const Header = ({
   );
 };
 
+Header.defaultProps = {
+  user: null,
+};
+
 Header.propTypes = {
   modalToggleWindow: PropTypes.func.isRequired,
-  user: PropTypes.arrayOf(PropTypes.oneOfType(PropTypes.string, PropTypes.number)).isRequired,
+  user: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   dropdownOpen: PropTypes.bool.isRequired,
   toggleDropdown: PropTypes.func.isRequired,
 };

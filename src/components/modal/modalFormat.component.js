@@ -49,10 +49,14 @@ class ModalFormat extends Component {
   }
 }
 
+ModalFormat.defaultProps = {
+  children: null,
+};
+
 ModalFormat.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   modalCloseWindow: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
 };
 
 const mapStateToProps = createStructuredSelector({

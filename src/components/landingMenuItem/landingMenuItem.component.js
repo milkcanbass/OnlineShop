@@ -28,9 +28,9 @@ const LandingMenuItem = ({ item: { title, imageUrl, linkUrl }, history }) => {
 };
 
 LandingMenuItem.propTypes = {
-  item: PropTypes.arrayOf(PropTypes.oneOfType(PropTypes.string, PropTypes.number)).isRequired,
+  item: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
   history: PropTypes.objectOf(
-    PropTypes.oneOfType(PropTypes.string, PropTypes.number, PropTypes.bool),
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   ).isRequired,
 };
 

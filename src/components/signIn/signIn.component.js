@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './signIn.styles.scss';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
 import { signInWithGoogleAccount, auth } from '../../firebase/firebase.utils';
 import { modalToggleWindow, modalCloseWindow } from '../../redux/modal/modal.action';
-import PropTypes from 'prop-types';
 
 const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
   const [signInState, setSignInState] = useState({
@@ -14,7 +14,7 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
   });
   const { email, password } = signInState;
 
-  const onSubmitHandler = async e => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
       await auth.signInWithEmailAndPassword(email, password);
@@ -28,7 +28,7 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
     }
   };
 
-  const onChangeHandler = e => {
+  const onChangeHandler = (e) => {
     setSignInState({
       ...signInState,
       [e.target.name]: e.target.value,
@@ -39,7 +39,7 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
     <div className="signInContainer">
       <h2 className="signInTitle">SIGN IN</h2>
       <span className="signInSubTitle">I have an account</span>
-      <form className="inputForms" onSubmit={e => onSubmitHandler(e)}>
+      <form className="inputForms" onSubmit={(e) => onSubmitHandler(e)}>
         <InputForm
           type="email"
           name="email"
@@ -67,12 +67,12 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
   );
 };
 
-SignIn.propTypes={
-  modalToggleWindow:PropTypes.func.isRequired,
-  modalCloseWindow:PropTypes.func.isRequired,
-}
+SignIn.propTypes = {
+  modalToggleWindow: PropTypes.func.isRequired,
+  modalCloseWindow: PropTypes.func.isRequired,
+};
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   modalToggleWindow: (type, message) => dispatch(modalToggleWindow(type, message)),
   modalCloseWindow: () => dispatch(modalCloseWindow()),
 });

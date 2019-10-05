@@ -15,7 +15,7 @@ const myShopPage = ({ myShopData }) => (
 );
 
 myShopPage.propTypes = {
-  myShopData: PropTypes.arrayOf(PropTypes.oneOfType(PropTypes.string, PropTypes.number)).isRequired,
+  myShopData: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

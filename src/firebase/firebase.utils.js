@@ -22,7 +22,7 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 export const addNewUserWithEmailAndPassword = () => {
-  auth.createUserWithEmailAndPassword('b@gmail.com', '123456').catch(err => {
+  auth.createUserWithEmailAndPassword('b@gmail.com', '123456').catch((err) => {
     // send err message to client
     console.log(err.code);
     console.log(err.message);
@@ -36,11 +36,11 @@ provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogleAccount = () => {
   auth
     .signInWithPopup(provider)
-    .then(result => {
+    .then((result) => {
       const token = result.credential.accessToken;
-      const user = result.user;
+      const { user } = result;
     })
-    .catch(err => {
+    .catch((err) => {
       const errorCode = err.code;
       const errorMessage = err.message;
       console.log(errorCode);
@@ -76,7 +76,7 @@ export const createUserProfDoc = async (userAuth, additionalData) => {
 export const addCollectionAndDocumentsToDatabase = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
   const batch = firestore.batch();
-  objectsToAdd.forEach(obj => {
+  objectsToAdd.forEach((obj) => {
     // by keep .doc() as blank firebase automatically add id
     const newDocRef = collectionRef.doc();
     batch.set(newDocRef, obj);
@@ -84,8 +84,8 @@ export const addCollectionAndDocumentsToDatabase = async (collectionKey, objects
   // return await batch.commit();
 };
 
-export const convertDataSnapshotToMap = data => {
-  const transformedItems = data.docs.map(doc => {
+export const convertDataSnapshotToMap = (data) => {
+  const transformedItems = data.docs.map((doc) => {
     const { title, items } = doc.data();
     return {
       id: doc.id,
@@ -99,9 +99,11 @@ export const convertDataSnapshotToMap = data => {
   }, {});
 };
 
-export const donationData = data => {
-  const transformData = data.docs.map(doc => {
-    const { imageUrl, name, price, id } = doc.data();
+export const donationData = (data) => {
+  const transformData = data.docs.map((doc) => {
+    const {
+      imageUrl, name, price, id,
+    } = doc.data();
     return {
       id,
       imageUrl,

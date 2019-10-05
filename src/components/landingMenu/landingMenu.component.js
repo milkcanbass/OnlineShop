@@ -14,9 +14,12 @@ const LandingMenu = ({ landingData }) => (
   </div>
 );
 
+LandingMenu.defaultPropTypes = {
+  landingData: {},
+};
+
 LandingMenu.propTypes = {
-  landingData: PropTypes.oneOfType(PropTypes.oneOfType(PropTypes.string, PropTypes.number))
-    .isRequired,
+  landingData: PropTypes.array,
 };
 
 const mapsStateToProps = createStructuredSelector({

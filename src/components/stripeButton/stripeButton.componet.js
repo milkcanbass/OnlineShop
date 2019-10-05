@@ -1,13 +1,13 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
   const publishableKey = 'pk_test_DGQE6QJh7jDOOYYz7YlCrAtS00uZITvJgs';
 
-  const onToken = token => {
+  const onToken = (token) => {
     axios({
       url: 'payment',
       method: 'post',
@@ -16,10 +16,10 @@ const StripeCheckoutButton = ({ price }) => {
         token,
       },
     })
-      .then(response => {
+      .then((response) => {
         alert('succesful payment');
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('Payment Error: ', JSON.parse(error));
         alert(
           'There was an issue with your payment! Please make sure you use the provided credit card.',
@@ -44,8 +44,8 @@ const StripeCheckoutButton = ({ price }) => {
   );
 };
 
-StripeCheckoutButton.propTypes={
-  price:PropTypes.number.isRequired,
-}
+StripeCheckoutButton.propTypes = {
+  price: PropTypes.number.isRequired,
+};
 
 export default StripeCheckoutButton;

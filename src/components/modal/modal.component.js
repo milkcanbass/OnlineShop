@@ -11,7 +11,7 @@ import { selectModalOpen, selectModalType } from '../../redux/modal/modal.select
 
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 
-const Modal = props => {
+const Modal = (props) => {
   const { modalType } = props;
 
   // modalType comes from e.target.id.
@@ -38,7 +38,7 @@ const mapStateToProps = createStructuredSelector({
   modalType: selectModalType,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   modalToggleWindow: () => dispatch(modalToggleWindow()),
 });
 
