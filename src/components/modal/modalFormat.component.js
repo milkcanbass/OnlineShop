@@ -25,7 +25,7 @@ class ModalFormat extends Component {
     modalRoot.removeChild(this.el);
   }
 
-  onCloseModalByClickingOutside = e => {
+  onCloseModalByClickingOutside = (e) => {
     const { modalCloseWindow } = this.props;
     if (e.target.className === 'modalBackground') {
       modalCloseWindow();
@@ -37,7 +37,7 @@ class ModalFormat extends Component {
 
     const modalUI = (
       <>
-        <div className="modalBackground" onClick={e => this.onCloseModalByClickingOutside(e)}>
+        <div className="modalBackground" onClick={(e) => this.onCloseModalByClickingOutside(e)}>
           <div className="modal">{children}</div>
         </div>
       </>
@@ -52,17 +52,18 @@ class ModalFormat extends Component {
 ModalFormat.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   modalCloseWindow: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
-const ToProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector({
   modalOpen: selectModalOpen,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   modalCloseWindow: () => dispatch(modalCloseWindow()),
 });
 
 export default connect(
-  ToProps,
+  mapStateToProps,
   mapDispatchToProps,
 )(ModalFormat);

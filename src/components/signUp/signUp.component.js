@@ -5,10 +5,9 @@ import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
 import { createUserProfDoc, auth } from '../../firebase/firebase.utils';
 import { modalCloseWindow, modalToggleWindow } from '../../redux/modal/modal.action';
+import PropTypes from 'prop-types'
 
-const SignUp = props => {
-  const { modalCloseWindow, modalToggleWindow } = props;
-
+const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
   const [signUpState, setSignUpState] = useState({
     displayName: '',
     email: '',
@@ -89,6 +88,11 @@ const SignUp = props => {
     </div>
   );
 };
+
+SignUp.propTypes={
+    modalToggleWindow: PropTypes.func.isRequired,
+  modalCloseWindow: PropTypes.func.isRequired,
+}
 
 const mapDispatchToProps = dispatch => ({
   modalToggleWindow: (type, message) => dispatch(modalToggleWindow(type, message)),

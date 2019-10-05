@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import './signIn.styles.scss';
 import { connect } from 'react-redux';
-import { declareExportAllDeclaration } from '@babel/types';
 import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
 import { signInWithGoogleAccount, auth } from '../../firebase/firebase.utils';
 import { modalToggleWindow, modalCloseWindow } from '../../redux/modal/modal.action';
+import PropTypes from 'prop-types';
 
-const SignIn = props => {
-  const { modalCloseWindow, modalToggleWindow } = props;
-
+const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
   const [signInState, setSignInState] = useState({
     email: '',
     password: '',
@@ -68,6 +66,11 @@ const SignIn = props => {
     </div>
   );
 };
+
+SignIn.propTypes={
+  modalToggleWindow:PropTypes.func.isRequired,
+  modalCloseWindow:PropTypes.func.isRequired,
+}
 
 const mapDispatchToProps = dispatch => ({
   modalToggleWindow: (type, message) => dispatch(modalToggleWindow(type, message)),

@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './spinner.styles.scss';
 
-export default function Spinner({ style }) {
+const Spinner = () =>{
   const circles = [...Array(3)].map((_, index) => (
     <div key={index} style={{ background: 'grey' }} />
   ));
@@ -16,7 +15,4 @@ export default function Spinner({ style }) {
   );
 }
 
-Spinner.propTypes = {
-  /** style object */
-  style: PropTypes.object,
-};
+export default Spinner;

@@ -1,9 +1,9 @@
 import React from 'react';
 import './myShopOverview.styles.scss';
 import MyShopItem from '../myShopItem/myShopItem.component';
+import PropTypes from 'prop-types';
 
-const MyShopOverview = ({ title, items }) => {
-  return (
+const MyShopOverview = ({ title, items }) => (
     <div className="myShopOverviewContainer">
       <div className="title">{title}</div>
       <div className="myShopItemsContainer">
@@ -15,6 +15,11 @@ const MyShopOverview = ({ title, items }) => {
       </div>
     </div>
   );
-};
+
+  MyShopOverview.propTypes ={
+    title:PropTypes.string.isRequired,
+    items:PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string,PropTypes.number,])).isRequired,
+  }
+
 
 export default MyShopOverview;
