@@ -1,4 +1,4 @@
-@import '../../App';
+// @import '../../App';
 .checkoutItemContainer {
   width: 100%;
   display: flex;
@@ -27,7 +27,10 @@
     display: flex;
 
     .arrow {
-      @include cursorOn();
+      &:hover {
+        cursor: default;
+        color: red;
+      }
     }
     .value {
       margin: 0 10px;

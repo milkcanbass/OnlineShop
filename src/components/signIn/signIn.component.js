@@ -7,6 +7,7 @@ import MyButton from '../myButton/myButton.component';
 import { signInWithGoogleAccount, auth } from '../../firebase/firebase.utils';
 import { modalToggleWindow, modalCloseWindow } from '../../redux/modal/modal.action';
 
+
 const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
   const [signInState, setSignInState] = useState({
     email: '',

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test 1`] = `
+exports[`takeSnapshot 1`] = `
 <div
   className="cartItem"
 >
