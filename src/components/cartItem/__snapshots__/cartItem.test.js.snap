@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test 1`] = `
+<div
+  className="cartItem"
+>
+  <img
+    alt="itemImage"
+    src="url"
+  />
+  <div
+    className="itemDetails"
+  >
+    <span
+      className="name"
+    >
+      name
+    </span>
+    <span
+      className="price"
+    >
+      $
+      0
+      x
+      0
+    </span>
+  </div>
+</div>
+`;

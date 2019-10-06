@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
 const path = require('path');
@@ -61,7 +61,7 @@ module.exports = {
           emitWarning: true,
           failOnError: false,
           failOnWarning: false,
-          fix: true
+          fix: true,
         },
       },
     ],
