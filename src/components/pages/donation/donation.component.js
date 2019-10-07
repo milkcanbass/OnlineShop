@@ -48,7 +48,7 @@ const DonationPage = ({ donations, addItem }) => {
     </div>
   );
 
-  return <div>{donations.length > 1 ? page : <Redirect to="/" />}</div>;
+  return <div>{donations.length > 0 ? page : <Redirect to="/" />}</div>;
 };
 
 DonationPage.propTypes = {

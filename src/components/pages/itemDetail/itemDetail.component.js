@@ -2,20 +2,26 @@ import React, { useState } from 'react';
 import './itemDetail.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
 
 import { addItem } from '../../../redux/cart/cart.action';
 
 const ItemDetailPage = ({ match, myShopData, addItem }) => {
-  const { title, id } = match.params;
-  const itemData = myShopData[title].items[id];
-  const {
-    name, description, imageUrl, price,
-  } = itemData;
   const [loading, setLoading] = useState({
     loading: true,
   });
+  let itemData;
+  try {
+    const { title, id } = match.params;
+    itemData = myShopData[title].items[id];
+  } catch (error) {
+    return <Redirect to="/" />;
+  }
+  const {
+    name, description, imageUrl, price,
+  } = itemData;
 
   return (
     <div>

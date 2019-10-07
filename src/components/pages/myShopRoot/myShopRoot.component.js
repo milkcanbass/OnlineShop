@@ -7,22 +7,19 @@ import MyShopPage from '../myShop/myShop.component';
 import ItemDetailPage from '../itemDetail/itemDetail.component';
 import { selectMyShopData } from '../../../redux/myShop/myShop.selectors';
 
-const MyShopRoot = ({ match, myShopData }) => {
-  console.log(myShopData);
-  return (
-    <div className="myShopRoot">
-      <Route
-        exact
-        path={`${match.path}`}
-        render={(props) => <MyShopPage {...props} myShopData={myShopData} />}
-      />
-      <Route
-        path={`${match.path}/:title/:id`}
-        render={(props) => <ItemDetailPage {...props} myShopData={myShopData} />}
-      />
-    </div>
-  );
-};
+const MyShopRoot = ({ match, myShopData }) => (
+  <div className="myShopRoot">
+    <Route
+      exact
+      path={`${match.path}`}
+      render={(props) => <MyShopPage {...props} myShopData={myShopData} />}
+    />
+    <Route
+      path={`${match.path}/:title/:id`}
+      render={(props) => <ItemDetailPage {...props} myShopData={myShopData} />}
+    />
+  </div>
+);
 
 MyShopRoot.propTypes = {
   match: PropTypes.arrayOf(
