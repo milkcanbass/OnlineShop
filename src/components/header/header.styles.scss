@@ -35,8 +35,24 @@
   }
 }
 
-@media only screen and (max-width: 380px) {
+@include responseTo(small) {
   .header {
-    width: 380px;
+    .pageTitle {
+      font-size: 12px;
+    }
+    .optionContainer {
+      font-size: 12px;
+    }
+  }
+}
+
+@include responseTo(medium) {
+  .header {
+    .pageTitle {
+      font-size: 12px;
+    }
+    .optionContainer {
+      font-size: 12px;
+    }
   }
 }
