@@ -1,7 +1,7 @@
 import { UPDATE_SHOP_DATA } from './myShop.types';
 
 const INITIAL_STATE = {
-  myShopData: '',
+  myShopData: [],
 };
 
 const myShopReducer = (state = INITIAL_STATE, action) => {
@@ -9,7 +9,6 @@ const myShopReducer = (state = INITIAL_STATE, action) => {
   switch (type) {
     case UPDATE_SHOP_DATA:
       return {
-        ...state,
         myShopData: payload,
       };
     default:

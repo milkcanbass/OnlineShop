@@ -28,32 +28,25 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   // To check if user login
-  // componentDidMount() {
-  //   const { setUserLogin, updateDonationData } = this.props;
-  //   this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-  //     if (userAuth) {
-  //       const userRef = await createUserProfDoc(userAuth);
-  //       userRef.onSnapshot((snapShot) => {
-  //         setUserLogin({ id: snapShot.id, ...snapShot.data() });
-  //       });
-  //     } else {
-  //       setUserLogin(userAuth);
-  //       // addCollectionAndDocumentsToDatabase('donationData', donationData.map(item => item));
-  //     }
-  //   });
+  componentDidMount() {
+    const { setUserLogin, updateDonationData } = this.props;
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfDoc(userAuth);
+        userRef.onSnapshot((snapShot) => {
+          setUserLogin({ id: snapShot.id, ...snapShot.data() });
+        });
+      } else {
+        setUserLogin(userAuth);
+        // addCollectionAndDocumentsToDatabase('donationData', donationData.map(item => item));
+      }
+    });
+  }
 
-  //   // Fetch donation data to pass it to donation page
-  //   const donationDataRef = firestore.collection('donationData');
-  //   donationDataRef.onSnapshot(async (snapShot) => {
-  //     const finalData = donationData(snapShot);
-  //     updateDonationData(finalData);
-  //   });
-  // }
-
-  // // For prevent memory leak by subscribing
-  // componentWillUnmount() {
-  //   this.unsubscribeFromAuth();
-  // }
+  // For prevent memory leak by subscribing
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
 
   render() {
     const { user } = this.props;
