@@ -1,15 +1,20 @@
 .topContainer {
-  .topImg {
-    width: 100vw;
-    height: 500px;
-    // background-image: url('../../assets/test.png');
-    background-image: linear-gradient(to right, #eecda3, #ef629f);
-    mix-blend-mode: soft-light;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 800px;
+  width: 100vw;
+  background: linear-gradient(to right, #eecda3, #ef629f);
+  background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+  background: -moz-linear-gradient(to right, #eecda3, #ef629f);
+  background: -o-linear-gradient(to right, #eecda3, #ef629f);
+  background: -ms-linear-gradient(to right, #eecda3, #ef629f);
+
   .topTitle {
+    top: 200px;
+    height: 400px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     position: absolute;
