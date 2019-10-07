@@ -1,4 +1,4 @@
-// @import '../../App';
+@import '../../App';
 .header {
   width: 100vw;
   height: 60px;
@@ -15,10 +15,8 @@
     margin-left: 20px;
     font-size: 20px;
     text-decoration: none;
-    &:hover {
-      cursor: default;
-      color: red;
-    }
+
+    @include cursorOn();
   }
 
   .optionContainer {
@@ -32,10 +30,13 @@
     .option {
       margin: 0 10px;
       color: black;
-      &:hover {
-        cursor: default;
-        color: red;
-      }
+      @include cursorOn();
     }
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .header {
+    width: 380px;
   }
 }

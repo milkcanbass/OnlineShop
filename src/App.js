@@ -3,11 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import {
-  auth, createUserProfDoc, firestore, donationData,
-} from './firebase/firebase.utils';
+import { auth, createUserProfDoc } from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
-import { updateDonationData } from './redux/donation/donation.actions';
 import './_App.scss';
 import { selectUser } from './redux/user/user.selectors';
 import { selectDonations } from './redux/donation/donation.selectors';
@@ -29,7 +26,7 @@ class App extends Component {
 
   // To check if user login
   componentDidMount() {
-    const { setUserLogin, updateDonationData } = this.props;
+    const { setUserLogin } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
@@ -79,7 +76,6 @@ App.defaultProps = {
 
 const mapDispatchToProps = (dispatch) => ({
   setUserLogin: (payload) => dispatch(setUserLogin(payload)),
-  updateDonationData: (payload) => dispatch(updateDonationData(payload)),
 });
 
 const mapStateToProps = createStructuredSelector({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './header.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -44,18 +44,21 @@ const Header = ({
         >
           CONTACT
         </a>
-
         {user ? (
-          <a
-            role="button"
-            className="option"
-            onClick={() => {
-              auth.signOut();
-              cartDropdownClose();
-            }}
-          >
-            SIGN OUT
-          </a>
+          <>
+            <a
+              role="button"
+              className="option"
+              onClick={() => {
+                auth.signOut();
+                cartDropdownClose();
+              }}
+            >
+              SIGN OUT
+            </a>
+
+            <CartIcon className="option" />
+          </>
         ) : (
           <a
             role="button"
@@ -69,8 +72,6 @@ const Header = ({
             SIGN IN
           </a>
         )}
-
-        <CartIcon className="option" />
       </div>
       {dropdownOpen ? <CartDropdown /> : null}
     </div>
