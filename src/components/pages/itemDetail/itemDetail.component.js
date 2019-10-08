@@ -3,12 +3,16 @@ import './itemDetail.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
-
+import { selectUser } from '../../../redux/user/user.selectors';
 import { addItem } from '../../../redux/cart/cart.action';
+import { modalToggleWindow } from '../../../redux/modal/modal.action';
 
-const ItemDetailPage = ({ match, myShopData, addItem }) => {
+const ItemDetailPage = ({
+  match, myShopData, addItem, user, modalToggleWindow,
+}) => {
   const [loading, setLoading] = useState({
     loading: true,
   });
@@ -42,7 +46,20 @@ $
             {price}
           </div>
           <div className="description">{description}</div>
-          <MyButton onClick={() => addItem(itemData)}>Add cart</MyButton>
+          {user ? (
+            <MyButton onClick={() => addItem(itemData)}>Add cart</MyButton>
+          ) : (
+            <MyButton
+              role="button"
+              id="signInAndSignUp"
+              onClick={(e) => {
+                modalToggleWindow(e.target.id);
+              }}
+              googleButton
+            >
+              Sign In to add cart
+            </MyButton>
+          )}
         </div>
       </div>
     </div>
@@ -60,9 +77,14 @@ ItemDetailPage.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
+  modalToggleWindow: (id, message) => dispatch(modalToggleWindow(id, message)),
+});
+
+const mapStateToProps = createStructuredSelector({
+  user: selectUser,
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(ItemDetailPage);

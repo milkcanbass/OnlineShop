@@ -21,33 +21,6 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-export const addNewUserWithEmailAndPassword = () => {
-  auth.createUserWithEmailAndPassword('b@gmail.com', '123456').catch((err) => {
-    // send err message to client
-    console.log(err.code);
-    console.log(err.message);
-  });
-};
-
-// Auth function with Google account
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
-
-export const signInWithGoogleAccount = () => {
-  auth
-    .signInWithPopup(provider)
-    .then((result) => {
-      const token = result.credential.accessToken;
-      const { user } = result;
-    })
-    .catch((err) => {
-      const errorCode = err.code;
-      const errorMessage = err.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-    });
-};
-
 export const createUserProfDoc = async (userAuth, additionalData) => {
   if (!userAuth) {
     return;
@@ -66,7 +39,7 @@ export const createUserProfDoc = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (err) {
-      console.log(err.message);
+      // console.log(err);
     }
   }
   return userRef;

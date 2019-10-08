@@ -1,5 +1,9 @@
 import {
-  TOGGLE_DROPDOWN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM,
+  TOGGLE_DROPDOWN,
+  ADD_ITEM,
+  CLEAR_ITEM_FROM_CART,
+  REMOVE_ITEM,
+  CLOSE_DROPDOWN,
 } from './cart.types';
 import { addItemToCart, removeItemFromCart } from '../../utils/cart.utils';
 
@@ -14,6 +18,12 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dropdownOpen: !state.dropdownOpen,
+      };
+    }
+    case CLOSE_DROPDOWN: {
+      return {
+        ...state,
+        dropdownOpen: false,
       };
     }
     case ADD_ITEM: {

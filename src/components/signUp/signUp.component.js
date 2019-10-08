@@ -27,12 +27,7 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
       createUserProfDoc(user, { displayName });
-      setSignUpState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      });
+      modalCloseWindow();
     } catch (err) {
       modalCloseWindow();
       modalToggleWindow('error', err.message);

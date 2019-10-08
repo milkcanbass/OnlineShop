@@ -9,8 +9,6 @@ import Error from '../error/error.component';
 
 import { selectModalOpen, selectModalType } from '../../redux/modal/modal.selectors';
 
-import { modalToggleWindow } from '../../redux/modal/modal.action';
-
 const Modal = (props) => {
   const { modalType } = props;
 
@@ -38,11 +36,7 @@ const mapStateToProps = createStructuredSelector({
   modalType: selectModalType,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  modalToggleWindow: () => dispatch(modalToggleWindow()),
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(Modal);

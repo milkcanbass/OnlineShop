@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './header.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -11,19 +11,16 @@ import { modalToggleWindow } from '../../redux/modal/modal.action';
 
 import { selectDropdownOpen } from '../../redux/cart/cart.selectors';
 import { selectUser } from '../../redux/user/user.selectors';
-import { toggleDropdown } from '../../redux/cart/cart.action';
+import { closeDropdown } from '../../redux/cart/cart.action';
 
 const Header = ({
-  modalToggleWindow, user, dropdownOpen, toggleDropdown,
+  modalToggleWindow, user, dropdownOpen, closeDropdown,
 }) => {
-  const modalHandler = (e) => {
-    modalToggleWindow(e.target.id);
-  };
-
-  const cartDropdownClose = () => {
+  const signOut = () => {
     if (dropdownOpen) {
-      toggleDropdown();
+      closeDropdown();
     }
+    auth.signOut();
   };
 
   return (
@@ -36,24 +33,14 @@ const Header = ({
         <a
           role="button"
           id="contact"
-          onClick={(e) => {
-            modalHandler(e);
-            cartDropdownClose();
-          }}
+          onClick={(e) => modalToggleWindow(e.target.id)}
           className="option"
         >
           CONTACT
         </a>
         {user ? (
           <>
-            <a
-              role="button"
-              className="option"
-              onClick={() => {
-                auth.signOut();
-                cartDropdownClose();
-              }}
-            >
+            <a role="button" className="option" onClick={() => signOut()}>
               SIGN OUT
             </a>
 
@@ -64,8 +51,7 @@ const Header = ({
             role="button"
             id="signInAndSignUp"
             onClick={(e) => {
-              modalHandler(e);
-              cartDropdownClose();
+              modalToggleWindow(e.target.id);
             }}
             className="option"
           >
@@ -86,7 +72,7 @@ Header.propTypes = {
   modalToggleWindow: PropTypes.func.isRequired,
   user: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   dropdownOpen: PropTypes.bool.isRequired,
-  toggleDropdown: PropTypes.func.isRequired,
+  closeDropdown: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -96,7 +82,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   modalToggleWindow: (payload) => dispatch(modalToggleWindow(payload)),
-  toggleDropdown: () => dispatch(toggleDropdown()),
+  closeDropdown: () => dispatch(closeDropdown()),
 });
 
 export default connect(

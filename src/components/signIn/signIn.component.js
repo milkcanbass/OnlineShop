@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import './signIn.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import firebase from 'firebase/app';
 import InputForm from '../inputForm/inputForm.component';
 import MyButton from '../myButton/myButton.component';
-import { signInWithGoogleAccount, auth } from '../../firebase/firebase.utils';
+import { auth } from '../../firebase/firebase.utils';
 import { modalToggleWindow, modalCloseWindow } from '../../redux/modal/modal.action';
-
 
 const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
   const [signInState, setSignInState] = useState({
@@ -19,10 +19,7 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
     e.preventDefault();
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      setSignInState({
-        email: '',
-        password: '',
-      });
+      modalCloseWindow();
     } catch (err) {
       modalCloseWindow();
       modalToggleWindow('error', err.message);
@@ -34,6 +31,20 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
       ...signInState,
       [e.target.name]: e.target.value,
     });
+  };
+  const signInWithGoogleAccount = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        modalCloseWindow();
+      })
+      .catch((err) => {
+        const errorCode = err.code;
+        modalCloseWindow();
+        modalToggleWindow('error', err.message);
+      });
   };
 
   return (
