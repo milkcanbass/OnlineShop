@@ -1,3 +1,4 @@
+@import '../../App';
 .topContainer {
   position: relative;
   display: flex;
@@ -19,7 +20,6 @@
     flex-direction: column;
     position: absolute;
     padding: 20px;
-    font-size: 2em;
     background-color: white;
     color: black;
     mix-blend-mode: screen;
@@ -27,9 +27,23 @@
     justify-content: center;
 
     .text {
-      font-size: 2em;
+      font-size: 4em;
       display: inline-block;
       vertical-align: middle;
+    }
+  }
+}
+
+@include responseTo(medium) {
+  .topContainer {
+    height: 400px;
+    .topTitle {
+      top: 100px;
+      height: 200px;
+      width: 200px;
+      .text {
+        font-size: 2em;
+      }
     }
   }
 }

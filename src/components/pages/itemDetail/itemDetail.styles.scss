@@ -1,15 +1,18 @@
+@import '../../../App';
 .itemDetailContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
-  margin: 1% 3%;
+  width: 100vw;
+  padding: 3%;
 
   .imgContainer {
     min-height: 30vh;
-    width: 48%;
+    width: 48vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 1%;
 
     .spinnerContainer {
       position: absolute;
@@ -29,8 +32,9 @@
   }
 
   .textContainer {
-    position: relative;
-    width: 48%;
+    min-height: 30vh;
+    width: 48vw;
+    margin-left: 1%;
 
     .name {
       font-weight: bold;
@@ -45,8 +49,24 @@
       margin-bottom: 20px;
     }
     .myButton {
-      position: absolute;
-      right: 0;
+      float: right;
+    }
+  }
+}
+
+@include responseTo(medium) {
+  .itemDetailContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    .imgContainer {
+      min-height: 30vh;
+      width: 100%;
+    }
+    .textContainer {
+      min-height: 30vh;
+      width: 100%;
     }
   }
 }

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // store data to localStorage
+import sessionStorage from 'redux-persist/lib/storage/session'; // store data to localStorage
 
 import modalReducer from './modal/modal.reducer';
 import userReducer from './user/user.reducer';
@@ -11,8 +11,8 @@ import donationReducer from './donation/donation.reducer';
 
 const persistConfig = {
   key: 'root', // what point you need to enable to store the reducer(state) from
-  storage,
-  whitelist: ['cart'], // what reducer you want to store
+  storage: sessionStorage,
+  whitelist: ['cart', 'myShop', 'donation'], // what reducer you want to store
 };
 
 const rootReducer = combineReducers({
