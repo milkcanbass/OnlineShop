@@ -43,8 +43,6 @@ const Header = ({
             <a role="button" className="option" onClick={() => signOut()}>
               SIGN OUT
             </a>
-
-            <CartIcon className="option" />
           </>
         ) : (
           <a
@@ -58,6 +56,7 @@ const Header = ({
             SIGN IN
           </a>
         )}
+        <CartIcon className="option" />
       </div>
       {dropdownOpen ? <CartDropdown /> : null}
     </div>

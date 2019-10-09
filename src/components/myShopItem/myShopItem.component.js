@@ -32,7 +32,6 @@ const MyShopItem = ({
 $
             {price}
           </div>
-          {' '}
         </div>
         <MyButton onClick={() => history.push(`${match.path}/${title.toLowerCase()}/${id}`)}>
           Detail
@@ -44,9 +43,14 @@ $
 
 MyShopItem.propTypes = {
   title: PropTypes.string.isRequired,
-  item: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])).isRequired,
-  history: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])).isRequired,
-  match: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])).isRequired,
+  item: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]))
+    .isRequired,
+  history: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  ).isRequired,
+  match: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  ).isRequired,
 };
 
 export default withRouter(MyShopItem);

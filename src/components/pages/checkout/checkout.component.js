@@ -5,10 +5,15 @@ import PropTypes from 'prop-types';
 import { selectCartItems, selectCartTotal } from '../../../redux/cart/cart.selectors';
 import CheckoutItem from '../../checkoutItem/checkoutItem.component';
 import StripeCheckoutButton from '../../stripeButton/stripeButton.componet';
+import { selectUser } from '../../../redux/user/user.selectors';
+import MyButton from '../../myButton/myButton.component';
+import { modalToggleWindow } from '../../../redux/modal/modal.action';
 
 import './checkout.styles.scss';
 
-const CheckoutPage = ({ cartItems, total }) => (
+const CheckoutPage = ({
+  cartItems, total, user, modalToggleWindow,
+}) => (
   <div className="checkoutPageContainer">
     <div className="checkoutHeader">
       <div className="headerBlock">
@@ -41,7 +46,20 @@ TOTAL: $
         4242 4242 4242 4242 -exp:01/20 - cvv:123
       </div>
     </div>
-    <StripeCheckoutButton price={total} />
+    {user ? (
+      <StripeCheckoutButton price={total} />
+    ) : (
+      <MyButton
+        role="button"
+        id="signInAndSignUp"
+        onClick={(e) => {
+          modalToggleWindow(e.target.id);
+        }}
+        googleButton
+      >
+        Sign In to checkout
+      </MyButton>
+    )}
   </div>
 );
 
@@ -51,9 +69,17 @@ CheckoutPage.propTypes = {
   total: PropTypes.number.isRequired,
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  modalToggleWindow: (id, message) => dispatch(modalToggleWindow(id, message)),
+});
+
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
+  user: selectUser,
 });
 
-export default connect(mapStateToProps)(CheckoutPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CheckoutPage);

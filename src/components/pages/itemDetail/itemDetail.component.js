@@ -6,8 +6,8 @@ import { Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
-import { selectUser } from '../../../redux/user/user.selectors';
 import { addItem } from '../../../redux/cart/cart.action';
+import { selectUser } from '../../../redux/user/user.selectors';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
 
 const ItemDetailPage = ({
@@ -73,11 +73,13 @@ ItemDetailPage.propTypes = {
   myShopData: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
     .isRequired,
   addItem: PropTypes.func.isRequired,
+  modalToggleWindow: PropTypes.func.isRequired,
+  user: PropTypes.shape({}),
 };
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
-  modalToggleWindow: (id, message) => dispatch(modalToggleWindow(id, message)),
+  modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),
 });
 
 const mapStateToProps = createStructuredSelector({
