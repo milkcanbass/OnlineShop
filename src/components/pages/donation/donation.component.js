@@ -6,10 +6,14 @@ import { createStructuredSelector } from 'reselect';
 import { PropTypes } from 'prop-types';
 import { selectDonations } from '../../../redux/donation/donation.selectors';
 import { addItem } from '../../../redux/cart/cart.action';
+import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
+import { selectUser } from '../../../redux/user/user.selectors';
 
-const DonationPage = ({ donations, addItem }) => {
+const DonationPage = ({
+  donations, addItem, user, modalToggleWindow,
+}) => {
   const [state, setState] = useState({
     loading: true,
   });
@@ -33,14 +37,27 @@ const DonationPage = ({ donations, addItem }) => {
             <div className="textContainer">
               <div className="title">Thank you for your help!</div>
               <div className="text">We really appreciate your help.</div>
-              <div className="donationButtons">
-                {donations.map((donation) => (
-                  <MyButton key={donation.id} onClick={() => addItem(donation)} donation>
-                    $
-                    {donation.price}
-                  </MyButton>
-                ))}
-              </div>
+              {user ? (
+                <div className="donationButtons">
+                  {donations.map((donation) => (
+                    <MyButton key={donation.id} onClick={() => addItem(donation)} donation>
+                      $
+                      {donation.price}
+                    </MyButton>
+                  ))}
+                </div>
+              ) : (
+                <MyButton
+                  role="button"
+                  id="signInAndSignUp"
+                  onClick={(e) => {
+                    modalToggleWindow(e.target.id);
+                  }}
+                  googleButton
+                >
+                  Sign In to donate
+                </MyButton>
+              )}
             </div>
           </div>
         </>
@@ -54,11 +71,14 @@ const DonationPage = ({ donations, addItem }) => {
 DonationPage.propTypes = {
   donations: PropTypes.shape([]).isRequired,
   addItem: PropTypes.func.isRequired,
+  user: PropTypes.shape({}),
+  modalToggleWindow: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({ donations: selectDonations });
+const mapStateToProps = createStructuredSelector({ donations: selectDonations, user: selectUser });
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
+  modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),
 });
 
 export default connect(
