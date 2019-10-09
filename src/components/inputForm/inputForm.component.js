@@ -13,10 +13,14 @@ const InputForm = ({ handleChange, label, ...otherProps }) => (
   </div>
 );
 
+InputForm.defaultProps = {
+  otherProps: [],
+};
+
 InputForm.propTypes = {
   handleChange: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
-  otherProps: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
+  otherProps: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
 
 export default InputForm;

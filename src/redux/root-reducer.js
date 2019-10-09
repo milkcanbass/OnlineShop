@@ -8,6 +8,7 @@ import cartReducer from './cart/cart.reducer';
 import landingReducer from './landing/landing.reducer';
 import myShopReducer from './myShop/myShop.reducer';
 import donationReducer from './donation/donation.reducer';
+import signInSinUpReducer from './signInSinUp/signInSinUp.reducer';
 
 const persistConfig = {
   key: 'root', // what point you need to enable to store the reducer(state) from
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   landing: landingReducer,
   myShop: myShopReducer,
   donation: donationReducer,
+  signInSinUp: signInSinUpReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

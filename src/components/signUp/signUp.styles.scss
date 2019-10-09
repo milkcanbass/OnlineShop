@@ -1,7 +1,9 @@
+@import '../../App';
 .signUpContainer {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
+  width: 300px;
+
   .signUpSubTitle {
     color: gray;
   }
@@ -12,5 +14,11 @@
   .signUpButtons {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+@include responseTo(medium) {
+  .signUpContainer {
+    width: 150px;
   }
 }

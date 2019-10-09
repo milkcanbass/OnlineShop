@@ -1,4 +1,4 @@
-import { SET_USER_LOGIN, SET_USER_LOGOUT } from './user.types';
+import { SET_USER_LOGIN } from './user.types';
 
 const INITIAL_STATE = {
   user: null,

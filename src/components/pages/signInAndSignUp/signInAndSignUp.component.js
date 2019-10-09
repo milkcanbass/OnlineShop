@@ -1,13 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import SignIn from '../../signIn/signIn.component';
 import SignUp from '../../signUp/signUp.component';
+import SignInSignUpTitle from '../../signInSignUpTitle/signInSignUpTitle.compornent';
+import { selectSignIn } from '../../../redux/signInSinUp/signInSinUp.selectors';
 import './signInAndSignUp.styles.scss';
 
-const SignInAndSignUp = () => (
+const SignInAndSignUp = ({ signIn }) => (
   <div className="signInAndSignUpContainer">
-    <SignIn />
-    <SignUp />
+    <SignInSignUpTitle signIn={signIn} />
+    {signIn ? <SignIn /> : <SignUp />}
   </div>
 );
 
-export default SignInAndSignUp;
+const mapStateToProps = createStructuredSelector({
+  signIn: selectSignIn,
+});
+
+export default connect(mapStateToProps)(SignInAndSignUp);

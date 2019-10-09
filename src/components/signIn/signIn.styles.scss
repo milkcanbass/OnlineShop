@@ -1,7 +1,9 @@
+@import '../../App';
 .signInContainer {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
+  width: 300px;
+
   .signInSubTitle {
     color: gray;
   }
@@ -12,5 +14,10 @@
   .signInButtons {
     display: flex;
     justify-content: space-between;
+  }
+}
+@include responseTo(medium) {
+  .signInContainer {
+    width: 150px;
   }
 }

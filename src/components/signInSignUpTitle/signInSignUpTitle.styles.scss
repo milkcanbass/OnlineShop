@@ -1,0 +1,48 @@
+@import '../../App';
+
+.wrapper {
+  position: relative;
+  .titleContainer {
+    display: flex;
+    justify-content: space-around;
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        margin: 0 30px 30px;
+        font-size: 25px;
+        text-decoration: none;
+      }
+
+      .active.title {
+        color: black;
+        opacity: 1;
+        pointer-events: none;
+      }
+
+      .title {
+        color: #dcdcdc;
+        :hover {
+          opacity: 1;
+          color: red;
+        }
+      }
+    }
+  }
+  .target {
+    position: absolute;
+    border-bottom: 5px solid red;
+    z-index: -1;
+    transform: translateX(-60px);
+  }
+
+  .titleContainer a,
+  .target {
+    transition: all 0.35s ease-in-out;
+  }
+}

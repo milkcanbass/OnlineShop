@@ -36,7 +36,7 @@ CartDropdown.propTypes = {
     .isRequired,
   toggleDropdown: PropTypes.func.isRequired,
   history: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   ).isRequired,
 };
 
