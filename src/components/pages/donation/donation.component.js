@@ -9,7 +9,7 @@ import { addItem } from '../../../redux/cart/cart.action';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
-import { selectUser } from '../../../redux/user/user.selectors';
+import { selectUserId } from '../../../redux/user/user.selectors';
 
 const DonationPage = ({
   donations, addItem, user, modalToggleWindow,
@@ -75,7 +75,10 @@ DonationPage.propTypes = {
   modalToggleWindow: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({ donations: selectDonations, user: selectUser });
+const mapStateToProps = createStructuredSelector({
+  donations: selectDonations,
+  user: selectUserId,
+});
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),

@@ -7,8 +7,9 @@ import { createStructuredSelector } from 'reselect';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
 import { addItem } from '../../../redux/cart/cart.action';
-import { selectUser } from '../../../redux/user/user.selectors';
+import { selectUserId } from '../../../redux/user/user.selectors';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
+import { addItemToCart } from '../../../firebase/firebase.utils';
 
 const ItemDetailPage = ({
   match, myShopData, addItem, user, modalToggleWindow,
@@ -26,6 +27,10 @@ const ItemDetailPage = ({
   const {
     name, description, imageUrl, price,
   } = itemData;
+
+  const test = () => {
+    addItemToCart('userId999', itemData);
+  };
 
   return (
     <div>
@@ -60,6 +65,7 @@ $
               Sign In to add cart
             </MyButton>
           )}
+          <button onClick={() => test()}>test </button>
         </div>
       </div>
     </div>
@@ -83,7 +89,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
+  user: selectUserId,
 });
 
 export default connect(

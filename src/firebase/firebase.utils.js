@@ -1,8 +1,7 @@
 import firebase from 'firebase/app';
-import 'firebase/database'; // If using Firebase database
-import 'firebase/storage'; // If using Firebase storage
-import 'firebase/auth'; // If using Firebase storage
-import 'firebase/firestore'; // If using Firebase storage
+import 'firebase/auth';
+import 'firebase/firestore';
+import { setCartId } from '../redux/user/user.action';
 
 const config = {
   apiKey: 'AIzaSyDI0irUHEtrSUmRX8e_1HyEMvl5kQtPbTo',
@@ -39,22 +38,10 @@ export const createUserProfDoc = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (err) {
-      // console.log(err);
+      return err.message;
     }
   }
   return userRef;
-};
-
-// function for upload local data to firebase
-export const addCollectionAndDocumentsToDatabase = async (collectionKey, objectsToAdd) => {
-  const collectionRef = firestore.collection(collectionKey);
-  const batch = firestore.batch();
-  objectsToAdd.forEach((obj) => {
-    // by keep .doc() as blank firebase automatically add id
-    const newDocRef = collectionRef.doc();
-    batch.set(newDocRef, obj);
-  });
-  // return await batch.commit();
 };
 
 export const convertDataSnapshotToMap = (data) => {
@@ -86,4 +73,49 @@ export const donationData = (data) => {
   });
 
   return transformData;
+};
+
+// Find cart by userId. creating cart if there is not. return cartId
+export const getUserCartRef = async (userId) => {
+  console.log(userId);
+  const cartsRef = firestore.collection('carts').where('userId', '==', userId);
+  const snapShot = await cartsRef.get();
+  let cartId;
+  if (snapShot.empty) {
+    const cartDocRef = firestore.collection('carts').doc();
+    await cartDocRef.set({ userId, cartItems: [] });
+    // returnCartId
+    cartId = cartDocRef.id;
+  }
+  // returnCartId
+  await snapShot.forEach((doc) => doc.id, (cartId = doc.id));
+  setCartId(cartId);
+};
+
+export const addItemToCart = (userId, addItem) => {
+  if (!userId || !addItem) {
+    console.log('user or item doesnt exit');
+  }
+  const queryRef = firestore.collection('carts').where('userId', '==', userId);
+  let cartId;
+  let fields;
+  queryRef
+    .get()
+    .then((snapShot) => {
+      console.log(snapShot);
+      if (snapShot.empty) {
+        return snapShot;
+      }
+      snapShot.forEach((doc) => {
+        cartId = doc.id;
+        fields = doc.data();
+      });
+    })
+    .then(() => {
+      const cartDocument = firestore.collection('carts').doc(cartId);
+
+      const hey = fields.test;
+      cartDocument.update({ test: firebase.firestore.FieldValue.arrayUnion(addItem) });
+    })
+    .catch((error) => error.message);
 };

@@ -3,10 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { auth, createUserProfDoc } from './firebase/firebase.utils';
+import { auth, createUserProfDoc, getUserCartRef } from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
 import './_App.scss';
-import { selectUser } from './redux/user/user.selectors';
+import { selectUserId } from './redux/user/user.selectors';
 import { selectDonations } from './redux/donation/donation.selectors';
 import lazyLoadingImport from './utils/lazyLoadingImport';
 
@@ -26,16 +26,18 @@ class App extends Component {
 
   // To check if user login
   componentDidMount() {
-    const { setUserLogin } = this.props;
+    const { setUserLogin, userId } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      // This is user signin or Signup
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
         userRef.onSnapshot((snapShot) => {
-          setUserLogin({ id: snapShot.id, ...snapShot.data() });
+          setUserLogin(snapShot.id);
         });
       } else {
+        // This is user doesnt signin
         setUserLogin(userAuth);
-        // addCollectionAndDocumentsToDatabase('donationData', donationData.map(item => item));
       }
     });
   }
@@ -46,10 +48,10 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { userId } = this.props;
     return (
       <div className="appContainer">
-        <Header user={user} />
+        <Header />
 
         <Modal />
 
@@ -79,7 +81,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
+  userId: selectUserId,
   donationData: selectDonations,
 });
 

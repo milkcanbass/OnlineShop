@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { selectCartItems, selectCartTotal } from '../../../redux/cart/cart.selectors';
 import CheckoutItem from '../../checkoutItem/checkoutItem.component';
 import StripeCheckoutButton from '../../stripeButton/stripeButton.componet';
-import { selectUser } from '../../../redux/user/user.selectors';
+import { selectUserId } from '../../../redux/user/user.selectors';
 import MyButton from '../../myButton/myButton.component';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
 
@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
-  user: selectUser,
+  user: selectUserId,
 });
 
 export default connect(

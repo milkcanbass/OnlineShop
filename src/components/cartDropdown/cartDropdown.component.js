@@ -6,14 +6,14 @@ import { withRouter } from 'react-router-dom';
 import MyButton from '../myButton/myButton.component';
 import CartItem from '../cartItem/cartItem.component';
 import { toggleDropdown } from '../../redux/cart/cart.action';
-import { selectUser } from '../../redux/user/user.selectors';
+import { selectUserId } from '../../redux/user/user.selectors';
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 import './cartDropdown.styles.scss';
 
 const CartDropdown = ({
-  cartItems, history, toggleDropdown, modalToggleWindow, user,
+  cartItems, history, toggleDropdown, modalToggleWindow, userId,
 }) => (
   <div className="cartDropdownContainer">
     {user ? (
@@ -62,12 +62,12 @@ CartDropdown.propTypes = {
     PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   ).isRequired,
   modalToggleWindow: PropTypes.func.isRequired,
-  user: PropTypes.shape({}),
+  userId: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-  user: selectUser,
+  userId: selectUserId,
 });
 
 const mapDispatchToProps = (dispatch) => ({

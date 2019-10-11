@@ -10,11 +10,11 @@ import { auth } from '../../firebase/firebase.utils';
 import { modalToggleWindow } from '../../redux/modal/modal.action';
 
 import { selectDropdownOpen } from '../../redux/cart/cart.selectors';
-import { selectUser } from '../../redux/user/user.selectors';
+import { selectUserId } from '../../redux/user/user.selectors';
 import { closeDropdown } from '../../redux/cart/cart.action';
 
 const Header = ({
-  modalToggleWindow, user, dropdownOpen, closeDropdown,
+  modalToggleWindow, userId, dropdownOpen, closeDropdown,
 }) => {
   const signOut = () => {
     if (dropdownOpen) {
@@ -38,7 +38,7 @@ const Header = ({
         >
           CONTACT
         </a>
-        {user ? (
+        {userId ? (
           <>
             <a role="button" className="option" onClick={() => signOut()}>
               SIGN OUT
@@ -64,18 +64,18 @@ const Header = ({
 };
 
 Header.defaultProps = {
-  user: null,
+  userId: '',
 };
 
 Header.propTypes = {
   modalToggleWindow: PropTypes.func.isRequired,
-  user: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  userId: PropTypes.string.isRequired,
   dropdownOpen: PropTypes.bool.isRequired,
   closeDropdown: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser,
+  userId: selectUserId,
   dropdownOpen: selectDropdownOpen,
 });
 
