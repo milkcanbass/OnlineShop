@@ -18,7 +18,14 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      firebase
+        .auth()
+        .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(() => auth.signInWithEmailAndPassword(email, password))
+        .catch((err) => {
+          modalCloseWindow();
+          modalToggleWindow('error', err.message);
+        });
       modalCloseWindow();
     } catch (err) {
       modalCloseWindow();
@@ -32,16 +39,27 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
       [e.target.name]: e.target.value,
     });
   };
+
   const signInWithGoogleAccount = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' });
-    auth
-      .signInWithPopup(provider)
-      .then((result) => {
-        modalCloseWindow();
+    firebase
+      .auth()
+      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+        auth
+          .signInWithPopup(provider)
+          .then((result) => {
+            modalCloseWindow();
+          })
+          .catch((err) => {
+            const errorCode = err.code;
+            modalCloseWindow();
+            modalToggleWindow('error', err.message);
+          });
       })
       .catch((err) => {
-        const errorCode = err.code;
+        // Handle Errors here.
         modalCloseWindow();
         modalToggleWindow('error', err.message);
       });

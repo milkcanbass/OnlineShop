@@ -1,4 +1,4 @@
-import { SET_USER_LOGIN, SET_CART_ID } from './user.types';
+import { SET_USER_LOGIN } from './user.types';
 
 const INITIAL_STATE = {};
 
@@ -10,12 +10,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         userId: payload,
       };
-    case SET_CART_ID: {
-      return {
-        ...state,
-        cartId: payload,
-      };
-    }
     default:
       return state;
   }

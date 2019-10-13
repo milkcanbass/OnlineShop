@@ -6,9 +6,9 @@ import { createStructuredSelector } from 'reselect';
 import { auth, createUserProfDoc, getUserCartRef } from './firebase/firebase.utils';
 import { setUserLogin } from './redux/user/user.action';
 import './_App.scss';
-import { selectUserId } from './redux/user/user.selectors';
 import { selectDonations } from './redux/donation/donation.selectors';
 import lazyLoadingImport from './utils/lazyLoadingImport';
+import { selectUserId } from './redux/user/user.selectors';
 
 // Components
 import LandingPage from './components/pages/landing/landing.component';
@@ -29,15 +29,18 @@ class App extends Component {
     const { setUserLogin, userId } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      // This is user signin or Signup
       if (userAuth) {
-        const userRef = await createUserProfDoc(userAuth);
-        userRef.onSnapshot((snapShot) => {
-          setUserLogin(snapShot.id);
-        });
-      } else {
-        // This is user doesnt signin
-        setUserLogin(userAuth);
+        // This is user signin and signUp
+        if (userAuth) {
+          const userRef = await createUserProfDoc(userAuth);
+          userRef.onSnapshot(async (snapShot) => {
+            setUserLogin(snapShot.id);
+            getUserCartRef(snapShot.id);
+          });
+        } else {
+          // For Logout
+          setUserLogin(userAuth);
+        }
       }
     });
   }
@@ -48,13 +51,10 @@ class App extends Component {
   }
 
   render() {
-    const { userId } = this.props;
     return (
       <div className="appContainer">
         <Header />
-
         <Modal />
-
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/donation" component={lazyLoadingImport(DonationPage)} />
@@ -69,11 +69,11 @@ class App extends Component {
 
 App.propTypes = {
   setUserLogin: PropTypes.func.isRequired,
-  user: PropTypes.shape({}),
+  user: PropTypes.string,
 };
 
 App.defaultProps = {
-  user: null,
+  userId: '',
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -81,8 +81,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  userId: selectUserId,
   donationData: selectDonations,
+  userId: selectUserId,
 });
 
 export default connect(

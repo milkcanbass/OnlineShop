@@ -4,6 +4,8 @@ import {
   ADD_ITEM,
   CLEAR_ITEM_FROM_CART,
   REMOVE_ITEM,
+  SET_CART_ID,
+  SET_CART_ITEMS,
 } from './cart.types';
 
 export const toggleDropdown = () => (dispatch) => {
@@ -12,9 +14,15 @@ export const toggleDropdown = () => (dispatch) => {
 export const closeDropdown = () => (dispatch) => {
   dispatch({ type: CLOSE_DROPDOWN });
 };
+export const setCartId = (payload) => (dispatch) => {
+  dispatch({ type: SET_CART_ID, payload });
+};
+export const setCartItems = (payload) => (dispatch) => {
+  dispatch({ type: SET_CART_ITEMS, payload });
+};
 
 export const addItem = (payload) => (dispatch) => {
-  dispatch({ type: ADD_ITEM, payload });
+  dispatch({ type: SET_CART_ITEMS, payload });
 };
 
 export const removeItem = (payload) => (dispatch) => {

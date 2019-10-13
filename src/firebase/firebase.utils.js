@@ -1,7 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { setCartId } from '../redux/user/user.action';
+import { setCartId, setCartItems } from '../redux/cart/cart.action';
+import { store } from '../redux/store';
 
 const config = {
   apiKey: 'AIzaSyDI0irUHEtrSUmRX8e_1HyEMvl5kQtPbTo',
@@ -77,19 +78,20 @@ export const donationData = (data) => {
 
 // Find cart by userId. creating cart if there is not. return cartId
 export const getUserCartRef = async (userId) => {
-  console.log(userId);
   const cartsRef = firestore.collection('carts').where('userId', '==', userId);
   const snapShot = await cartsRef.get();
-  let cartId;
+
   if (snapShot.empty) {
     const cartDocRef = firestore.collection('carts').doc();
     await cartDocRef.set({ userId, cartItems: [] });
-    // returnCartId
-    cartId = cartDocRef.id;
+    store.dispatch(setCartId(cartDocRef.id));
+    store.dispatch(setCartItems([]));
+  } else {
+    snapShot.forEach((doc) => {
+      store.dispatch(setCartId(doc.id));
+      store.dispatch(setCartItems(doc.data().cartItems));
+    });
   }
-  // returnCartId
-  await snapShot.forEach((doc) => doc.id, (cartId = doc.id));
-  setCartId(cartId);
 };
 
 export const addItemToCart = (userId, addItem) => {
@@ -102,7 +104,6 @@ export const addItemToCart = (userId, addItem) => {
   queryRef
     .get()
     .then((snapShot) => {
-      console.log(snapShot);
       if (snapShot.empty) {
         return snapShot;
       }
@@ -113,9 +114,17 @@ export const addItemToCart = (userId, addItem) => {
     })
     .then(() => {
       const cartDocument = firestore.collection('carts').doc(cartId);
-
-      const hey = fields.test;
       cartDocument.update({ test: firebase.firestore.FieldValue.arrayUnion(addItem) });
     })
     .catch((error) => error.message);
+};
+
+export const getCartItems = (cartId) => {
+  firestore
+    .collection('carts')
+    .doc(cartId)
+    .onSnapshot((doc) => {
+      // console.log(doc.data());
+      doc.data();
+    });
 };

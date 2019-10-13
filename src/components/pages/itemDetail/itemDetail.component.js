@@ -12,7 +12,7 @@ import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import { addItemToCart } from '../../../firebase/firebase.utils';
 
 const ItemDetailPage = ({
-  match, myShopData, addItem, user, modalToggleWindow,
+  match, myShopData, addItem, userId, modalToggleWindow,
 }) => {
   const [loading, setLoading] = useState({
     loading: true,
@@ -20,7 +20,9 @@ const ItemDetailPage = ({
   let itemData;
   try {
     const { title, id } = match.params;
-    itemData = myShopData[title].items[id];
+
+    const itemList = myShopData[title].items;
+    itemData = itemList.find((obj) => obj.id.toString() === id);
   } catch (error) {
     return <Redirect to="/" />;
   }
@@ -29,7 +31,7 @@ const ItemDetailPage = ({
   } = itemData;
 
   const test = () => {
-    addItemToCart('userId999', itemData);
+    addItemToCart(userId, itemData);
   };
 
   return (
@@ -51,7 +53,7 @@ $
             {price}
           </div>
           <div className="description">{description}</div>
-          {user ? (
+          {userId ? (
             <MyButton onClick={() => addItem(itemData)}>Add cart</MyButton>
           ) : (
             <MyButton
@@ -80,7 +82,7 @@ ItemDetailPage.propTypes = {
     .isRequired,
   addItem: PropTypes.func.isRequired,
   modalToggleWindow: PropTypes.func.isRequired,
-  user: PropTypes.shape({}),
+  userId: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -89,7 +91,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUserId,
+  userId: selectUserId,
 });
 
 export default connect(

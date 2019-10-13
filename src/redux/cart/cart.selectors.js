@@ -12,9 +12,9 @@ export const selectDropdownOpen = createSelector(
   (cart) => cart.dropdownOpen,
 );
 
-export const selectCartItemsCount = createSelector(
-  [selectCartItems],
-  (cartItems) => cartItems.reduce((acc, cartItem) => acc + cartItem.quantity, 0),
+export const selectCartId = createSelector(
+  [selectCart],
+  (cart) => cart.cartId,
 );
 
 export const selectCartTotal = createSelector(

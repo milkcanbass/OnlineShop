@@ -4,10 +4,13 @@ import {
   CLEAR_ITEM_FROM_CART,
   REMOVE_ITEM,
   CLOSE_DROPDOWN,
+  SET_CART_ID,
+  SET_CART_ITEMS,
 } from './cart.types';
 import { addItemToCart, removeItemFromCart } from '../../utils/cart.utils';
 
 const INITIAL_STATE = {
+  cartId: '',
   dropdownOpen: false,
   cartItems: [],
 };
@@ -24,6 +27,18 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dropdownOpen: false,
+      };
+    }
+    case SET_CART_ID: {
+      return {
+        ...state,
+        cartId: payload,
+      };
+    }
+    case SET_CART_ITEMS: {
+      return {
+        ...state,
+        cartItems: payload,
       };
     }
     case ADD_ITEM: {
