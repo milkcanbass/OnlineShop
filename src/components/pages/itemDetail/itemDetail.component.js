@@ -13,13 +13,7 @@ import { addItemToCart } from '../../../firebase/firebase.utils';
 import { selectCartId } from '../../../redux/cart/cart.selectors';
 
 const ItemDetailPage = ({
-  match,
-  myShopData,
-  addItem,
-  userId,
-  cartId,
-  modalToggleWindow,
-  addItemToCart,
+  match, myShopData, userId, cartId, modalToggleWindow,
 }) => {
   const [loading, setLoading] = useState({
     loading: true,
@@ -37,7 +31,7 @@ const ItemDetailPage = ({
     name, description, imageUrl, price,
   } = itemData;
 
-  const test = () => {
+  const sendItemToDBCart = () => {
     addItemToCart(cartId, itemData);
   };
 
@@ -61,7 +55,7 @@ $
           </div>
           <div className="description">{description}</div>
           {userId ? (
-            <MyButton onClick={() => addItem(itemData)}>Add cart</MyButton>
+            <MyButton onClick={() => sendItemToDBCart()}>Add cart</MyButton>
           ) : (
             <MyButton
               role="button"
@@ -74,7 +68,6 @@ $
               Sign In to add cart
             </MyButton>
           )}
-          <button onClick={() => test()}>test </button>
         </div>
       </div>
     </div>
@@ -92,7 +85,6 @@ ItemDetailPage.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),
-  addItemToCart: (cartId, item) => dispatch(addItemToCart(cartId, item)),
 });
 
 const mapStateToProps = createStructuredSelector({

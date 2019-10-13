@@ -94,30 +94,51 @@ export const getUserCartRef = async (userId) => {
   }
 };
 
-export const addItemToCart = (cartId, cartItem) => {
-  console.log('addItem is triggered');
-  if (!cartId || !cartItem) {
+export const addItemToCart = (cartId, newItem) => {
+  if (!cartId || !newItem) {
     throw 'cartId does not exist';
-  } else {
-    const cartDocument = firestore.collection('carts').doc(cartId);
-    cartDocument
-      .get()
-      .then((snapShot) => snapShot.data().cartItems)
-      .then((cartItems) => cartItems.find((obj) => obj.id === cartItem.id))
-      .then((result) => {
-        if (result) {
-          // there is a same item in cart
-          cartDocument.update({ cartItems: firebase.firestore.FieldValue.arrayUnion(addItem) });
-        } else {
-          // there is not same item in cart
-          const newItem = {
-            id: cartItem.id,
-            name: cartItem.name,
-            price: cartItem.price,
-            quantity: 1,
-          };
-          cartDocument.update({ cartItems: newItem });
-        }
-      });
   }
+  let userId;
+  let cartItems;
+  const cartDocument = firestore.collection('carts').doc(cartId);
+  cartDocument
+    .get()
+    .then((snapShot) => {
+      userId = snapShot.data().userId;
+      cartItems = snapShot.data().cartItems;
+    })
+    .then(() => {
+      const itemExisting = cartItems.find((cartItem) => cartItem.id === newItem.id);
+      let itemCase;
+      const newCart = [];
+      if (itemExisting) {
+        cartItems.map((item) => {
+          if (item.id === newItem.id) {
+            itemCase = {
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              quantity: item.quantity + 1,
+            };
+          } else {
+            itemCase = {
+              ...item,
+            };
+          }
+          newCart.push(itemCase);
+        });
+        cartDocument.set({ userId, cartItems: newCart });
+      } else {
+        const itemCase = {
+          id: newItem.id,
+          name: newItem.name,
+          price: newItem.price,
+          quantity: 1,
+        };
+        // new Item (works)
+        cartDocument.update({
+          cartItems: firebase.firestore.FieldValue.arrayUnion(itemCase),
+        });
+      }
+    });
 };
