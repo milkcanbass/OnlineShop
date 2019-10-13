@@ -10,9 +10,16 @@ import { addItem } from '../../../redux/cart/cart.action';
 import { selectUserId } from '../../../redux/user/user.selectors';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import { addItemToCart } from '../../../firebase/firebase.utils';
+import { selectCartId } from '../../../redux/cart/cart.selectors';
 
 const ItemDetailPage = ({
-  match, myShopData, addItem, userId, modalToggleWindow,
+  match,
+  myShopData,
+  addItem,
+  userId,
+  cartId,
+  modalToggleWindow,
+  addItemToCart,
 }) => {
   const [loading, setLoading] = useState({
     loading: true,
@@ -31,7 +38,7 @@ const ItemDetailPage = ({
   } = itemData;
 
   const test = () => {
-    addItemToCart(userId, itemData);
+    addItemToCart(cartId, itemData);
   };
 
   return (
@@ -75,10 +82,7 @@ $
 };
 
 ItemDetailPage.propTypes = {
-  match: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
-  ).isRequired,
-  myShopData: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+  myShopData: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
     .isRequired,
   addItem: PropTypes.func.isRequired,
   modalToggleWindow: PropTypes.func.isRequired,
@@ -88,10 +92,12 @@ ItemDetailPage.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),
+  addItemToCart: (cartId, item) => dispatch(addItemToCart(cartId, item)),
 });
 
 const mapStateToProps = createStructuredSelector({
   userId: selectUserId,
+  cartId: selectCartId,
 });
 
 export default connect(

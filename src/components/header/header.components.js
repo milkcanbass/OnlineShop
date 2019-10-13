@@ -69,7 +69,7 @@ Header.defaultProps = {
 
 Header.propTypes = {
   modalToggleWindow: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
   dropdownOpen: PropTypes.bool.isRequired,
   closeDropdown: PropTypes.func.isRequired,
 };

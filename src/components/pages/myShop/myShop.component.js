@@ -12,7 +12,7 @@ const myShopPage = ({ myShopData }) => {
   return (
     <div className="myShopPageContainer">
       {myShopData.length > 0 ? (
-        myShopData.map(({ id, ...otherProps }) => <MyShopOverview key={id} {...otherProps} />)
+        myShopData.map(({ id, ...otherprops }) => <MyShopOverview key={id} {...otherprops} />)
       ) : (
         <Redirect to="/" />
       )}

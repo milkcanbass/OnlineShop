@@ -17,9 +17,8 @@ const MyShopOverview = ({ title, items }) => (
 );
 
 MyShopOverview.propTypes = {
-  title: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
+  title: PropTypes.string,
+  items: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
-
 
 export default MyShopOverview;

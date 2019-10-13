@@ -16,7 +16,7 @@ const CartDropdown = ({
   cartItems, history, toggleDropdown, modalToggleWindow, userId,
 }) => (
   <div className="cartDropdownContainer">
-    {user ? (
+    {userId ? (
       <div>
         <div className="cartItems">
           {cartItems.length ? (

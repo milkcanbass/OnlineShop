@@ -22,10 +22,7 @@ const MyShopRoot = ({ match, myShopData }) => (
 );
 
 MyShopRoot.propTypes = {
-  match: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
-  ).isRequired,
-  myShopData: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+  myShopData: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
     .isRequired,
 };
 

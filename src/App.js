@@ -29,18 +29,16 @@ class App extends Component {
     const { setUserLogin, userId } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      // This is user signin and signUp
       if (userAuth) {
-        // This is user signin and signUp
-        if (userAuth) {
-          const userRef = await createUserProfDoc(userAuth);
-          userRef.onSnapshot(async (snapShot) => {
-            setUserLogin(snapShot.id);
-            getUserCartRef(snapShot.id);
-          });
-        } else {
-          // For Logout
-          setUserLogin(userAuth);
-        }
+        const userRef = await createUserProfDoc(userAuth);
+        userRef.onSnapshot(async (snapShot) => {
+          setUserLogin(snapShot.id);
+          getUserCartRef(snapShot.id);
+        });
+      } else {
+        // For Logout
+        setUserLogin(userAuth);
       }
     });
   }

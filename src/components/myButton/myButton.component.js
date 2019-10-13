@@ -3,13 +3,13 @@ import './myButton.styles.scss';
 import { PropTypes } from 'prop-types';
 
 const MyButton = ({
-  children, googleButton, inverted, donation, ...otherProps
+  children, googleButton, inverted, donation, ...otherprops
 }) => (
   <button
     className={`${inverted ? 'inverted' : ''} ${googleButton ? 'googleButton' : ''} ${
       donation ? 'donationButton' : ''
     } myButton`}
-    {...otherProps}
+    {...otherprops}
   >
     {children}
   </button>
@@ -20,7 +20,7 @@ MyButton.defaultProps = {
   donation: false,
   inverted: false,
   googleButton: false,
-  otherProps: {},
+  otherprops: {},
 };
 
 MyButton.propTypes = {
@@ -28,7 +28,7 @@ MyButton.propTypes = {
   donation: PropTypes.bool,
   inverted: PropTypes.bool,
   googleButton: PropTypes.bool,
-  otherProps: PropTypes.object,
+  otherprops: PropTypes.object,
 };
 
 export default MyButton;

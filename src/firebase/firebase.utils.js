@@ -94,37 +94,30 @@ export const getUserCartRef = async (userId) => {
   }
 };
 
-export const addItemToCart = (userId, addItem) => {
-  if (!userId || !addItem) {
-    console.log('user or item doesnt exit');
-  }
-  const queryRef = firestore.collection('carts').where('userId', '==', userId);
-  let cartId;
-  let fields;
-  queryRef
-    .get()
-    .then((snapShot) => {
-      if (snapShot.empty) {
-        return snapShot;
-      }
-      snapShot.forEach((doc) => {
-        cartId = doc.id;
-        fields = doc.data();
+export const addItemToCart = (cartId, cartItem) => {
+  console.log('addItem is triggered');
+  if (!cartId || !cartItem) {
+    throw 'cartId does not exist';
+  } else {
+    const cartDocument = firestore.collection('carts').doc(cartId);
+    cartDocument
+      .get()
+      .then((snapShot) => snapShot.data().cartItems)
+      .then((cartItems) => cartItems.find((obj) => obj.id === cartItem.id))
+      .then((result) => {
+        if (result) {
+          // there is a same item in cart
+          cartDocument.update({ cartItems: firebase.firestore.FieldValue.arrayUnion(addItem) });
+        } else {
+          // there is not same item in cart
+          const newItem = {
+            id: cartItem.id,
+            name: cartItem.name,
+            price: cartItem.price,
+            quantity: 1,
+          };
+          cartDocument.update({ cartItems: newItem });
+        }
       });
-    })
-    .then(() => {
-      const cartDocument = firestore.collection('carts').doc(cartId);
-      cartDocument.update({ test: firebase.firestore.FieldValue.arrayUnion(addItem) });
-    })
-    .catch((error) => error.message);
-};
-
-export const getCartItems = (cartId) => {
-  firestore
-    .collection('carts')
-    .doc(cartId)
-    .onSnapshot((doc) => {
-      // console.log(doc.data());
-      doc.data();
-    });
+  }
 };
