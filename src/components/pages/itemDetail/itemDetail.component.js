@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
-import { addItem } from '../../../redux/cart/cart.action';
 import { selectUserId } from '../../../redux/user/user.selectors';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import { addItemToCart } from '../../../firebase/firebase.utils';
@@ -77,13 +76,11 @@ $
 ItemDetailPage.propTypes = {
   myShopData: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
     .isRequired,
-  addItem: PropTypes.func.isRequired,
   modalToggleWindow: PropTypes.func.isRequired,
   userId: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
   modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),
 });
 

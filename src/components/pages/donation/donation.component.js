@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { PropTypes } from 'prop-types';
 import { selectDonations } from '../../../redux/donation/donation.selectors';
-import { addItem } from '../../../redux/cart/cart.action';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
@@ -76,7 +75,6 @@ const DonationPage = ({
 
 DonationPage.propTypes = {
   donations: PropTypes.shape([]).isRequired,
-  addItem: PropTypes.func.isRequired,
   user: PropTypes.shape({}),
   modalToggleWindow: PropTypes.func,
   cartId: PropTypes.string,
@@ -88,7 +86,6 @@ const mapStateToProps = createStructuredSelector({
   cartId: selectCartId,
 });
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
   modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),
 });
 

@@ -9,6 +9,7 @@ import './_App.scss';
 import { selectDonations } from './redux/donation/donation.selectors';
 import lazyLoadingImport from './utils/lazyLoadingImport';
 import { selectUserId } from './redux/user/user.selectors';
+import { setCartInitial } from './redux/cart/cart.action';
 
 // Components
 import LandingPage from './components/pages/landing/landing.component';
@@ -26,7 +27,7 @@ class App extends Component {
 
   // To check if user login
   componentDidMount() {
-    const { setUserLogin, userId } = this.props;
+    const { setUserLogin, setCartInitial } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       // This is user signin and signUp
@@ -39,6 +40,7 @@ class App extends Component {
       } else {
         // For Logout
         setUserLogin(userAuth);
+        setCartInitial();
       }
     });
   }
@@ -76,6 +78,7 @@ App.defaultProps = {
 
 const mapDispatchToProps = (dispatch) => ({
   setUserLogin: (payload) => dispatch(setUserLogin(payload)),
+  setCartInitial: () => dispatch(setCartInitial()),
 });
 
 const mapStateToProps = createStructuredSelector({

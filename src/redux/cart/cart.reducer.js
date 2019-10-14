@@ -6,6 +6,7 @@ import {
   CLOSE_DROPDOWN,
   SET_CART_ID,
   SET_CART_ITEMS,
+  SET_CART_INITIAL,
 } from './cart.types';
 import { addItemToCart, removeItemFromCart } from '../../utils/cart.utils';
 
@@ -57,6 +58,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, payload),
       };
+    case SET_CART_INITIAL:
+      return INITIAL_STATE;
     default:
       return state;
   }

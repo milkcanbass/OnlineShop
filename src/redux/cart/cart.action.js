@@ -1,11 +1,11 @@
 import {
   TOGGLE_DROPDOWN,
   CLOSE_DROPDOWN,
-  ADD_ITEM,
   CLEAR_ITEM_FROM_CART,
   REMOVE_ITEM,
   SET_CART_ID,
   SET_CART_ITEMS,
+  SET_CART_INITIAL,
 } from './cart.types';
 
 export const toggleDropdown = () => (dispatch) => {
@@ -32,4 +32,8 @@ export const removeItem = (payload) => (dispatch) => {
 
 export const clearItemFromCart = (payload) => (dispatch) => {
   dispatch({ type: CLEAR_ITEM_FROM_CART, payload });
+};
+
+export const setCartInitial = () => (dispatch) => {
+  dispatch({ type: SET_CART_INITIAL });
 };
