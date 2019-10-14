@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { clearItemFromCart, removeItem } from '../../redux/cart/cart.action';
-import { addItemToCart, reduceItemFromCart } from '../../firebase/firebase.utils';
+import {
+  addItemToCart,
+  reduceItemFromCart,
+  removeItemFromCart,
+} from '../../firebase/firebase.utils';
 import { selectCartId } from '../../redux/cart/cart.selectors';
 
-const CheckoutItem = ({
-  cartItem, cartId, clearItemFromCart, removeItem,
-}) => {
+const CheckoutItem = ({ cartItem, cartId, clearItemFromCart }) => {
   // console.log(props.cartItem);
 
   const {
@@ -31,7 +33,11 @@ const CheckoutItem = ({
         </div>
       </span>
       <span className="price">{price}</span>
-      <span role="button" className="removeButton" onClick={() => clearItemFromCart(cartItem)}>
+      <span
+        role="button"
+        className="removeButton"
+        onClick={() => removeItemFromCart(cartId, cartItem)}
+      >
         &#10005;
       </span>
     </div>
