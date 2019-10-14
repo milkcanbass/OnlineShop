@@ -98,8 +98,6 @@ export const addItemToCart = (cartId, newItem) => {
   if (!cartId || !newItem) {
     throw 'cartId does not exist';
   }
-  console.log(cartId);
-  console.log(newItem);
   let userId;
   let cartItems;
   const cartDocument = firestore.collection('carts').doc(cartId);
@@ -148,16 +146,57 @@ export const addItemToCart = (cartId, newItem) => {
     })
     .then(() => cartDocument.get())
     .then((snapShot) => {
-      console.log(snapShot.data().cartItems);
       store.dispatch(setCartItems(snapShot.data().cartItems));
     })
     .catch((err) => console.log(err.message));
 };
 
-export const addDonation = (cartId, newItem) => {
+export const reduceItemFromCart = (cartId, newItem) => {
   if (!cartId || !newItem) {
     throw 'cartId does not exist';
   }
-  console.log(cartId);
-  console.log(newItem);
+  let userId;
+  let cartItems;
+  let itemCase;
+  const newCart = [];
+  const cartDocument = firestore.collection('carts').doc(cartId);
+  cartDocument
+    .get()
+    .then((snapShot) => {
+      userId = snapShot.data().userId;
+      cartItems = snapShot.data().cartItems;
+    })
+    .then(() => {
+      cartItems.map((item) => {
+        if (item.id === newItem.id) {
+          if (item.quantity === 1) {
+            return null;
+          }
+          itemCase = {
+            id: item.id,
+            imageUrl: item.imageUrl,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity - 1,
+          };
+        } else {
+          itemCase = {
+            id: item.id,
+            imageUrl: item.imageUrl,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+          };
+        }
+        newCart.push(itemCase);
+      });
+      console.log(newCart);
+      cartDocument.set({ cartItems: newCart, userId });
+    })
+    .then(() => cartDocument.get())
+    .then((snapShot) => {
+      console.log(snapShot.data().cartItems);
+      store.dispatch(setCartItems(snapShot.data().cartItems));
+    })
+    .catch((err) => console.log(err.message));
 };

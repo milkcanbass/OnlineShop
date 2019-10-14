@@ -4,19 +4,17 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { clearItemFromCart, removeItem } from '../../redux/cart/cart.action';
-import { addItemToCart } from '../../firebase/firebase.utils';
+import { addItemToCart, reduceItemFromCart } from '../../firebase/firebase.utils';
 import { selectCartId } from '../../redux/cart/cart.selectors';
 
-const CheckoutItem = (props) => {
+const CheckoutItem = ({
+  cartItem, cartId, clearItemFromCart, removeItem,
+}) => {
   // console.log(props.cartItem);
+
   const {
-    cartItem: {
-      name, imageUrl, price, quantity,
-    },
-    cartId,
-    clearItemFromCart,
-    removeItem,
-  } = props;
+    name, imageUrl, price, quantity,
+  } = cartItem;
   return (
     <div className="checkoutItemContainer">
       <div className="imageContainer">
@@ -24,11 +22,11 @@ const CheckoutItem = (props) => {
       </div>
       <span className="name">{name}</span>
       <span className="quantity">
-        <div role="button" className="arrow" onClick={() => removeItem(cartItem)}>
+        <div role="button" className="arrow" onClick={() => reduceItemFromCart(cartId, cartItem)}>
           &#10094;
         </div>
         <span className="value">{quantity}</span>
-        <div role="button" className="arrow" onClick={() => addItemToCart(cartId, props.cartItem)}>
+        <div role="button" className="arrow" onClick={() => addItemToCart(cartId, cartItem)}>
           &#10095;
         </div>
       </span>
