@@ -10,9 +10,11 @@ import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
 import { selectUserId } from '../../../redux/user/user.selectors';
+import { addItemToCart } from '../../../firebase/firebase.utils';
+import { selectCartId } from '../../../redux/cart/cart.selectors';
 
 const DonationPage = ({
-  donations, addItem, user, modalToggleWindow,
+  donations, user, modalToggleWindow, cartId,
 }) => {
   const [state, setState] = useState({
     loading: true,
@@ -40,7 +42,11 @@ const DonationPage = ({
               {user ? (
                 <div className="donationButtons">
                   {donations.map((donation) => (
-                    <MyButton key={donation.id} onClick={() => addItem(donation)} donation>
+                    <MyButton
+                      key={donation.id}
+                      onClick={() => addItemToCart(cartId, donation)}
+                      donation
+                    >
                       $
                       {donation.price}
                     </MyButton>
@@ -73,11 +79,13 @@ DonationPage.propTypes = {
   addItem: PropTypes.func.isRequired,
   user: PropTypes.shape({}),
   modalToggleWindow: PropTypes.func,
+  cartId: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   donations: selectDonations,
   user: selectUserId,
+  cartId: selectCartId,
 });
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),

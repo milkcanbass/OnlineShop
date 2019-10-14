@@ -14,7 +14,7 @@ class CartIcon extends Component {
     return (
       <div role="button" className="cartIcon" onClick={() => toggleDropdown()}>
         <img src={Icon} className="icon" alt="cartIcon" />
-        <span className="item-count">{itemCount}</span>
+        <span className="itemCount">{itemCount}</span>
       </div>
     );
   }

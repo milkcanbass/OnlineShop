@@ -98,6 +98,8 @@ export const addItemToCart = (cartId, newItem) => {
   if (!cartId || !newItem) {
     throw 'cartId does not exist';
   }
+  console.log(cartId);
+  console.log(newItem);
   let userId;
   let cartItems;
   const cartDocument = firestore.collection('carts').doc(cartId);
@@ -150,4 +152,12 @@ export const addItemToCart = (cartId, newItem) => {
       store.dispatch(setCartItems(snapShot.data().cartItems));
     })
     .catch((err) => console.log(err.message));
+};
+
+export const addDonation = (cartId, newItem) => {
+  if (!cartId || !newItem) {
+    throw 'cartId does not exist';
+  }
+  console.log(cartId);
+  console.log(newItem);
 };

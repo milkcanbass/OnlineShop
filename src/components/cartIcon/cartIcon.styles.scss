@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
 
-   &:hover {
+  &:hover {
     cursor: default;
     color: red;
   }
@@ -13,8 +13,9 @@
     width: 30px;
     height: auto;
   }
-  .item-count {
+  .itemCount {
     position: absolute;
-    padding-top: 15px;
+    padding-top: 7px;
+    font-size: 0.7em;
   }
 }
