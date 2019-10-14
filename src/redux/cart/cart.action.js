@@ -18,6 +18,7 @@ export const setCartId = (payload) => (dispatch) => {
   dispatch({ type: SET_CART_ID, payload });
 };
 export const setCartItems = (payload) => (dispatch) => {
+  console.log(payload);
   dispatch({ type: SET_CART_ITEMS, payload });
 };
 

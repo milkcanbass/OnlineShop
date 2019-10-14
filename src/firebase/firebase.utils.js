@@ -116,6 +116,7 @@ export const addItemToCart = (cartId, newItem) => {
           if (item.id === newItem.id) {
             itemCase = {
               id: item.id,
+              imageUrl: item.imageUrl,
               name: item.name,
               price: item.price,
               quantity: item.quantity + 1,
@@ -131,14 +132,22 @@ export const addItemToCart = (cartId, newItem) => {
       } else {
         const itemCase = {
           id: newItem.id,
+          imageUrl: newItem.imageUrl,
           name: newItem.name,
           price: newItem.price,
           quantity: 1,
         };
-        // new Item (works)
+        // new Item
         cartDocument.update({
           cartItems: firebase.firestore.FieldValue.arrayUnion(itemCase),
         });
       }
-    });
+      // For updateCart
+    })
+    .then(() => cartDocument.get())
+    .then((snapShot) => {
+      console.log(snapShot.data().cartItems);
+      store.dispatch(setCartItems(snapShot.data().cartItems));
+    })
+    .catch((err) => console.log(err.message));
 };
