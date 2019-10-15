@@ -1,0 +1,14 @@
+@import '../../../App';
+
+@include responseTo(medium) {
+  .contactContainr {
+    font-size: 0.9em;
+    padding-bottom: 15px;
+  }
+}
+@include responseTo(small) {
+  .contactContainr {
+    font-size: 0.8em;
+    padding-bottom: 15px;
+  }
+}

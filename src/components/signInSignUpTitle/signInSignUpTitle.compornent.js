@@ -22,21 +22,21 @@ class SignInSignUpTitle extends Component {
     return (
       <div className="wrapper">
         <nav className="titleContainer">
-          <ul>
-            <li
+          <div className="listWrapper">
+            <div
               className={`${signIn ? 'active' : ''} title`}
               onClick={!signIn ? () => toggleSignInPage() : null}
             >
               <a>SIGN IN</a>
               <span className="target" />
-            </li>
-            <li
+            </div>
+            <div
               className={`${!signIn ? 'active' : ''} title`}
               onClick={signIn ? () => toggleSignInPage() : null}
             >
               <a> SIGN UP</a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </nav>
       </div>
     );

@@ -29,3 +29,12 @@
     }
   }
 }
+@include responseTo(small) {
+  .modalBackground {
+    .modal {
+      max-width: 225px;
+      min-height: 150px;
+      padding: 10px;
+    }
+  }
+}

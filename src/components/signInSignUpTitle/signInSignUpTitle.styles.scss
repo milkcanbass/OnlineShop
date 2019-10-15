@@ -3,46 +3,61 @@
 .wrapper {
   height: 100%;
 
-  .titleContainer {
+  .listWrapper {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding-bottom: 20px;
 
-    ul {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      list-style-type: none;
-      padding: 0;
+    a {
+      margin: 0 10px;
+      font-size: 20px;
+      text-decoration: none;
+    }
 
-      li {
-        margin: 0 30px 30px;
-        font-size: 25px;
-        text-decoration: none;
-      }
+    .active.title {
+      color: black;
+      opacity: 1;
+      pointer-events: none;
+    }
 
-      .active.title {
-        color: black;
+    .title {
+      color: #dcdcdc;
+      :hover {
         opacity: 1;
-        pointer-events: none;
-      }
-
-      .title {
-        color: #dcdcdc;
-        :hover {
-          opacity: 1;
-          color: red;
-        }
+        color: red;
       }
     }
   }
+
   .target {
     position: absolute;
     border-bottom: 5px solid #dcdcdc;
     transform: translateX();
   }
 
-  .titleContainer a,
+  .listWrapper a,
   .target {
     transition: all 0.35s ease-in-out;
+  }
+}
+
+@include responseTo(medium) {
+  .wrapper {
+    .listWrapper {
+      a {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+@include responseTo(small) {
+  .wrapper {
+    .listWrapper {
+      a {
+        font-size: 0.8em;
+      }
+    }
   }
 }
