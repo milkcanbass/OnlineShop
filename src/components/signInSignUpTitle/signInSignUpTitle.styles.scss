@@ -1,14 +1,12 @@
 @import '../../App';
 
 .wrapper {
-  height: 100%;
-
   .listWrapper {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     list-style-type: none;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 
     a {
       margin: 0 10px;
@@ -46,15 +44,7 @@
 @include responseTo(medium) {
   .wrapper {
     .listWrapper {
-      a {
-        font-size: 0.8em;
-      }
-    }
-  }
-}
-@include responseTo(small) {
-  .wrapper {
-    .listWrapper {
+      padding-bottom: 5px;
       a {
         font-size: 0.8em;
       }

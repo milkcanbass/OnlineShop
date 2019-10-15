@@ -21,23 +21,21 @@ class SignInSignUpTitle extends Component {
 
     return (
       <div className="wrapper">
-        <nav className="titleContainer">
-          <div className="listWrapper">
-            <div
-              className={`${signIn ? 'active' : ''} title`}
-              onClick={!signIn ? () => toggleSignInPage() : null}
-            >
-              <a>SIGN IN</a>
-              <span className="target" />
-            </div>
-            <div
-              className={`${!signIn ? 'active' : ''} title`}
-              onClick={signIn ? () => toggleSignInPage() : null}
-            >
-              <a> SIGN UP</a>
-            </div>
+        <div className="listWrapper">
+          <div
+            className={`${signIn ? 'active' : ''} title`}
+            onClick={!signIn ? () => toggleSignInPage() : null}
+          >
+            <a>SIGN IN</a>
+            <span className="target" />
           </div>
-        </nav>
+          <div
+            className={`${!signIn ? 'active' : ''} title`}
+            onClick={signIn ? () => toggleSignInPage() : null}
+          >
+            <a> SIGN UP</a>
+          </div>
+        </div>
       </div>
     );
   }

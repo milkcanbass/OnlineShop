@@ -1,4 +1,4 @@
-//Colours
+@import '../../App'; //Colours
 $donationPrimaryColor: #e74c3c;
 
 .myButton {
@@ -65,5 +65,14 @@ $donationPrimaryColor: #e74c3c;
     &:focus {
       outline: 0;
     }
+  }
+}
+
+@include responseTo(medium) {
+  .myButton {
+    width: 70px;
+    height: 30px;
+    letter-spacing: 0.2px;
+    font-size: 7px;
   }
 }

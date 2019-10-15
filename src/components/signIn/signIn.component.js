@@ -66,7 +66,6 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
 
   return (
     <div className="signInContainer">
-      <span className="signInSubTitle">I have an account</span>
       <form className="inputForms" onSubmit={(e) => onSubmitHandler(e)}>
         <InputForm
           type="email"

@@ -43,7 +43,6 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
 
   return (
     <div className="signUpContainer">
-      <span className="signUpSubTitle">Creat an account</span>
       <form className="inputForms" onSubmit={(e) => onSubmitHandler(e)}>
         <InputForm
           type="text"

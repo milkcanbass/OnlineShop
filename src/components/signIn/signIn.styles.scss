@@ -4,9 +4,6 @@
   flex-direction: column;
   width: 300px;
 
-  .signInSubTitle {
-    color: gray;
-  }
   .inputForms {
     display: flex;
     flex-direction: column;
@@ -19,5 +16,10 @@
 @include responseTo(medium) {
   .signInContainer {
     width: 150px;
+
+    .signInButtons {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
