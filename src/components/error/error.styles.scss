@@ -1,7 +1,15 @@
+@import '../../App';
 .errorContainer {
-  min-width: 300px;
+  width: 100%;
 
   .errorTitle {
     color: red;
+  }
+}
+@include responseTo(medium) {
+  .errorContainer {
+    .errorTitle {
+      font-size: 0.7em;
+    }
   }
 }

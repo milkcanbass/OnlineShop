@@ -23,17 +23,8 @@
 @include responseTo(medium) {
   .modalBackground {
     .modal {
-      max-width: 325px;
-      min-height: 150px;
-      padding: 10px;
-    }
-  }
-}
-@include responseTo(small) {
-  .modalBackground {
-    .modal {
-      max-width: 225px;
-      min-height: 150px;
+      max-width: 250px;
+      min-height: 100px;
       padding: 10px;
     }
   }

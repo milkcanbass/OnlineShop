@@ -1,26 +1,31 @@
+@import '../../App';
 .myShopOverviewContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 0 50px;
-
   .title {
     font-weight: bold;
     font-size: 30px;
     margin: 20px 0 0 0;
   }
-
   .myShopItemsContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     .myShopItems {
       position: relative;
-      width: 100%;
       display: flex;
       flex-wrap: wrap;
-      flex-direction: row;
+      width: 100%;
+    }
+  }
+}
+@include responseTo(medium) {
+  .myShopOverviewContainer {
+    .title {
+      text-align: center;
+    }
+    .myShopItemsContainer {
+      .myShopItems {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }

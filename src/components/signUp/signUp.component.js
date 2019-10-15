@@ -14,16 +14,10 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
     password: '',
     confirmPassword: '',
   });
-  const {
-    email, password, displayName, confirmPassword,
-  } = signUpState;
+  const { email, password, displayName } = signUpState;
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      modalCloseWindow();
-      modalToggleWindow('error', "Passwords don't match");
-    }
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
       createUserProfDoc(user, { displayName });
@@ -65,14 +59,6 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
           name="password"
           label="Password"
           value={password}
-          handleChange={onChangeHandler}
-          required
-        />
-        <InputForm
-          type="password"
-          name="confirmPassword"
-          label="Confirm Password"
-          value={confirmPassword}
           handleChange={onChangeHandler}
           required
         />

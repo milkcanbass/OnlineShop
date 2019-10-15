@@ -1,3 +1,4 @@
+@import '../../App';
 .cartDropdownContainer {
   position: absolute;
   width: 240px;
@@ -28,5 +29,21 @@
   .emptyMessage {
     font-size: 18px;
     margin: auto;
+  }
+}
+
+@include responseTo(medium) {
+  .cartDropdownContainer {
+    width: 200px;
+    top: 70px;
+    right: 10px;
+
+    .cartItems {
+      min-height: 80px;
+      max-height: 125px;
+    }
+    .myButton {
+      margin-top: 5px;
+    }
   }
 }

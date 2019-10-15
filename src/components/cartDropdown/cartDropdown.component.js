@@ -45,9 +45,8 @@ const CartDropdown = ({
           onClick={(e) => {
             modalToggleWindow(e.target.id);
           }}
-          googleButton
         >
-          Sign In to store item
+          Sign In
         </MyButton>
       </div>
     )}

@@ -1,4 +1,4 @@
-// @import '../../App';
+@import '../../App';
 .checkoutItemContainer {
   width: 100%;
   display: flex;
@@ -40,5 +40,32 @@
   .removeButton {
     padding-left: 12px;
     cursor: pointer;
+  }
+}
+@include responseTo(medium) {
+  .checkoutItemContainer {
+    padding: 7px 0;
+    font-size: 10px;
+
+    .imageContainer {
+      padding-right: 7px;
+    }
+    .name,
+    .quantity,
+    .price {
+      font-size: 1em;
+      width: 23%;
+    }
+
+    .quantity {
+      display: flex;
+
+      .value {
+        margin: 0 5px;
+      }
+    }
+    .removeButton {
+      padding-left: 6px;
+    }
   }
 }

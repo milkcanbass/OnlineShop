@@ -1,3 +1,4 @@
+@import '../../../App';
 .donationPageContainer {
   position: relative;
   height: 100vh;
@@ -64,6 +65,27 @@
       flex-wrap: wrap;
       justify-content: space-around;
       align-items: center;
+    }
+  }
+}
+
+@include responseTo(medium) {
+  .donationPageContainer {
+    .contentContainer {
+      height: 300px;
+      width: 300px;
+      top: 15%;
+
+      .textContainer {
+        padding: 1%;
+        .title {
+          font-size: 15px;
+        }
+        .text {
+          margin: 5px 0;
+          font-size: 0.8em;
+        }
+      }
     }
   }
 }
