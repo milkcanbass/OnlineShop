@@ -19,6 +19,9 @@ $donationPrimaryColor: #e74c3c;
     color: black;
     border: 1px solid black;
   }
+  &:focus {
+    outline: none;
+  }
 
   &.googleButton {
     background-color: #4285f4;
@@ -63,7 +66,7 @@ $donationPrimaryColor: #e74c3c;
       box-shadow: 0 0 40px 40px $donationPrimaryColor inset;
     }
     &:focus {
-      outline: 0;
+      outline: none;
     }
   }
 }
@@ -74,5 +77,30 @@ $donationPrimaryColor: #e74c3c;
     height: 30px;
     letter-spacing: 0.2px;
     font-size: 7px;
+
+    &.googleButton {
+      font-size: 0.2em;
+      &:hover {
+        background-color: #4285f4;
+      }
+    }
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+    &.inverted {
+      &:hover {
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+      }
+    }
+
+    &.donationButton {
+      color: white;
+      box-shadow: 0 0 40px 40px $donationPrimaryColor inset;
+      font-size: 1em;
+    }
   }
 }

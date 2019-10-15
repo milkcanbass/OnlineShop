@@ -65,24 +65,24 @@ const ItemDetailPage = ({
         <div className="textContainer">
           <div className="name">{name}</div>
           <div className="price">
-$
+            $
             {price}
+            {userId ? (
+              <MyButton onClick={() => sendItemToDBCart()}>Add cart</MyButton>
+            ) : (
+              <MyButton
+                role="button"
+                id="signInAndSignUp"
+                onClick={(e) => {
+                  modalToggleWindow(e.target.id);
+                }}
+                googleButton
+              >
+                Sign In to add cart
+              </MyButton>
+            )}
           </div>
           <div className="description">{description}</div>
-          {userId ? (
-            <MyButton onClick={() => sendItemToDBCart()}>Add cart</MyButton>
-          ) : (
-            <MyButton
-              role="button"
-              id="signInAndSignUp"
-              onClick={(e) => {
-                modalToggleWindow(e.target.id);
-              }}
-              googleButton
-            >
-              Sign In to add cart
-            </MyButton>
-          )}
         </div>
       </div>
     </div>

@@ -63,7 +63,6 @@ TOTAL: $
         onClick={(e) => {
           modalToggleWindow(e.target.id);
         }}
-        googleButton
       >
         Sign In to checkout
       </MyButton>
