@@ -18,7 +18,6 @@ export const setCartId = (payload) => (dispatch) => {
 export const setCartItems = (payload) => (dispatch) => {
   dispatch({ type: SET_CART_ITEMS, payload });
 };
-
 export const setCartInitial = () => (dispatch) => {
   dispatch({ type: SET_CART_INITIAL });
 };

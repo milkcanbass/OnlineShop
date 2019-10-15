@@ -8,7 +8,6 @@ import CartIcon from '../cartIcon/cartIcon.component';
 import CartDropdown from '../cartDropdown/cartDropdown.component';
 import { auth } from '../../firebase/firebase.utils';
 import { modalToggleWindow } from '../../redux/modal/modal.action';
-
 import { selectDropdownOpen } from '../../redux/cart/cart.selectors';
 import { selectUserId } from '../../redux/user/user.selectors';
 import { closeDropdown } from '../../redux/cart/cart.action';

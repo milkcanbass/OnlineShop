@@ -43,9 +43,14 @@ const CheckoutItem = ({ cartItem, cartId }) => {
   );
 };
 
+CheckoutItem.defaultProps = {
+  cartId: '',
+};
+
 CheckoutItem.protoTypes = {
   cartItem: PropTypes.oneOfType(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
     .isRequired,
+  cartId: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({

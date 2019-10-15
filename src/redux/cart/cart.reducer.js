@@ -1,12 +1,10 @@
 import {
   TOGGLE_DROPDOWN,
-  ADD_ITEM,
   CLOSE_DROPDOWN,
   SET_CART_ID,
   SET_CART_ITEMS,
   SET_CART_INITIAL,
 } from './cart.types';
-import { addItemToCart } from '../../utils/cart.utils';
 
 const INITIAL_STATE = {
   cartId: '',
@@ -38,12 +36,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: payload,
-      };
-    }
-    case ADD_ITEM: {
-      return {
-        ...state,
-        cartItems: addItemToCart(state.cartItems, payload),
       };
     }
     case SET_CART_INITIAL:

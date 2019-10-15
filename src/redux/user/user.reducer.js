@@ -1,6 +1,6 @@
 import { SET_USER_LOGIN } from './user.types';
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = { userId: '' };
 
 const userReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;

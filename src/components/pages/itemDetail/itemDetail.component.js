@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './itemDetail.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,15 +9,31 @@ import Spinner from '../../spinner/spinner.component';
 import { selectUserId } from '../../../redux/user/user.selectors';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import { addItemToCart } from '../../../firebase/firebase.utils';
-import { selectCartId } from '../../../redux/cart/cart.selectors';
+import { selectCartId, selectDropdownOpen } from '../../../redux/cart/cart.selectors';
+
+import { closeDropdown } from '../../../redux/cart/cart.action';
 
 const ItemDetailPage = ({
-  match, myShopData, userId, cartId, modalToggleWindow,
+  match,
+  myShopData,
+  userId,
+  cartId,
+  modalToggleWindow,
+  closeDropdown,
+  dropdownOpen,
 }) => {
+  useEffect(() => {
+    if (dropdownOpen) {
+      closeDropdown();
+    }
+  }, []);
+
   const [loading, setLoading] = useState({
     loading: true,
   });
   let itemData;
+
+  // For preventing direct access without ItemData
   try {
     const { title, id } = match.params;
 
@@ -73,20 +89,28 @@ $
   );
 };
 
+ItemDetailPage.defaultProps = {
+  userId: '',
+};
+
 ItemDetailPage.propTypes = {
   myShopData: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
     .isRequired,
   modalToggleWindow: PropTypes.func.isRequired,
   userId: PropTypes.string,
+  dropdownOpen: PropTypes.bool.isRequired,
+  closeDropdown: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),
+  closeDropdown: () => dispatch(closeDropdown()),
 });
 
 const mapStateToProps = createStructuredSelector({
   userId: selectUserId,
   cartId: selectCartId,
+  dropdownOpen: selectDropdownOpen,
 });
 
 export default connect(

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 import SignIn from '../../signIn/signIn.component';
 import SignUp from '../../signUp/signUp.component';
 import SignInSignUpTitle from '../../signInSignUpTitle/signInSignUpTitle.compornent';
@@ -13,6 +14,10 @@ const SignInAndSignUp = ({ signIn }) => (
     {signIn ? <SignIn /> : <SignUp />}
   </div>
 );
+
+SignInAndSignUp.propTypes = {
+  signIn: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = createStructuredSelector({
   signIn: selectSignIn,

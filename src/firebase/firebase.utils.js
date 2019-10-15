@@ -231,7 +231,6 @@ export const removeItemFromCart = (cartId, newItem) => {
 
         newCart.push(itemCase);
       });
-      console.log(newCart);
       cartDocument.set({ cartItems: newCart, userId });
     })
     .then(() => cartDocument.get())

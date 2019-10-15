@@ -1,7 +1,6 @@
 import React from 'react';
 import './error.styles.scss';
 import { connect } from 'react-redux';
-
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { selectMessage } from '../../redux/modal/modal.selectors';

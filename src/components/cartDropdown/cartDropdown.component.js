@@ -54,6 +54,10 @@ const CartDropdown = ({
   </div>
 );
 
+CartDropdown.defaultProps = {
+  userId: '',
+};
+
 CartDropdown.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
     .isRequired,

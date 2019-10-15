@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import './donation.styles.scss';
 import { connect } from 'react-redux';
@@ -10,14 +10,28 @@ import MyButton from '../../myButton/myButton.component';
 import Spinner from '../../spinner/spinner.component';
 import { selectUserId } from '../../../redux/user/user.selectors';
 import { addItemToCart } from '../../../firebase/firebase.utils';
-import { selectCartId } from '../../../redux/cart/cart.selectors';
+import { selectCartId, selectDropdownOpen } from '../../../redux/cart/cart.selectors';
+
+import { closeDropdown } from '../../../redux/cart/cart.action';
 
 const DonationPage = ({
-  donations, user, modalToggleWindow, cartId,
+  donations,
+  user,
+  modalToggleWindow,
+  cartId,
+  dropdownOpen,
+  closeDropdown,
 }) => {
   const [state, setState] = useState({
     loading: true,
   });
+
+  // close dropDown menu when move to this page
+  useEffect(() => {
+    if (dropdownOpen) {
+      closeDropdown();
+    }
+  }, []);
 
   const page = (
     <div className="donationPageContainer">
@@ -73,20 +87,29 @@ const DonationPage = ({
   return <div>{donations.length > 0 ? page : <Redirect to="/" />}</div>;
 };
 
+DonationPage.defaultProps = {
+  user: {},
+  cartId: '',
+};
+
 DonationPage.propTypes = {
   donations: PropTypes.shape([]).isRequired,
   user: PropTypes.shape({}),
-  modalToggleWindow: PropTypes.func,
+  modalToggleWindow: PropTypes.func.isRequired,
   cartId: PropTypes.string,
+  dropdownOpen: PropTypes.bool.isRequired,
+  closeDropdown: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   donations: selectDonations,
   user: selectUserId,
   cartId: selectCartId,
+  dropdownOpen: selectDropdownOpen,
 });
 const mapDispatchToProps = (dispatch) => ({
   modalToggleWindow: (item, message) => dispatch(modalToggleWindow(item, message)),
+  closeDropdown: () => dispatch(closeDropdown()),
 });
 
 export default connect(

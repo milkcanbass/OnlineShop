@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { toggleSignInPage } from '../../redux/signInSinUp/signInSinUp.action';
 import { activeUnderline } from '../../utils/menu.utils';
 import './signInSignUpTitle.styles.scss';
@@ -42,6 +42,10 @@ class SignInSignUpTitle extends Component {
     );
   }
 }
+
+SignInSignUpTitle.propTypes = {
+  signIn: PropTypes.bool.isRequired,
+};
 
 const mapsDispatchToProps = (dispatch) => ({
   toggleSignInPage: () => dispatch(toggleSignInPage()),

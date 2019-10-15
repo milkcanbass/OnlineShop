@@ -49,11 +49,10 @@ const SignIn = ({ modalCloseWindow, modalToggleWindow }) => {
         provider.setCustomParameters({ prompt: 'select_account' });
         auth
           .signInWithPopup(provider)
-          .then((result) => {
+          .then(() => {
             modalCloseWindow();
           })
           .catch((err) => {
-            const errorCode = err.code;
             modalCloseWindow();
             modalToggleWindow('error', err.message);
           });

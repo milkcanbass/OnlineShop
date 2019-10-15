@@ -3,15 +3,15 @@
   width: 240px;
   display: flex;
   flex-direction: column;
+  z-index: 5;
+  justify-content: center;
+  align-items: center;
   padding: 10px 0 10px 10px;
   border: solid grey;
   border-width: 1px;
   background-color: white;
   top: 70px;
   right: 10px;
-  z-index: 5;
-  justify-content: center;
-  align-items: center;
 
   .cartItems {
     min-height: 155px;
@@ -23,6 +23,7 @@
   }
   .myButton {
     margin: auto;
+    margin-top: 10px;
   }
   .emptyMessage {
     font-size: 18px;

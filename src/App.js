@@ -17,12 +17,13 @@ import Header from './components/header/header.components';
 import Footer from './components/footer/footer.components';
 import Modal from './components/modal/modal.component';
 
+// code splitting
 const CheckoutPage = lazy(() => import('./components/pages/checkout/checkout.component'));
 const MyShopRoot = lazy(() => import('./components/pages/myShopRoot/myShopRoot.component'));
 const DonationPage = lazy(() => import('./components/pages/donation/donation.component'));
 
 class App extends Component {
-  // for unsucscribe open subscriptin(google auth)
+  // for subscribe(google auth)
   unsubscribeFromAuth = null;
 
   // To check if user login
@@ -30,7 +31,7 @@ class App extends Component {
     const { setUserLogin, setCartInitial } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      // This is user signin and signUp
+      // This is user signIn and signUp
       if (userAuth) {
         const userRef = await createUserProfDoc(userAuth);
         userRef.onSnapshot(async (snapShot) => {
@@ -70,6 +71,7 @@ class App extends Component {
 App.propTypes = {
   setUserLogin: PropTypes.func.isRequired,
   user: PropTypes.string,
+  setCartInitial: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
