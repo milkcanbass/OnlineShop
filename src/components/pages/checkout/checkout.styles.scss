@@ -29,7 +29,16 @@
   margin-top: 30px;
   margin-left: auto;
   font-size: 36px;
-  .test-warning {
+}
+.testWarning {
+  display: flex;
+  flex-direction: column;
+  .warningText {
     color: red;
+    margin: 20px 0;
   }
+}
+
+.stripe-button-el {
+  float: right;
 }

@@ -10,6 +10,7 @@
   top: 70px;
   right: 10px;
   z-index: 5;
+  justify-content: center;
   align-items: center;
 
   .cartItems {
@@ -21,8 +22,7 @@
     overflow: auto;
   }
   .myButton {
-    float: right;
-    margin: 15px 15px 0 0;
+    margin: auto;
   }
   .emptyMessage {
     font-size: 18px;

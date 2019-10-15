@@ -1,14 +1,12 @@
 import {
   TOGGLE_DROPDOWN,
   ADD_ITEM,
-  CLEAR_ITEM_FROM_CART,
-  REMOVE_ITEM,
   CLOSE_DROPDOWN,
   SET_CART_ID,
   SET_CART_ITEMS,
   SET_CART_INITIAL,
 } from './cart.types';
-import { addItemToCart, removeItemFromCart } from '../../utils/cart.utils';
+import { addItemToCart } from '../../utils/cart.utils';
 
 const INITIAL_STATE = {
   cartId: '',
@@ -48,16 +46,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: addItemToCart(state.cartItems, payload),
       };
     }
-    case CLEAR_ITEM_FROM_CART:
-      return {
-        ...state,
-        cartItems: state.cartItems.filter((cartItem) => cartItem.id !== payload.id),
-      };
-    case REMOVE_ITEM:
-      return {
-        ...state,
-        cartItems: removeItemFromCart(state.cartItems, payload),
-      };
     case SET_CART_INITIAL:
       return INITIAL_STATE;
     default:

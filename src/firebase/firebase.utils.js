@@ -100,6 +100,8 @@ export const addItemToCart = (cartId, newItem) => {
   }
   let userId;
   let cartItems;
+  let itemCase;
+  const newCart = [];
   const cartDocument = firestore.collection('carts').doc(cartId);
   cartDocument
     .get()
@@ -109,8 +111,6 @@ export const addItemToCart = (cartId, newItem) => {
     })
     .then(() => {
       const itemExisting = cartItems.find((cartItem) => cartItem.id === newItem.id);
-      let itemCase;
-      const newCart = [];
       if (itemExisting) {
         cartItems.map((item) => {
           if (item.id === newItem.id) {
@@ -239,5 +239,5 @@ export const removeItemFromCart = (cartId, newItem) => {
       console.log(snapShot.data().cartItems);
       store.dispatch(setCartItems(snapShot.data().cartItems));
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => console.log(err));
 };

@@ -2,8 +2,9 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { clearCart } from '../../firebase/firebase.utils';
 
-const StripeCheckoutButton = ({ price }) => {
+const StripeCheckoutButton = ({ price, cartId }) => {
   const priceForStripe = price * 100;
   const publishableKey = 'pk_test_DGQE6QJh7jDOOYYz7YlCrAtS00uZITvJgs';
 
@@ -16,8 +17,12 @@ const StripeCheckoutButton = ({ price }) => {
         token,
       },
     })
-      .then((response) => {
+      .then((res) => {
         alert('succesful payment');
+      })
+      .then(() => {
+        console.log(cartId);
+        clearCart(cartId);
       })
       .catch((error) => {
         console.log('Payment Error: ', JSON.parse(error));

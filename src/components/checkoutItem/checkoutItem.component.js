@@ -3,7 +3,6 @@ import './checkoutItem.styles.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { clearItemFromCart, removeItem } from '../../redux/cart/cart.action';
 import {
   addItemToCart,
   reduceItemFromCart,
@@ -11,7 +10,7 @@ import {
 } from '../../firebase/firebase.utils';
 import { selectCartId } from '../../redux/cart/cart.selectors';
 
-const CheckoutItem = ({ cartItem, cartId, clearItemFromCart }) => {
+const CheckoutItem = ({ cartItem, cartId }) => {
   // console.log(props.cartItem);
 
   const {
@@ -47,19 +46,10 @@ const CheckoutItem = ({ cartItem, cartId, clearItemFromCart }) => {
 CheckoutItem.protoTypes = {
   cartItem: PropTypes.oneOfType(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
     .isRequired,
-  clearItemFromCart: PropTypes.func.isRequired,
-  removeItem: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  clearItemFromCart: (item) => dispatch(clearItemFromCart(item)),
-  removeItem: (item) => dispatch(removeItem(item)),
-});
 const mapStateToProps = createStructuredSelector({
   cartId: selectCartId,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CheckoutItem);
+export default connect(mapStateToProps)(CheckoutItem);

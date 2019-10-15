@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { selectCartItems, selectCartTotal } from '../../../redux/cart/cart.selectors';
+import { selectCartItems, selectCartTotal, selectCartId } from '../../../redux/cart/cart.selectors';
 import CheckoutItem from '../../checkoutItem/checkoutItem.component';
 import StripeCheckoutButton from '../../stripeButton/stripeButton.componet';
 import { selectUserId } from '../../../redux/user/user.selectors';
@@ -12,7 +12,7 @@ import { modalToggleWindow } from '../../../redux/modal/modal.action';
 import './checkout.styles.scss';
 
 const CheckoutPage = ({
-  cartItems, total, user, modalToggleWindow,
+  cartItems, total, user, modalToggleWindow, cartId,
 }) => (
   <div className="checkoutPageContainer">
     <div className="checkoutHeader">
@@ -32,22 +32,30 @@ const CheckoutPage = ({
         <span>Remove</span>
       </div>
     </div>
-    {cartItems.map((cartItem) => (
-      <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-    ))}
+    {cartItems.length > 0 ? (
+      cartItems.map((cartItem) => <CheckoutItem key={cartItem.id} cartItem={cartItem} />)
+    ) : (
+      <h1>No Item</h1>
+    )}
     <div className="total">
       <span>
 TOTAL: $
         {total}
       </span>
-      <div className="test-warning">
-        *Using Test Mode. Please use the following test credit card for payments*
-        <br />
-        4242 4242 4242 4242 -exp:01/20 - cvv:123
-      </div>
     </div>
     {user ? (
-      <StripeCheckoutButton price={total} />
+      total ? (
+        <div>
+          <div className="testWarning">
+            <div className="warningText">
+              *Using Test Mode. Please use the following test credit card for payments*
+              <br />
+              4242 4242 4242 4242 -exp:01/20 - cvv:123
+            </div>
+            <StripeCheckoutButton price={total} cartId={cartId} />
+          </div>
+        </div>
+      ) : null
     ) : (
       <MyButton
         role="button"
@@ -77,6 +85,7 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
   user: selectUserId,
+  cartId: selectCartId,
 });
 
 export default connect(
