@@ -9,7 +9,7 @@ https://jaifeimaohandagou.firebaseapp.com/
 ## General info
 This is an imaginary online shop. <br>
 The key technologies I used for this are <br>
-React, Redux, Webpack, PWA, Express, Jest, Firebase, stripe.<br>
+React, Redux, Webpack, PWA, Express, Jest, Firebase, Stripe.<br>
 Firebase handles authentication and storing shop items data and user data. <br>
 Since this is an imaginary online shop, I set Stripe payment function as test mode.<br>
 If you would like to check the payment function, please use the card information on the checkout page.
@@ -18,7 +18,7 @@ If you would like to check the payment function, please use the card information
 ## Test
 1/Download this repositely, and dependecies.<br>
 2/Open src/components/stripeButton/stripeButton.componet.js. update publishableKey with your key.<br>
-4/<optional> for activate product version of Stripe, please update STRIPE_SECRET_KEY in src/server/server-prod.js. <br>
+3/<optional> for activate product version of Stripe, please update STRIPE_SECRET_KEY in src/server/server-prod.js. <br>
 4/"npm run buildDev" is for dev mode,"npm run buildProd" is for production mode. <br>
 
 
