@@ -6,8 +6,6 @@ import { publishableKey } from '../../../password';
 
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
-  // const publishableKey = 'pk_test_DGQE6QJh7jDOOYYz7YlCrAtS00uZITvJgs';
-
   const onToken = (token) => {
     axios({
       url: 'payment',

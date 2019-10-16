@@ -25,12 +25,6 @@ app.use(
   }),
 );
 
-// Set robots.txt
-app.get('/robots.txt', (req, res) => {
-  res.type('text/plain');
-  res.send('User-agent:*\nAllow:/');
-});
-
 // For Stripe Api
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -56,7 +50,7 @@ app.get('*', (req, res) => {
   res.sendFile(HTML_FILE);
 });
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, (err) => {
+app.listen(PORT, err => {
   if (err) throw err;
   console.log(`App listening to ${PORT}....`);
   console.log('Press Ctrl+C to quit.');

@@ -44,6 +44,7 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
           label="Display Name"
           value={displayName}
           handleChange={onChangeHandler}
+          autoComplete="off"
           required
         />
         <InputForm
@@ -52,6 +53,7 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
           label="Email"
           value={email}
           handleChange={onChangeHandler}
+          autoComplete="off"
           required
         />
         <InputForm
@@ -60,6 +62,7 @@ const SignUp = ({ modalCloseWindow, modalToggleWindow }) => {
           label="Password"
           value={password}
           handleChange={onChangeHandler}
+          autoComplete="off"
           required
         />
         <div className="signUpButtons">

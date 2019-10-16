@@ -32,12 +32,6 @@ app.use(
   }),
 );
 
-// Set robots.txt
-app.get('/robots.txt', (req, res) => {
-  res.type('text/plain');
-  res.send('User-agent: *\nDisallow: /');
-});
-
 app.use(webpackHotMiddleware(compiler));
 
 app.get('*', (req, res, next) => {
@@ -77,7 +71,7 @@ const PORT = process.env.PORT || 5000;
 app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'dist', 'service-worker.js'));
 });
-app.listen(PORT, err => {
+app.listen(PORT, (err) => {
   if (err) throw err;
   console.log(`App listening to ${PORT}....`);
   console.log('Press Ctrl+C to quit.');
