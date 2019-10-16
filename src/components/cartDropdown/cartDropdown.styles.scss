@@ -13,15 +13,16 @@
   background-color: white;
   top: 70px;
   right: 10px;
+  padding: 10px 0;
 
   .cartItems {
     min-height: 155px;
     max-height: 255px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
+
   .myButton {
     margin: auto;
     margin-top: 10px;

@@ -5,7 +5,10 @@
   height: 100%;
   margin-bottom: 5px;
   img {
-    width: 40%;
+    max-width: 130px;
+    max-height: 95px;
+    width: auto;
+    height: auto;
   }
   .itemDetails {
     width: 100%;
