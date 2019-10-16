@@ -5,6 +5,7 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const path = require('path');
 
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -38,7 +39,7 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
 
       {
@@ -60,6 +61,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
+    new RobotstxtPlugin('public/robots.txt'),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, './public/index.html'),
       excludeChunks: ['server'],

@@ -21,6 +21,7 @@ import Modal from './components/modal/modal.component';
 const CheckoutPage = lazy(() => import('./components/pages/checkout/checkout.component'));
 const MyShopRoot = lazy(() => import('./components/pages/myShopRoot/myShopRoot.component'));
 const DonationPage = lazy(() => import('./components/pages/donation/donation.component'));
+const NotFoundPage = lazy(() => import('./components/pages/notFound/notFound.component'));
 
 class App extends Component {
   // for subscribe(google auth)
@@ -61,6 +62,7 @@ class App extends Component {
           <Route exact path="/donation" component={lazyLoadingImport(DonationPage)} />
           <Route path="/myshop" component={lazyLoadingImport(MyShopRoot)} />
           <Route exact path="/checkout" component={lazyLoadingImport(CheckoutPage)} />
+          <Route component={lazyLoadingImport(NotFoundPage)} />
         </Switch>
         <Footer />
       </div>

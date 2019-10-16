@@ -148,7 +148,7 @@ export const addItemToCart = (cartId, newItem) => {
     .then((snapShot) => {
       store.dispatch(setCartItems(snapShot.data().cartItems));
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => console.log(err));
 };
 
 export const reduceItemFromCart = (cartId, newItem) => {
@@ -190,15 +190,13 @@ export const reduceItemFromCart = (cartId, newItem) => {
         }
         newCart.push(itemCase);
       });
-      console.log(newCart);
       cartDocument.set({ cartItems: newCart, userId });
     })
     .then(() => cartDocument.get())
     .then((snapShot) => {
-      console.log(snapShot.data().cartItems);
       store.dispatch(setCartItems(snapShot.data().cartItems));
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => console.log(err));
 };
 
 export const removeItemFromCart = (cartId, newItem) => {
@@ -235,7 +233,6 @@ export const removeItemFromCart = (cartId, newItem) => {
     })
     .then(() => cartDocument.get())
     .then((snapShot) => {
-      console.log(snapShot.data().cartItems);
       store.dispatch(setCartItems(snapShot.data().cartItems));
     })
     .catch((err) => console.log(err));

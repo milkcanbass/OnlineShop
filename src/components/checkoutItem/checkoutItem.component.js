@@ -11,8 +11,6 @@ import {
 import { selectCartId } from '../../redux/cart/cart.selectors';
 
 const CheckoutItem = ({ cartItem, cartId }) => {
-  // console.log(props.cartItem);
-
   const {
     name, imageUrl, price, quantity,
   } = cartItem;

@@ -7,7 +7,6 @@ export const modalToggleWindow = (type, message) => (dispatch) => {
   // retrieve state from reselect
   const dropdownOpen = selectDropdownOpen(store.getState());
   if (dropdownOpen === true) {
-    console.log('called');
     store.dispatch(closeDropdown());
   }
 

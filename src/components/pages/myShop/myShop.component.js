@@ -7,18 +7,15 @@ import PropTypes from 'prop-types';
 import { selectMyShopDataObj } from '../../../redux/myShop/myShop.selectors';
 import MyShopOverview from '../../myShopOverview/myShopOverview.component';
 
-const myShopPage = ({ myShopData }) => {
-  console.log(myShopData);
-  return (
-    <div className="myShopPageContainer">
-      {myShopData.length > 0 ? (
-        myShopData.map(({ id, ...otherprops }) => <MyShopOverview key={id} {...otherprops} />)
-      ) : (
-        <Redirect to="/" />
-      )}
-    </div>
-  );
-};
+const myShopPage = ({ myShopData }) => (
+  <div className="myShopPageContainer">
+    {myShopData.length > 0 ? (
+      myShopData.map(({ id, ...otherprops }) => <MyShopOverview key={id} {...otherprops} />)
+    ) : (
+      <Redirect to="/" />
+    )}
+  </div>
+);
 
 myShopPage.propTypes = {
   myShopData: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
