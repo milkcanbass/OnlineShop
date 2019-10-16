@@ -5,6 +5,6 @@ dist
 backupData
 coverage
 .firebase
-password
+password.js
 
 
