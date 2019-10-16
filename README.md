@@ -7,7 +7,12 @@ https://jaifeimaohandagou.firebaseapp.com/
 * [Technologies](#technologies)
 
 ## General info
-This is an imaginary online shop. The key technologies I used for this are React, Redux, Webpack, PWA, Express, Jest, Firebase, stripe. Firebase handles authentication and storing shop items data and user data. Since this is an imaginary online shop, I set Stripe payment function as test mode. If you would like to check the payment function, please use the card information on the checkout page.
+This is an imaginary online shop. <br>
+The key technologies I used for this are <br>
+React, Redux, Webpack, PWA, Express, Jest, Firebase, stripe.<br>
+Firebase handles authentication and storing shop items data and user data. <br>
+Since this is an imaginary online shop, I set Stripe payment function as test mode.<br>
+If you would like to check the payment function, please use the card information on the checkout page.
 
 
 ## Test
@@ -51,7 +56,7 @@ This is an imaginary online shop. The key technologies I used for this are React
     "redux-thunk": "^2.3.0",<br>
     "reselect": "^4.0.0",<br>
     "stripe": "^7.9.1",<br>
-    "webpack": "^4.40.2"<br>
+    "webpack": "^4.40.2"<br><br><br>
   "devDependencies": <br>
     "@babel/core": "^7.6.2",<br>
     "@babel/plugin-proposal-class-properties": "^7.5.5",<br>
