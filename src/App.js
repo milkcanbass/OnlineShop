@@ -62,7 +62,7 @@ class App extends Component {
           <Route exact path="/donation" component={lazyLoadingImport(DonationPage)} />
           <Route path="/myshop" component={lazyLoadingImport(MyShopRoot)} />
           <Route exact path="/checkout" component={lazyLoadingImport(CheckoutPage)} />
-          <Route component={lazyLoadingImport(NotFoundPage)} />
+          <Route path="*" component={lazyLoadingImport(NotFoundPage)} />
         </Switch>
         <Footer />
       </div>
