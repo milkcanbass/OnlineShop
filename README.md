@@ -20,7 +20,7 @@ If you would like to check the payment function, please use the card information
 
 ## Test
 
-1/Download this repositely, and dependecies.<br>
+1/Download this repository and dependencies.<br>
 2/Open src/components/stripeButton/stripeButton.componet.js. update publishableKey with your key.<br>
 3/<optional> for activate product version of Stripe, please update STRIPE_SECRET_KEY in src/server/server-prod.js. <br>
 4/"npm run buildDev" is for dev mode,"npm run buildProd" is for production mode. <br>
