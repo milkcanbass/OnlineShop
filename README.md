@@ -7,7 +7,7 @@ https://jaifeimaohandagou.firebaseapp.com/
 - [General info](#general-info)
 - [Test](#test)
 - [How to use](#how-to-use)
-- [Technologies](#technologies)
+- [Dependencies](#Dependencies)
 
 ## General info
 
@@ -31,7 +31,7 @@ If you would like to check the payment function, please use the card information
 2/Click Add button to add an item.<br>
 3/On checkout page, you can increase, decrease and remove items in your cart.<br>
 
-## Technologies
+## Dependencies
 
 "dependencies": <br>
 "@babel/polyfill": "^7.6.0",<br>
