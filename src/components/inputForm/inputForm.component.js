@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 const InputForm = ({ handleChange, label, ...otherprops }) => (
   <div className="inputFormContainer">
-    <input className="input-form" onChange={handleChange} {...otherprops} />
+    <input className="inputForm" onChange={handleChange} {...otherprops} />
     {label ? (
-      <label className={`${otherprops.value.length ? 'shrink' : ''} input-form-label `}>
+      <label className={`${otherprops.value.length ? 'shrink' : ''} inputFormLabel `}>
         {label}
       </label>
     ) : null}

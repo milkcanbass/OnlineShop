@@ -1,18 +1,14 @@
 @import '../../../App';
 .itemDetailContainer {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  @include flexDisplay(null, space-around, flex-start, null);
   width: 100vw;
   min-height: 100vh;
   padding: 3%;
 
   .imgContainer {
+    @include flexDisplay(null, center, center, null);
     min-height: 30vh;
     width: 48vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-right: 1%;
 
     .spinnerContainer {
@@ -57,10 +53,7 @@
 
 @include responseTo(medium) {
   .itemDetailContainer {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
+    @include flexDisplay(null, center, center, column);
     .imgContainer {
       min-height: 30vh;
       width: 100%;

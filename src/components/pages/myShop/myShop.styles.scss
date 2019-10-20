@@ -1,6 +1,5 @@
+@import '../../../App';
 .myShopPageContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flexDisplay(null, null, center, column);
   padding-bottom: 50px;
 }

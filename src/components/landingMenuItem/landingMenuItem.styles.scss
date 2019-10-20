@@ -1,17 +1,13 @@
+@import '../../App';
 .landingMenuItemWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexDisplay(null, center, center, null);
   border: 1px;
   border-color: grey;
   border-style: solid;
   min-width: 30%;
   flex: 1 0 45%;
   height: 300px;
-  flex-grow: 1;
   margin: 15px 15px;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 
   .spinnerContainer {
@@ -26,12 +22,8 @@
   }
 
   .contentWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    @include flexDisplay(absolute, center, center, column);
     padding: 15px;
-    position: absolute;
     background-color: white;
     transition: all 0.5s ease;
     opacity: 0.6;

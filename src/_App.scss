@@ -1,5 +1,6 @@
-$break-s: 380px;
-$break-m: 480px;
+$textMainColor: black;
+$textSubColor: grey;
+$donationPrimaryColor: #e74c3c;
 
 * {
   box-sizing: border-box;
@@ -20,13 +21,31 @@ body {
   }
 }
 
-@mixin cursorOn {
+@mixin shrinkLabel {
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  color: $textSubColor;
+}
+
+@mixin flexDisplay($position, $justifyContent, $alignItems, $flexDirection) {
+  position: $position;
+  display: flex;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-direction: $flexDirection;
+}
+
+%cursorOn {
   &:hover {
     cursor: default;
     color: red;
+    text-decoration: none;
   }
 }
 
+$break-s: 380px;
+$break-m: 480px;
 @mixin responseTo($media) {
   @if $media == small {
     @media only screen and (max-width: $break-s) {

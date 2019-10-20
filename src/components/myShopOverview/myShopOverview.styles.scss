@@ -1,4 +1,5 @@
 @import '../../App';
+
 .myShopOverviewContainer {
   margin: 0 50px;
   .title {
@@ -8,8 +9,7 @@
   }
   .myShopItemsContainer {
     .myShopItems {
-      position: relative;
-      display: flex;
+      @include flexDisplay(relative, space-around, center, null);
       flex-wrap: wrap;
       width: 100%;
     }
@@ -22,9 +22,7 @@
     }
     .myShopItemsContainer {
       .myShopItems {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flexDisplay(null, center, center, null);
       }
     }
   }

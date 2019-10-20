@@ -2,8 +2,7 @@
 
 .wrapper {
   .listWrapper {
-    display: flex;
-    justify-content: space-around;
+    @include flexDisplay(null, space-between, null, null);
     flex-wrap: wrap;
     list-style-type: none;
     padding-bottom: 10px;

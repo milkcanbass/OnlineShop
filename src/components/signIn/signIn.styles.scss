@@ -1,25 +1,17 @@
 @import '../../App';
 .signInContainer {
-  display: flex;
-  flex-direction: column;
+  @include flexDisplay(null, null, null, column);
   width: 300px;
 
   .inputForms {
-    display: flex;
-    flex-direction: column;
+    @include flexDisplay(null, null, null, column);
   }
   .signInButtons {
-    display: flex;
-    justify-content: space-between;
+    @include flexDisplay(null, space-between, null, null);
   }
 }
 @include responseTo(medium) {
   .signInContainer {
     width: 150px;
-
-    .signInButtons {
-      display: flex;
-      justify-content: space-between;
-    }
   }
 }

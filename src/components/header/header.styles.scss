@@ -1,36 +1,31 @@
 @import '../../App';
 .header {
+  @include flexDisplay(null, space-between, center, null);
   width: 100vw;
   height: 60px;
   background-color: whitesmoke;
   color: black;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
+  -webkit-flex: 0 1 auto; /* Safari 6.1+ */
+  -ms-flex: 0 1 auto; /* IE 10 */
+  flex: 0 1 auto;
 
   .pageTitle {
     margin-left: 20px;
     font-size: 20px;
     text-decoration: none;
-
-    @include cursorOn();
+    @extend %cursorOn;
   }
 
   .optionContainer {
+    @include flexDisplay(null, space-between, center, null);
     height: 60px;
     margin-right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     font-size: 20px;
 
     .option {
+      @extend %cursorOn;
       margin: 0 10px;
       color: black;
-      @include cursorOn();
     }
   }
 }

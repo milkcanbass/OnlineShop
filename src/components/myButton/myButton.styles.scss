@@ -1,7 +1,7 @@
-@import '../../App'; //Colours
-$donationPrimaryColor: #e74c3c;
+@import '../../App';
 
 .myButton {
+  @include flexDisplay(null, center, null, null);
   width: 120px;
   height: 35px;
   letter-spacing: 0.5px;
@@ -11,8 +11,6 @@ $donationPrimaryColor: #e74c3c;
   text-transform: uppercase;
   font-weight: bolder;
   border: none;
-  display: flex;
-  justify-content: center;
   padding: 5px 0;
 
   &:hover {
@@ -29,7 +27,7 @@ $donationPrimaryColor: #e74c3c;
     color: white;
     font-size: 0.3em;
     &:hover {
-      background-color: #357ae8;
+      background-color: lighten(#4285f4, 20%);
       border: none;
     }
   }
@@ -47,18 +45,15 @@ $donationPrimaryColor: #e74c3c;
   }
 
   &.donationButton {
+    @include flexDisplay(none, center, center, none);
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     appearance: none;
     background-color: transparent;
     border: 2px solid $donationPrimaryColor;
     border-radius: 0.6em;
     color: $donationPrimaryColor;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     line-height: 1;
     margin: 20px;
-
     text-decoration: none;
     text-align: center;
 

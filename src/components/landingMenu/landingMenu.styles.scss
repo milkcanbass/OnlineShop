@@ -1,8 +1,7 @@
+@import '../../App';
 .landingMenuContainer {
-  display: flex;
+  @include flexDisplay(null, space-around, center, null);
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-around;
-  align-items: center;
   padding-bottom: 50px;
 }

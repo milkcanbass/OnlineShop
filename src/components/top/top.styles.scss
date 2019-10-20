@@ -1,9 +1,6 @@
 @import '../../App';
 .topContainer {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  @include flexDisplay(relative, center, center, null);
   height: 800px;
   width: 100vw;
   background: linear-gradient(to right, #eecda3, #ef629f);
@@ -13,18 +10,14 @@
   background: -ms-linear-gradient(to right, #eecda3, #ef629f);
 
   .topTitle {
+    @include flexDisplay(absolute, center, center, column);
     top: 200px;
     height: 400px;
     width: 400px;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
     padding: 20px;
     background-color: white;
     color: black;
     mix-blend-mode: screen;
-    align-items: center;
-    justify-content: center;
 
     .text {
       font-size: 4em;

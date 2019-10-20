@@ -1,7 +1,6 @@
+@import '../../App';
 .footerContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexDisplay(null, center, center, null);
   width: 100vw;
   background-color: whitesmoke;
   padding: 5px 0;

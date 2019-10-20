@@ -1,11 +1,8 @@
 @import '../../../App';
 .donationPageContainer {
-  position: relative;
+  @include flexDisplay(relative, center, center, null);
   height: 100vh;
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   .img {
     position: absolute;
     height: 100%;
@@ -42,11 +39,7 @@
       opacity: 0.85;
     }
     .textContainer {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @include flexDisplay(absolute, center, center, column);
       height: 100%;
       width: 100%;
       padding: 2%;
@@ -60,11 +53,8 @@
       }
     }
     .donationButtons {
-      position: relative;
-      display: flex;
+      @include flexDisplay(relative, space-around, center, null);
       flex-wrap: wrap;
-      justify-content: space-around;
-      align-items: center;
     }
   }
 }

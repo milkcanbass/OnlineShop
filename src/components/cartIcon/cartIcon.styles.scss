@@ -1,13 +1,7 @@
-// @import '../../App';
+@import '../../App';
 .cartIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    cursor: default;
-    color: red;
-  }
+  @include flexDisplay(null, center, center, null);
+  @extend %cursorOn;
 
   .icon {
     width: 30px;

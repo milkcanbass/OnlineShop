@@ -8,7 +8,6 @@ import StripeCheckoutButton from '../../stripeButton/stripeButton.componet';
 import { selectUserId } from '../../../redux/user/user.selectors';
 import MyButton from '../../myButton/myButton.component';
 import { modalToggleWindow } from '../../../redux/modal/modal.action';
-
 import './checkout.styles.scss';
 
 const CheckoutPage = ({

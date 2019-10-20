@@ -1,12 +1,11 @@
 @import '../../App';
 .checkoutItemContainer {
+  @include flexDisplay(null, null, center, null);
   width: 100%;
-  display: flex;
   min-height: 100px;
   border-bottom: 1px solid darkgrey;
   padding: 15px 0;
   font-size: 20px;
-  align-items: center;
 
   .imageContainer {
     width: 23%;
@@ -27,10 +26,7 @@
     display: flex;
 
     .arrow {
-      &:hover {
-        cursor: default;
-        color: red;
-      }
+      @extend %cursorOn;
     }
     .value {
       margin: 0 10px;
@@ -38,8 +34,8 @@
   }
 
   .removeButton {
+    @extend %cursorOn;
     padding-left: 12px;
-    cursor: pointer;
   }
 }
 @include responseTo(medium) {

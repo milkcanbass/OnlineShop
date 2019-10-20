@@ -1,15 +1,12 @@
 @import '../../App';
 .signUpContainer {
-  display: flex;
-  flex-direction: column;
+  @include flexDisplay(null, null, null, column);
   width: 300px;
   .inputForms {
-    display: flex;
-    flex-direction: column;
+    @include flexDisplay(null, null, null, column);
   }
   .signUpButtons {
-    display: flex;
-    justify-content: flex-end;
+    @include flexDisplay(null, flex-end, null, null);
   }
 }
 
