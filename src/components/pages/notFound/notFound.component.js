@@ -3,7 +3,7 @@ import './notFound.styles.scss';
 
 const NotFoundPage = () => (
   <div className="notFoundComponent">
-    <h3>Page not found!</h3>
+    <h3>Page not found</h3>
   </div>
 );
 
