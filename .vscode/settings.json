@@ -5,5 +5,8 @@
   "eslint.autoFixOnSave": true,
   "editor.showFoldingControls": "always",
   "editor.folding": true,
-  "editor.foldingStrategy": "indentation"
+  "editor.foldingStrategy": "indentation",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
